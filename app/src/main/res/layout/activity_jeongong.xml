@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".Jeongong">
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="288dp"
+        android:layout_height="66dp"
+        android:text="필수전공"
+        android:textSize="20sp"
+        app:backgroundTint="#4F78B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.062" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="150dp"
+        android:layout_height="46dp"
+        android:text="1학년"
+        app:backgroundTint="#4F78B0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.265" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

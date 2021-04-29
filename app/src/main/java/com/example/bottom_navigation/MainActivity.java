@@ -5,20 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private BottomNavigationView bottomNavigationView; // 바텀네비게이션 뷰
-    private FragmentManager manager;
-    private FragmentTransaction transaction;
-    private Calculator calculator;
-    private Checklist checklist;
-    private Ppt ppt;
-    private Mypage mypage;
+    public BottomNavigationView bottomNavigationView; // 바텀네비게이션 뷰
+    public FragmentManager manager;
+    public FragmentTransaction transaction;
+    public Calculator calculator;
+    public Checklist checklist;
+    public Ppt ppt;
+    public Mypage mypage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +64,10 @@ public class MainActivity extends AppCompatActivity {
     // 프래그먼트 교체가 일어나는 메서드
     private void setFrag(int n){
 
+
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
+
 
         switch (n){
             case 0:
@@ -77,9 +83,11 @@ public class MainActivity extends AppCompatActivity {
                 transaction.commit();
                 break;
             case 3:
-            transaction.replace(R.id.main_frame, mypage);
-            transaction.commit();
-            break;
+                transaction.replace(R.id.main_frame, mypage);
+                transaction.commit();
+                break;
         }
     }
-}
+
+        }
+

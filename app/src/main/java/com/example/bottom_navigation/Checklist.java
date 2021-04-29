@@ -29,6 +29,8 @@ public class Checklist extends Fragment {
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                Intent intent = new Intent(getActivity(),Jeongong.class);
+                startActivity(intent);
 
             }
         });
