@@ -2,10 +2,10 @@ package com.example.bottom_navigation;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,12 +23,21 @@ public class MainActivity extends AppCompatActivity {
     public Ppt ppt;
     public Mypage mypage;
 
+    Checklist fragment_checklist;
+    Jeongong fragment_jeongong;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.main_frame,Jeongong.newinstance()).commit();
+        fragment_checklist = new Checklist();
+        fragment_jeongong = new Jeongong();
+
+
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottomNavi);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -48,23 +57,31 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.mypage:
                         setFrag(3);
                         break;
+
                 }
                 return true;
             }
         });
+
 
         calculator = new Calculator();
         checklist = new Checklist();
         ppt = new Ppt();
         mypage = new Mypage();
 
+
         setFrag(0); // 첫화면 설정
     }
 
+    public void replaceFragment(Fragment fragment){      ////// 화면전환 메소드 프레그먼트는 이메소드를 받아서 화면전환!!!!
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_frame,fragment).commit();
+    }
+
+
     // 프래그먼트 교체가 일어나는 메서드
     private void setFrag(int n){
-
-
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
 
