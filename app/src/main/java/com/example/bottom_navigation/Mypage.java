@@ -52,18 +52,34 @@ public class Mypage extends Fragment {
             }
         });
 
-        /* --------------로그아웃 버튼 기능 수정 중..... -------------*/
+
+        /* -------- 로그아웃 버튼 클릭 시 다시 로그인 화면을 돌아가서 계정 선택 ---------*/
         Button btn_logout = (Button)view.findViewById(R.id.btn_logout);
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
+            public void onClick(View v) {
+                switch (v.getId()){
+                    case R.id.btn_logout:
+                        //user_logout();
+                        AuthUI.getInstance()
+                                .signOut(getActivity())
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        getActivity().finish();
+                                        startActivity(new Intent(getActivity(), Login.class));
+                                        Toast.makeText(getActivity(), "로그아웃 되었습니.",
+                                                Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                        Log.e("로그아웃","버튼입력");
+                        break;
+                }
             }
         });
 
-        /* ---------------------------------*/
-
         return view;
+
+
 
 
     }
