@@ -9,11 +9,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class Gyuyang extends Fragment {
-public static Gyuyang newinstance(){
-    return new Gyuyang();
+public class Gyoyang extends Fragment {
+public static Gyoyang newinstance(){
+    return new Gyoyang();
 }
-public Gyuyang(){
+public Gyoyang(){
 
 }
 

@@ -1,22 +1,16 @@
 package com.example.bottom_navigation;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import android.widget.Spinner;
 
 public class Checklist extends Fragment {
     public static Checklist newinstance(){    //////모든 프레그먼트에 newinstance메소드가 있어야함..!!
@@ -38,7 +32,7 @@ public class Checklist extends Fragment {
         btn_go_gyoyang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(Gyuyang.newinstance());
+                ((MainActivity)getActivity()).replaceFragment(Gyoyang.newinstance());
             }
         });
 
@@ -59,6 +53,7 @@ public class Checklist extends Fragment {
 
             }
         });
+
 
         return view;
 
