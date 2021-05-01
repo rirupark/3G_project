@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,11 +19,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Mypage extends Fragment {
+
+    private Button btn_logout;
 
     ViewGroup viewGroup;
     TextView user_name; // 사용자 닉네
@@ -46,14 +53,11 @@ public class Mypage extends Fragment {
             @Override
             public void onClick(View view){
                 ((MainActivity)getActivity()).replaceFragment(ChangeMy.newinstance());
-
             }
-
         });
+
         return view;
 
-
-        // login엑티비티에서 여기로 구글 로그인 해서 가져온 account데이터를 받아오는 코드 추가해야 해요. 로그아웃도 추가해야합니다 ㅎㅎㅎ
 
     }
 
