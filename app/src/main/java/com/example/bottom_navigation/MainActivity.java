@@ -6,11 +6,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -25,7 +29,10 @@ public class MainActivity extends AppCompatActivity {
 
     Checklist fragment_checklist;
     Jeongong fragment_jeongong;
+    Mypage fragment_mypage;
 
+    private TextView user_name; // 닉네임 텍스트
+    private ImageView user_img; // 이미지 뷰
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +78,17 @@ public class MainActivity extends AppCompatActivity {
 
 
         setFrag(0); // 첫화면 설정
+
+        Intent intent = getIntent();
+        String nickName = intent.getStringExtra("nickName"); // Login 클래스로 부터 닉네임 전달받음.
+        String photoUrl = intent.getStringExtra("photoUrl"); // Login 클래스로 부터 프로필 사진 Url 전달받음.
+
+        user_name = findViewById(R.id.user_name);
+        user_name.setText(nickName); // 닉네임 텍스트를 텍스트뷰에 세팅.
+
+        user_img = findViewById(R.id.user_img);
+        Glide.with(this).load(photoUrl).into(user_img); // 프로필 url을 이미지뷰에 세팅.
+
     }
 
     public void replaceFragment(Fragment fragment){      ////// 화면전환 메소드 프레그먼트는 이메소드를 받아서 화면전환!!!!
