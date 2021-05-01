@@ -79,7 +79,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){ // 로그인이 성공했으면 ...
                             Toast.makeText(Login.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
                             intent.putExtra("nickName", account.getDisplayName());
                             intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl())); // 특정 자료형을 String으로 변환.
                             startActivity(intent);

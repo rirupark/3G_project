@@ -76,18 +76,29 @@ public class MainActivity extends AppCompatActivity {
         ppt = new Ppt();
         mypage = new Mypage();
 
-
         setFrag(0); // 첫화면 설정
+
+
+        /* ----------로그인 후 값 전달 ------------
+        fragment_mypage = new Mypage(); // mypage fragment 생성.
 
         Intent intent = getIntent();
         String nickName = intent.getStringExtra("nickName"); // Login 클래스로 부터 닉네임 전달받음.
         String photoUrl = intent.getStringExtra("photoUrl"); // Login 클래스로 부터 프로필 사진 Url 전달받음.
 
-        user_name = findViewById(R.id.user_name);
-        user_name.setText(nickName); // 닉네임 텍스트를 텍스트뷰에 세팅.
+        Bundle bundle = new Bundle(); // 번들객체 생성, text, image값 저장.
+        bundle.putString("nickname", nickName);
+        bundle.putString("photoUrl", photoUrl);
 
-        user_img = findViewById(R.id.user_img);
-        Glide.with(this).load(photoUrl).into(user_img); // 프로필 url을 이미지뷰에 세팅.
+        fragment_mypage.setArguments(bundle); // mypage fragment 로 번들 전달.
+
+        //user_name = findViewById(R.id.user_name);
+        //user_name.setText(nickName); // 닉네임 텍스트를 텍스트뷰에 세팅.
+
+        //user_img = findViewById(R.id.user_img);
+        //Glide.with(this).load(photoUrl).into(user_img); // 프로필 url을 이미지뷰에 세팅.
+        
+         */
 
     }
 

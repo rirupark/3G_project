@@ -19,9 +19,15 @@ import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Mypage extends Fragment {
+
+    ViewGroup viewGroup;
+    TextView user_name; // 사용자 닉네
+    ImageView user_img; // 이미지 뷰
+
     public static Mypage newinstance(){    //////모든 프레그먼트에 newinstance메소드가 있어야함..!!
         return new Mypage();
     }
@@ -30,12 +36,10 @@ public class Mypage extends Fragment {
 
     }
 
-    private TextView user_name; // 닉네임 텍스트
-    private ImageView user_profile; // 이미지 뷰
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_mypage,null);
         Button btn_change = (Button)view.findViewById(R.id.btn_change);
         btn_change.setOnClickListener(new View.OnClickListener(){
