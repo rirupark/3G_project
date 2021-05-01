@@ -27,10 +27,21 @@ public class Checklist extends Fragment {
 
     }
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_checklist,null);
+
+        Button btn_go_gyoyang = (Button)view.findViewById(R.id.btn_go_gyoyang);
+        btn_go_gyoyang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Gyuyang.newinstance());
+            }
+        });
+
        Button btn_go_jeongong = (Button)view.findViewById(R.id.btn_go_jeongong);
         btn_go_jeongong.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -39,6 +50,16 @@ public class Checklist extends Fragment {
 
             }
         });
+
+        Button btn_go_jolup = (Button)view.findViewById(R.id.btn_go_jolup);
+        btn_go_jolup.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                ((MainActivity)getActivity()).replaceFragment(Passgraduation.newinstance());
+
+            }
+        });
+
         return view;
 
 
