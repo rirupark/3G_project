@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string-array name="okjeongong">
+        <item> 이수한 전공  </item>
+        <item> c언어프로그래밍  </item>
+        <item> 소프트웨어설계PBL  </item>
+        <item> 프로그래밍 언어론</item>
+
+    </string-array>
+    <string-array name="okgyoyang">
+        <item> 이수한 교양</item>
+        <item> 문학의 이해</item>
+        <item> 일본문화의 이해</item>
+        <item> 컴퓨터사고와 코딩</item>
+        <item> 공학윤리</item>
+
+
+    </string-array>
+
+
+
+
+
+</resources>
