@@ -24,9 +24,10 @@
         android:background="#F3F3F3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.247">
+        app:layout_constraintVertical_bias="0.288">
 
         <ImageView
             android:id="@+id/imageView2"
@@ -57,8 +58,8 @@
             android:id="@+id/btn_go_jeongong"
             android:layout_width="243dp"
             android:layout_height="48dp"
-            android:text="GO TO CHECK"
             android:backgroundTint="#4F78B0"
+            android:text="GO TO CHECK"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.511"
@@ -78,7 +79,7 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.589">
+        app:layout_constraintVertical_bias="0.615">
 
         <Button
             android:id="@+id/btn_go_gyoyang"
@@ -128,7 +129,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        app:layout_constraintVertical_bias="0.906">
+        app:layout_constraintVertical_bias="0.92">
 
         <TextView
             android:id="@+id/textView3"

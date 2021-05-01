@@ -10,14 +10,13 @@
         android:id="@+id/user_img2"
         android:layout_width="105dp"
         android:layout_height="110dp"
-        android:layout_marginStart="143dp"
-        android:layout_marginTop="199dp"
-        android:layout_marginEnd="140dp"
-        app:layout_constraintBottom_toTopOf="@+id/user_name2"
+        android:layout_marginStart="145dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.652"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.304"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -34,9 +33,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_img2" />
+        app:layout_constraintTop_toBottomOf="@+id/user_img2"
+        app:layout_constraintVertical_bias="0.137" />
 
     <ImageView
         android:id="@+id/imageView9"
@@ -53,6 +53,44 @@
         app:layout_constraintVertical_bias="0.155"
         app:srcCompat="@drawable/logo" />
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:text="Let's run to graduation with us :-)"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+        android:textColor="#A4494848"
+        android:textColorHint="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/btn_start_3g"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name2"
+        app:layout_constraintVertical_bias="0.638" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="178dp"
+        android:layout_marginTop="90dp"
+        android:layout_marginEnd="170dp"
+        android:text="~~~ Welcome to 3G ~~~"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
+        android:textColor="#A4494848"
+        android:textColorHint="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/btn_start_3g"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_name2"
+        app:layout_constraintVertical_bias="0.396" />
+
     <Button
         android:id="@+id/btn_start_3g"
         android:layout_width="146dp"
@@ -64,47 +102,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name2"
-        app:layout_constraintVertical_bias="0.294" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="178dp"
-        android:layout_marginTop="90dp"
-        android:layout_marginEnd="170dp"
-        android:text="~~ Welcome to 3G ~~"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-        android:textColor="#A44F78B0"
-        android:textColorHint="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/btn_start_3g"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.518"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name2"
-        app:layout_constraintVertical_bias="0.187" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
-        android:text="Let's run to graduation with us :-)"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-        android:textColor="#A44F78B0"
-        android:textColorHint="#FFFFFF"
-        android:textSize="18sp"
-        android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/btn_start_3g"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/user_name2"
-        app:layout_constraintVertical_bias="0.575" />
+        app:layout_constraintVertical_bias="0.51" />
 
     <TextView
         android:id="@+id/textView13"
@@ -116,5 +117,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name2"
-        app:layout_constraintVertical_bias="0.857" />
+        app:layout_constraintVertical_bias="0.418" />
 </androidx.constraintlayout.widget.ConstraintLayout>

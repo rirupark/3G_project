@@ -20,6 +20,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/bottom_menu"
-        tools:layout_editor_absoluteX="0dp" />
+        tools:layout_editor_absoluteX="0dp"
+        app:itemIconTint="#4F78B0"
+        app:itemTextColor="#3E5E8A"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
