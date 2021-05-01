@@ -9,7 +9,7 @@ android {
     defaultConfig {
         applicationId "com.example.bottom_navigation"
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -49,6 +49,10 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:4.2.1' // 파이어베이스 인증2
     implementation 'com.github.bumptech.glide:glide:4.11.0' // 글라이드 이미지 로딩
     annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0' // 글라이드 이미지 로딩2
+
+    /* -------로딩화면 --------------*/
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
 
 }
 
