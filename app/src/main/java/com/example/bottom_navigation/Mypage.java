@@ -26,14 +26,10 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Mypage extends Fragment {
 
-    private Button btn_logout;
-
-    ViewGroup viewGroup;
-    TextView user_name; // 사용자 닉네
-    ImageView user_img; // 이미지 뷰
 
     public static Mypage newinstance(){    //////모든 프레그먼트에 newinstance메소드가 있어야함..!!
         return new Mypage();
@@ -55,6 +51,17 @@ public class Mypage extends Fragment {
                 ((MainActivity)getActivity()).replaceFragment(ChangeMy.newinstance());
             }
         });
+
+        /* --------------로그아웃 버튼 기능 수정 중..... -------------
+        Button btn_logout = (Button)view.findViewById(R.id.btn_logout);
+        btn_logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FirebaseAuth.getInstance().signOut();
+            }
+        });
+
+        /* ---------------------------------*/
 
         return view;
 
