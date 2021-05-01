@@ -15,6 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextClock;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -27,6 +30,9 @@ public class Mypage extends Fragment {
 
     }
 
+    private TextView user_name; // 닉네임 텍스트
+    private ImageView user_profile; // 이미지 뷰
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,9 +44,12 @@ public class Mypage extends Fragment {
                 ((MainActivity)getActivity()).replaceFragment(ChangeMy.newinstance());
 
             }
+
         });
         return view;
 
+
+        // login엑티비티에서 여기로 구글 로그인 해서 가져온 account데이터를 받아오는 코드 추가해야 해요. 로그아웃도 추가해야합니다 ㅎㅎㅎ
 
     }
 
