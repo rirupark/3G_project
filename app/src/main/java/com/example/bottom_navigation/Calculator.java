@@ -34,8 +34,11 @@ public class Calculator extends Fragment {
 
         spinner = (Spinner)view.findViewById(R.id.spinner);
         spinner2 = (Spinner)view.findViewById(R.id.spinner2);
+
         tv_result = (TextView)view.findViewById(R.id.tv_result);
         tv_result2 = (TextView)view.findViewById(R.id.tv_result2) ;
+
+
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -63,6 +66,7 @@ public class Calculator extends Fragment {
 
             }
         });
+
 
         return view;
     }
