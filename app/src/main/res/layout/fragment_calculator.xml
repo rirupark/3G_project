@@ -103,6 +103,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="264dp"
+        android:text="66학점"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="320dp"
+        android:text="36학점"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ProgressBar
         android:id="@+id/bar_jeon"
         style="?android:attr/progressBarStyleHorizontal"
@@ -144,7 +172,8 @@
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812">
+        app:layout_constraintVertical_bias="0.812"
+        android:orientation="horizontal">
 
         <Spinner
             android:id="@+id/spinner2"
@@ -156,6 +185,14 @@
             android:spinnerMode="dropdown">
 
         </Spinner>
+        <TextView
+            android:id="@+id/tv_result2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#f2f2f2">
+
+        </TextView>
+
     </LinearLayout>
 
     <LinearLayout
@@ -186,8 +223,7 @@
             android:id="@+id/tv_result"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="드롭다운 결과"
-            android:textColor="#FFFFFF">
+            android:textColor="#f2f2f2">
 
         </TextView>
 
