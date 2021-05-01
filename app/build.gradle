@@ -54,6 +54,16 @@ dependencies {
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
     implementation 'com.android.support:appcompat-v7:27.1.1'
 
+    //파이어베이스 및 리사이클러뷰
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    implementation 'com.google.firebase:firebase-database:19.7.0'
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+
+
