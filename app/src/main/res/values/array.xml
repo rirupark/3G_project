@@ -31,6 +31,28 @@
 
 
     </string-array>
+    <string-array name="list_gyoyang">
+        <item> 통합교양</item>
+        <item> 역량교양</item>
+        <item> 기초교양</item>
+        <item> 개척교양</item>
+        <item> 일반선택이러닝</item>
+
+
+    </string-array>
+
+    <string-array name="area_gyoyang">
+        <item>문학과 문화영역</item>
+        <item> 역사와 철학영역</item>
+        <item> 인간과 사회영역</item>
+        <item>생명과 환경영역</item>
+        <item> 과학과 기술영역</item>
+        <item> 예술과 체육영역</item>
+        <item> 융복합 영역</item>
+
+
+    </string-array>
+
 
 
 
