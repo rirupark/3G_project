@@ -18,7 +18,7 @@ public class Calculator extends Fragment {
 
     private View view;
     private Spinner spinner,spinner2;
-    private TextView tv_result,tv_result2;
+    private TextView tv_result,tv_result2,tv_result3,tv_result4;
 
 
     public Calculator() {
@@ -35,8 +35,10 @@ public class Calculator extends Fragment {
         spinner = (Spinner)view.findViewById(R.id.spinner);
         spinner2 = (Spinner)view.findViewById(R.id.spinner2);
 
+
         tv_result = (TextView)view.findViewById(R.id.tv_result);
         tv_result2 = (TextView)view.findViewById(R.id.tv_result2) ;
+
 
 
 
