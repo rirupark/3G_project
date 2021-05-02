@@ -57,8 +57,8 @@ public class Mypage extends Fragment {
         Button btn_logout = (Button)view.findViewById(R.id.btn_logout);
         btn_logout.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                switch (v.getId()){
+            public void onClick(View view) {
+                switch (view.getId()){
                     case R.id.btn_logout:
                         //user_logout();
                         AuthUI.getInstance()
