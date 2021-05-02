@@ -78,34 +78,33 @@
         android:layout_marginStart="178dp"
         android:layout_marginTop="90dp"
         android:layout_marginEnd="170dp"
-        android:text="~~~ Welcome to 3G ~~~"
+        android:text="Welcome to 3G"
         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-        android:textColor="#A4494848"
+        android:textColor="#A4333333"
         android:textColorHint="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/btn_start_3g"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name2"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintVertical_bias="0.327" />
 
     <Button
         android:id="@+id/btn_start_3g"
-        android:layout_width="146dp"
-        android:layout_height="52dp"
+        android:layout_width="175dp"
+        android:layout_height="49dp"
         android:layout_marginTop="148dp"
-        android:backgroundTint="#4f78b0"
-        android:text="START"
+        android:backgroundTint="#5681BA"
+        android:text="위의 계정으로 시작"
         android:textAppearance="@style/TextAppearance.AppCompat.Display4"
-        android:textSize="18sp"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name2"
-        app:layout_constraintVertical_bias="0.51" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <TextView
         android:id="@+id/textView13"

@@ -29,6 +29,6 @@ public class LoadingActivity extends AppCompatActivity {
                 startActivity(intent);  //Login화면을 띄운다.
                 finish();   //현재 액티비티 종료
             }
-        }, 2000); // 화면에 Logo 2초간 보이기
+        }, 3000); // 화면에 Logo 3초간 보이기
     }
 }
