@@ -67,7 +67,7 @@ public class Mypage extends Fragment {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         getActivity().finish();
                                         startActivity(new Intent(getActivity(), Login.class));
-                                        Toast.makeText(getActivity(), "로그아웃 되었습니.",
+                                        Toast.makeText(getActivity(), "로그아웃 되었습니다.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 });
