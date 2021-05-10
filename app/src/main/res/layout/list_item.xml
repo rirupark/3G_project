@@ -11,35 +11,38 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
-            android:orientation="vertical"
-            android:layout_marginStart="15dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tv_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="아이디"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:text="아이디" />
+
             <TextView
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="과목명"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:text="과목명" />
+
             <TextView
                 android:id="@+id/tv_credit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="학점"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:text="학점" />
+
             <TextView
                 android:id="@+id/tv_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="영역"
-                android:layout_margin="5dp"/>
+                android:layout_margin="5dp"
+                android:text="영역" />
 
         </LinearLayout>
     </LinearLayout>

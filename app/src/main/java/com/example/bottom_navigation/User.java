@@ -6,6 +6,14 @@ public class User {
     private String area;
     private int id;
 
+    public String username;
+    public String email;
+
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
+    }
+
     public User(){}
 
     public String getName() {
