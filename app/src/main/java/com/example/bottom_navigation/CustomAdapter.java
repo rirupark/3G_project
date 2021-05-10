@@ -35,6 +35,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         holder.tv_name.setText(arrayList.get(position).getName());
 
+
     }
 
     @Override

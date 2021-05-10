@@ -52,7 +52,7 @@ public class Calculator extends Fragment {
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
-        databaseReference = database.getReference("Oclass"); // DB테이블 연결
+        databaseReference = database.getReference("User"); // DB테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -61,6 +61,7 @@ public class Calculator extends Fragment {
                 for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                     arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
 
                 }
                adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
