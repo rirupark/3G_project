@@ -14,8 +14,8 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.referencecode.database.models.Post;
-import com.google.firebase.referencecode.database.models.User;
+//import com.google.firebase.referencecode.database.models.Post;
+//import com.google.firebase.referencecode.database.models.User;
 
 import java.util.HashMap;
 import java.util.Map;
