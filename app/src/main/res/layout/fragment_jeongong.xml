@@ -1,152 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Mypage">
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
-        android:text="저장하기"
-        app:backgroundTint="#4F78B0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="365dp"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.086">
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="1dp"
+        android:layout_marginTop="20dp">
 
         <Spinner
             android:id="@+id/spn_jeongong"
-            android:layout_width="355dp"
-            android:layout_height="64dp"
-            android:background="@drawable/spinner_custom2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="left"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp"
             android:entries="@array/area_jeongong"
             android:overlapAnchor="false"
-            android:spinnerMode="dropdown">
+            android:spinnerMode="dropdown"
+            android:background="@drawable/spinner_custom2"></Spinner>
 
-        </Spinner>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="1dp">
 
-        <TextView
-            android:id="@+id/tv_result3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#f2f2f2">
+            <Spinner
+                android:id="@+id/spn_grade"
+                android:layout_width="280dp"
+                android:layout_height="50dp"
+                android:layout_margin="10dp"
+                android:entries="@array/grade_jeongong"
+                android:background="@drawable/spinner_custom2"></Spinner>
 
-        </TextView>
-
+            <Button
+                android:id="@+id/jeongong_search"
+                android:layout_width="80dp"
+                android:layout_height="61dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="10dp"
+                android:backgroundTint="#4F78B0"
+                android:forceDarkAllowed="false"
+                android:text="SEARCH"
+                android:textSize="10sp"></Button>
+        </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="273dp"
-        android:layout_height="68dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.255"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="625dp"
+        android:orientation="vertical"
+        android:layout_marginTop="160dp">
 
-        <Spinner
-            android:id="@+id/spn_grade"
+        <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/spinner_custom"
-            android:entries="@array/grade_jeongong"
-            android:overlapAnchor="false"
-            android:spinnerMode="dropdown">
-
-        </Spinner>
-
-        <TextView
-            android:id="@+id/tv_result4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#f2f2f2">
-
-        </TextView>
-
-
+            android:id="@+id/jeongong_list"
+            android:dividerHeight="5dp"
+            android:divider="@color/white"></ListView>
     </LinearLayout>
 
-    <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:buttonTint="#4F78B0"
-        android:text="C프로그래밍실습"
-        android:textColor="#4F78B0"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.357" />
 
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:buttonTint="#4F78B0"
-        android:text="객체지향언어"
-        android:textColor="#4F78B0"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.441"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:buttonTint="#4F78B0"
-        android:text="객체지향언어실습"
-        android:textColor="#4F78B0"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.642" />
-
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:buttonTint="#4F78B0"
-        android:text="C프로그래밍"
-        android:textColor="#4F78B0"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.433"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.215" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
 
