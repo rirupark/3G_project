@@ -13,7 +13,7 @@
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="1dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <Spinner
             android:id="@+id/spn_jeongong"
@@ -59,45 +59,15 @@
         android:orientation="vertical"
         android:layout_marginTop="160dp">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/re_jeongong2"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="20dp">
-            <LinearLayout
-                android:layout_width="340dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tv_jeon_name"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="과목명"
-                    android:layout_marginLeft="10dp"></TextView>
-                <TextView
-                    android:id="@+id/tv_jeon_id"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="과목명"
-                    android:layout_marginLeft="10dp"></TextView>
-                <TextView
-                    android:id="@+id/tv_jeon_credit"
-                    android:layout_width="300dp"
-                    android:layout_height="25dp"
-                    android:text="과목명"
-                    android:layout_marginLeft="10dp"></TextView>
-
-            </LinearLayout>
-
-
-
-            <CheckBox
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginRight="10dp"></CheckBox>
-        </LinearLayout>
+            android:layout_height="match_parent"
+            android:paddingBottom="?attr/actionBarSize" />
 
     </LinearLayout>
+
+
 
 
 </FrameLayout>
