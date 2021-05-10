@@ -166,68 +166,36 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="336dp"
-        android:layout_height="96dp"
-        android:orientation="horizontal"
+        android:layout_width="375dp"
+        android:layout_height="288dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812">
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="1.0">
 
-        <Spinner
-            android:id="@+id/spinner2"
+        <Button
+            android:id="@+id/button7"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:background="@drawable/spinner_custom"
-            android:entries="@array/okgyoyang"
-            android:overlapAnchor="false"
-            android:spinnerMode="dropdown">
+            android:layout_height="60dp"
+            android:backgroundTint="#4F78B0"
+            android:text="이수한 전공"
+            app:iconTint="#000000" />
 
-        </Spinner>
-
-        <TextView
-            android:id="@+id/tv_result2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#f2f2f2">
-
-        </TextView>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="336dp"
-        android:layout_height="47dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.656">
-
-        <Spinner
-            android:id="@+id/spinner"
+        <Button
+            android:id="@+id/button9"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:background="@drawable/spinner_custom"
-            android:entries="@array/okjeongong"
-            android:overlapAnchor="false"
-            android:spinnerMode="dropdown">
+            android:layout_height="60dp"
+            android:backgroundTint="#4F78B0"
+            android:text="이수한 교양"
+            app:iconTint="#000000" />
 
-        </Spinner>
-
-        <TextView
-            android:id="@+id/tv_result"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#f2f2f2">
-
-        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/re_jeongong"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="?attr/actionBarSize"/>
 
     </LinearLayout>
 
