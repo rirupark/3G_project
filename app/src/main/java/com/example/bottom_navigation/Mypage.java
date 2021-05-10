@@ -79,14 +79,17 @@ public class Mypage extends Fragment {
                 }
             }
         });
-        /* ----------------------------------------------------------------*/
+
 
 
         /* -------- ResultActivity 에서 텍스트 데이터 번들 가져오기 --------------
         user_name = view.findViewById(R.id.user_name);
+        user_mail = view.findViewById(R.id.user_mail);
         Bundle bundle = getArguments();
         String nickname = bundle.getString("user_name2");
+        String email = bundle.getString("user_mail2");
         user_name.setText(nickname);
+        user_mail.setText(email);
 
          */
 

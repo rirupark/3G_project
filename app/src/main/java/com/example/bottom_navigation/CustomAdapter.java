@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,7 +25,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @NonNull
     @Override
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item2, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
 
         return holder;
@@ -49,10 +50,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         TextView tv_name;
         TextView tv_credit;
         TextView tv_area;
+        CheckBox check_jeon;
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
 
             this.tv_name = itemView.findViewById(R.id.tv_name);
+            this.check_jeon = itemView.findViewById(R.id.check_jeon);
 
         }
     }

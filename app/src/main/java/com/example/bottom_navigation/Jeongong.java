@@ -88,12 +88,9 @@ public class Jeongong extends Fragment {
 
         return view;
     }
+
+
 }
-
-
-
-
-
 
         /*
         spn_jeongong = (Spinner)view.findViewById(R.id.spn_jeongong);
