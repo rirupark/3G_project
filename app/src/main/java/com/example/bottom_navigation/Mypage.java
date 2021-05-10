@@ -38,8 +38,8 @@ public class Mypage extends Fragment {
     public Mypage(){
     }
 
-    private TextView user_name2;
-    private TextView user_mail2;
+    private TextView user_name;
+    private TextView user_mail;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -81,13 +81,14 @@ public class Mypage extends Fragment {
         });
         /* ----------------------------------------------------------------*/
 
+
         /* -------- ResultActivity 에서 텍스트 데이터 번들 가져오기 --------------
-        user_name2 = view.findViewById(R.id.user_name);
+        user_name = view.findViewById(R.id.user_name);
         Bundle bundle = getArguments();
         String nickname = bundle.getString("user_name2");
-        user_name2.setText(nickname);
-         */
+        user_name.setText(nickname);
 
+         */
 
         return view;
 
