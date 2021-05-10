@@ -36,14 +36,18 @@ public class Mypage extends Fragment {
     }
 
     public Mypage(){
-
     }
 
+    private TextView user_name2;
+    private TextView user_mail2;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_mypage,null);
+
+
+
         Button btn_change = (Button)view.findViewById(R.id.btn_change);
         btn_change.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -51,7 +55,6 @@ public class Mypage extends Fragment {
                 ((MainActivity)getActivity()).replaceFragment(ChangeMy.newinstance());
             }
         });
-
 
         /* -------- 로그아웃 버튼 클릭 시 다시 로그인 화면을 돌아가서 계정 선택 ---------*/
         Button btn_logout = (Button)view.findViewById(R.id.btn_logout);
@@ -76,6 +79,15 @@ public class Mypage extends Fragment {
                 }
             }
         });
+        /* ----------------------------------------------------------------*/
+
+        /* -------- ResultActivity 에서 텍스트 데이터 번들 가져오기 --------------
+        user_name2 = view.findViewById(R.id.user_name);
+        Bundle bundle = getArguments();
+        String nickname = bundle.getString("user_name2");
+        user_name2.setText(nickname);
+         */
+
 
         return view;
 
