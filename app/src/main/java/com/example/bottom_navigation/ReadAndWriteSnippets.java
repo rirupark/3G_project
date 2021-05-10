@@ -1,3 +1,4 @@
+/*
 package com.example.bottom_navigation;
 
 import android.util.Log;
@@ -151,3 +152,4 @@ public class ReadAndWriteSnippets {
     // [END post_stars_increment]
 
 }
+*/
