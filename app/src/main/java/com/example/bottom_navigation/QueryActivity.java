@@ -5,10 +5,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
+
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -19,7 +18,6 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 //import com.google.firebase.referencecode.database.models.Comment;
 //import com.google.firebase.referencecode.database.models.Message;
-
 
 public class QueryActivity extends AppCompatActivity {
 
@@ -59,12 +57,12 @@ public class QueryActivity extends AppCompatActivity {
                 Log.d(TAG, "Number of messages: " + dataSnapshot.getChildrenCount());
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     // Extract a Message object from the DataSnapshot
-                    Message message = child.getValue(Message.class);
+                    //Message message = child.getValue(Message.class); ----임시-----
 
                     // Use the Message
                     // [START_EXCLUDE]
-                    //Log.d(TAG, "message text:" + message.getText()); ----------임시-------------
-                    //Log.d(TAG, "message sender name:" + message.getName());--------임시---------------
+                    //Log.d(TAG, "message text:" + message.getText());----임시-----
+                    //Log.d(TAG, "message sender name:" + message.getName());----임시-----
                     // [END_EXCLUDE]
                 }
             }
@@ -173,7 +171,7 @@ public class QueryActivity extends AppCompatActivity {
                 Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
 
                 // A new comment has been added, add it to the displayed list
-                //Comment comment = dataSnapshot.getValue(Comment.class);----------임시-------------
+                //Comment comment = dataSnapshot.getValue(Comment.class);----임시-----
 
                 // ...
             }
@@ -184,8 +182,8 @@ public class QueryActivity extends AppCompatActivity {
 
                 // A comment has changed, use the key to determine if we are displaying this
                 // comment and if so displayed the changed comment.
-                //Comment newComment = dataSnapshot.getValue(Comment.class);----------임시-------------
-                String commentKey = dataSnapshot.getKey();
+                //Comment newComment = dataSnapshot.getValue(Comment.class);----임시-----
+                //String commentKey = dataSnapshot.getKey();
 
                 // ...
             }
@@ -207,8 +205,8 @@ public class QueryActivity extends AppCompatActivity {
 
                 // A comment has changed position, use the key to determine if we are
                 // displaying this comment and if so move it.
-                //Comment movedComment = dataSnapshot.getValue(Comment.class);----------임시-------------
-                String commentKey = dataSnapshot.getKey();
+                //Comment movedComment = dataSnapshot.getValue(Comment.class);----임시-----
+                //String commentKey = dataSnapshot.getKey();
 
                 // ...
             }

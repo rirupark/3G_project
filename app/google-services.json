@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "586080091734",
+    "firebase_url": "https://g-1917-default-rtdb.firebaseio.com",
     "project_id": "g-1917",
     "storage_bucket": "g-1917.appspot.com"
   },
@@ -14,11 +15,27 @@
       },
       "oauth_client": [
         {
+          "client_id": "586080091734-1nrajtm22tr6oj58jg61d9al1mll390u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bottom_navigation",
+            "certificate_hash": "80e07439acb19d1889e950ccf64de558d98b8885"
+          }
+        },
+        {
           "client_id": "586080091734-cr5nq0t07c3md8q5ur6hf9pfbh75685i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.bottom_navigation",
             "certificate_hash": "ad057f939b20f29ded804ef1366828b41b2c25f4"
+          }
+        },
+        {
+          "client_id": "586080091734-ujdvaer2j1b0kjqr5mccb1bp4mkth5pm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.bottom_navigation",
+            "certificate_hash": "73df53df23ea474dcae4b0a2cc168490b288b4a8"
           }
         },
         {
