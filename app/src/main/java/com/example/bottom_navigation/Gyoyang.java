@@ -1,11 +1,9 @@
 package com.example.bottom_navigation;
 
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -19,6 +17,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class Gyoyang extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<User> arrayList;
+    private ArrayList<UserData> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -47,12 +46,21 @@ public Gyoyang(){
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
      view =inflater.inflate(R.layout.fragment_gyoyang,container,false);
 
+        Query myMostViewedPostsQuery = databaseReference.child("g-1917-default-rtdb")
+                .orderByChild("User/area").equalTo("m_select");
+
         //리사이클러뷰.
         recyclerView = view.findViewById(R.id.re_jeongong2);//아이디 연결
         recyclerView.setHasFixedSize(true);//리사이클러뷰 기존성능강화
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
+
+        //User user= new User(email, name);
+        //user.setName("nugulhie@gmail.com");
+        //user.setEmail("nuuglhie");
+        //ReadAndWriteSnippets dbhelper = new ReadAndWriteSnippets();
+        //dbhelper.writeNewUser(user);
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
@@ -62,7 +70,7 @@ public Gyoyang(){
                 //파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화(방지차원)
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                    UserData user = snapshot.getValue(UserData.class); // 만들어둔 User 객체에 데이터를 담는다.
                     arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
                 }
                 adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침

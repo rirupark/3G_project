@@ -16,7 +16,6 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 //import com.google.firebase.referencecode.database.models.Post;
 //import com.google.firebase.referencecode.database.models.User;
-import com.google.firebase.database.DataSnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,14 +36,14 @@ public class ReadAndWriteSnippets {
 
     // [START rtdb_write_new_user]
     public void writeNewUser(String userId, String name, String email) {
-        User user = new User(name, email);
+        UserData user = new UserData(name, email);
 
         mDatabase.child("users").child(userId).setValue(user);
     }
     // [END rtdb_write_new_user]
 
     public void writeNewUserWithTaskListeners(String userId, String name, String email) {
-        User user = new User(name, email);
+        UserData user = new UserData(name, email);
 
         // [START rtdb_write_new_user_task]
         mDatabase.child("users").child(userId).setValue(user)
