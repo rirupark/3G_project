@@ -6,11 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".PassgraEss">
 
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:background="@color/white"
+        android:layout_margin="15dp"></ImageButton>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:layout_marginRight="30dp"
         android:background="#E0E9EF"
         android:orientation="vertical">
@@ -165,8 +173,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="370dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="410dp"
         android:orientation="vertical"
         android:layout_marginRight="30dp"
         android:layout_marginLeft="30dp"
@@ -189,13 +197,13 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:src="@drawable/ic_baseline_auto_graph_24"
-            android:layout_marginTop="30dp"/>
+            android:layout_marginTop="20dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="10dp">
 
             <LinearLayout
                 android:layout_width="60dp"
