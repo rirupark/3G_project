@@ -2,8 +2,6 @@ package com.example.bottom_navigation;
 
 public class User {
     private String name;
-
-
     public String username;
     public String email;
 

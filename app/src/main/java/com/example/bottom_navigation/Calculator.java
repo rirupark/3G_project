@@ -1,6 +1,5 @@
 package com.example.bottom_navigation;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,26 +58,23 @@ public class Calculator extends Fragment {
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
-        databaseReference = database.getReference("User"); // DB테이블 연결
+        databaseReference = database.getReference("Ojeongong"); // DB테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화(방지차원)
                 //Intent intent = new Intent(getActivity(),MainActivity.class);
-                //startActivity(intent);
-                //String jeon = intent.getStringExtra("m_");
+               // startActivity(intent);
+               // String jeon = intent.getStringExtra("User");
                 //O_jeonname = dataSnapshot.child(jeon).child("area").getValue().toString();
-                //Log.v("m_",O_jeonname);
-                //jeonname.setText(O_jeonname);
+               // Log.v("m_",O_jeonname);
+               // jeonname.setText(O_jeonname);
 
             for (DataSnapshot snapshot:dataSnapshot.getChildren()){
                     User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                     arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
                 }
-
                 }
 
 
@@ -98,7 +93,20 @@ public class Calculator extends Fragment {
             @Override
             public void onClick(View view){
 
-                adapter = new CustomAdapter(arrayList, getActivity());
+                adapter = new CalAdapter(arrayList, getActivity());
+                recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+            }
+        });
+
+
+
+
+        Button button9 = (Button)view.findViewById(R.id.button9);
+        button9.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+
+                adapter = new CalAdapter(arrayList, getActivity());
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
             }
         });
