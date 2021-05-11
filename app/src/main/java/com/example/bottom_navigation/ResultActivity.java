@@ -1,6 +1,7 @@
 package com.example.bottom_navigation;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import com.bumptech.glide.Glide;
 
 public class ResultActivity extends AppCompatActivity {
 
-    Mypage fragment_mypage;
+
 
     private TextView user_name2;
     private ImageView user_img2;
@@ -38,17 +39,21 @@ public class ResultActivity extends AppCompatActivity {
         user_img2 = findViewById(R.id.user_img2);
         Glide.with(this).load(photoUrl).into(user_img2);
 
-        /* ------------마이페이지 프레그먼트에 사용자 데이터 (이름, 이메일) 띄우기.--------*/
-        //fragment 생성
-        fragment_mypage = new Mypage();
 
+        /* ------------마이페이지 프레그먼트에 사용자 데이터 (이름, 이메일) 띄우기.--------*/
+
+
+
+        //fragment 생성
+        Mypage mypage = new Mypage();
         //번들객체 생성. text값 저장.
         Bundle bundle = new Bundle();
-        bundle.putString("user_name2", nickName);
-        bundle.putString("user_mail2", email);
+        bundle.putString("user_name2", "nickName");
+        bundle.putString("user_mail2", "email");
 
         //fragment_mypage로 번들 전달.
-        fragment_mypage.setArguments(bundle);
+        mypage.setArguments(bundle);
+
         /* ----------------------------------------------------------------*/
 
         Button imageButton = (Button) findViewById(R.id.btn_start_3g);

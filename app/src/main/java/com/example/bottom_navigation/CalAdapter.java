@@ -1,6 +1,5 @@
 package com.example.bottom_navigation;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,12 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> {
+public class CalAdapter extends RecyclerView.Adapter<CalAdapter.CustomViewHolder> {
 
     private ArrayList<User> arrayList;
     private Context context;
 
-    public CustomAdapter(ArrayList<User> arrayList, Context context) {
+    public CalAdapter(ArrayList<User> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -27,7 +26,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @Override
 
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
 
         return holder;
@@ -57,7 +56,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             super(itemView);
 
             this.tv_name = itemView.findViewById(R.id.tv_name);
-            this.check_jeon = itemView.findViewById(R.id.check_jeon);
+
 
         }
     }
