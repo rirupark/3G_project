@@ -139,12 +139,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
                         Log.v("알림", "ONCOMPLETE");
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-
-                        // the auth state listener will be notified and logic to handle the
-
-                        // signed in user can be handled in the listener.
-
                         if (!task.isSuccessful()) {
 
                             Log.v("알림", "!task.isSuccessful()");
