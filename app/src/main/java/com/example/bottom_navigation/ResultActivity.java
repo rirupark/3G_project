@@ -46,13 +46,16 @@ public class ResultActivity extends AppCompatActivity {
 
         //fragment 생성
         Mypage mypage = new Mypage();
+
         //번들객체 생성. text값 저장.
         Bundle bundle = new Bundle();
-        bundle.putString("user_name2", "nickName");
-        bundle.putString("user_mail2", "email");
+
+        bundle.putString("user_name", nickName);
+        bundle.putString("user_mail", email);
 
         //fragment_mypage로 번들 전달.
         mypage.setArguments(bundle);
+
 
         /* ----------------------------------------------------------------*/
 

@@ -81,6 +81,7 @@ public class Mypage extends Fragment {
                 }
             }
         });
+/* ---------------- ResultActivity에서 받아온 데이터----------------------*/
 
         nametext = view.findViewById(R.id.nametext);
         mailtext = view.findViewById(R.id.mailtext);
@@ -89,10 +90,10 @@ public class Mypage extends Fragment {
 
         if(getArguments() != null) {
 
-             result1 = getArguments().getString("user_name2");
+             result1 = getArguments().getString("user_name");
              nametext.setText(result1);
 
-            result2 = getArguments().getString("user_mail2");
+            result2 = getArguments().getString("user_mail");
             mailtext.setText(result2);
 
 
