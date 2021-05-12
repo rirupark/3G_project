@@ -5,10 +5,19 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 
 public class UserData {
-
+    boolean isSelected;
     private String userName;
 
     private String profile;
+
+
+    public boolean getSelected(){
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected){
+        isSelected = selected;
+    }
 
 
     public UserData(String userName, String profile) {
@@ -46,6 +55,8 @@ public class UserData {
         this.profile = profile;
 
     }
+
+
 
 }
 
