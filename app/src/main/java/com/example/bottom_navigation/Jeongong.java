@@ -1,13 +1,9 @@
 package com.example.bottom_navigation;
 
-import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -34,7 +30,7 @@ public class Jeongong extends Fragment {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
-    private ArrayList<User> arrayList;
+    private ArrayList<UserData> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
@@ -66,7 +62,7 @@ public class Jeongong extends Fragment {
                 //파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화(방지차원)
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                    UserData user = snapshot.getValue(UserData.class); // 만들어둔 User 객체에 데이터를 담는다.
                     arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
 
