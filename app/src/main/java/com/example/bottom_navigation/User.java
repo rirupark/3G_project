@@ -38,9 +38,7 @@ public class User {
         return area;
     }
 
-    public void setArea(String area) {
-        this.area = area;
-    }
+    public void setArea(String area) {     this.area = area;    }
 
     public int getCredit() {
         return credit;

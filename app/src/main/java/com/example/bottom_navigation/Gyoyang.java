@@ -46,9 +46,6 @@ public Gyoyang(){
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
      view =inflater.inflate(R.layout.fragment_gyoyang,container,false);
 
-        Query myMostViewedPostsQuery = databaseReference.child("g-1917-default-rtdb")
-                .orderByChild("User/area").equalTo("m_select");
-
         //리사이클러뷰.
         recyclerView = view.findViewById(R.id.re_jeongong2);//아이디 연결
         recyclerView.setHasFixedSize(true);//리사이클러뷰 기존성능강화
