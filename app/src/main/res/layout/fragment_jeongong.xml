@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Mypage">
+    tools:context=".Jeongong">
 
 
     <LinearLayout
@@ -24,6 +24,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
             android:entries="@array/area_jeongong"
+            android:popupBackground="#C4D4E8"
             android:background="@drawable/spinner_custom2"></Spinner>
 
         <LinearLayout
@@ -37,6 +38,7 @@
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:entries="@array/grade_jeongong"
+                android:popupBackground="#C4D4E8"
                 android:background="@drawable/spinner_custom2"></Spinner>
 
             <Button

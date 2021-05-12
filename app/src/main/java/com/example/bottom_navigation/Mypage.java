@@ -30,9 +30,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Mypage extends Fragment {
 
+    ResultActivity resultActivity;
     private  String result1,result2;
     private  TextView nametext;
     private  TextView mailtext;
+    private String username;
 
     public static Mypage newinstance(){    //////모든 프레그먼트에 newinstance메소드가 있어야함..!!
         return new Mypage();
@@ -42,13 +44,16 @@ public class Mypage extends Fragment {
     }
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_mypage,null);
 
-
+        nametext = view.findViewById(R.id.nametext);
+        username = resultActivity.findViewById(R.id.user_name2).toString();
+        nametext.setText(username);
 
         Button btn_change = (Button)view.findViewById(R.id.btn_change);
         btn_change.setOnClickListener(new View.OnClickListener(){
@@ -82,21 +87,6 @@ public class Mypage extends Fragment {
             }
         });
 
-        nametext = view.findViewById(R.id.nametext);
-        mailtext = view.findViewById(R.id.mailtext);
-
-
-
-        if(getArguments() != null) {
-
-             result1 = getArguments().getString("user_name2");
-             nametext.setText(result1);
-
-            result2 = getArguments().getString("user_mail2");
-            mailtext.setText(result2);
-
-
-        }
 
 
 
