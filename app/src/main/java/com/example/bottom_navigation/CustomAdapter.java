@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +36,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+        final User user = arrayList.get(position);
+        holder.check_jeon.setOnCheckedChangeListener(null);
+        holder.check_jeon.setChecked(user.getSelected());
+        holder.check_jeon.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                user.setSelected(isChecked);
+            }
+        });
 
         holder.tv_name.setText(arrayList.get(position).getName());
 

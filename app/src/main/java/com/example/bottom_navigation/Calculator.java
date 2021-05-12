@@ -58,7 +58,7 @@ public class Calculator extends Fragment {
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
-        databaseReference = database.getReference("Ojeongong"); // DB테이블 연결
+        databaseReference = database.getReference("User"); // DB테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
