@@ -251,18 +251,16 @@
                 android:textStyle="bold" />
 
             <LinearLayout
-                android:layout_width="308dp"
-                android:layout_height="match_parent"
+                android:layout_width="307dp"
+                android:layout_height="76dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/re_Pass"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingBottom="?attr/actionBarSize" />
+                    android:layout_height="match_parent" />
             </LinearLayout>
 
 
