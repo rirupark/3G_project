@@ -1,6 +1,5 @@
 package com.example.bottom_navigation;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -21,20 +20,27 @@ import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.squareup.okhttp.internal.DiskLruCache;
 
 public class Mypage extends Fragment {
 
-    ResultActivity resultActivity;
     private  String result1,result2;
     private  TextView nametext;
     private  TextView mailtext;
     private String username;
+    private DatabaseReference mDatabase;
 
     public static Mypage newinstance(){    //////모든 프레그먼트에 newinstance메소드가 있어야함..!!
         return new Mypage();
@@ -44,16 +50,47 @@ public class Mypage extends Fragment {
     }
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_mypage,null);
 
-        nametext = view.findViewById(R.id.nametext);
-        username = resultActivity.findViewById(R.id.user_name2).toString();
-        nametext.setText(username);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            String name = user.getDisplayName();
+            String email = user.getEmail();
+
+            nametext = view.findViewById(R.id.nametext);
+            nametext.setText(name);
+
+            mailtext = view.findViewById(R.id.mailtext);
+            mailtext.setText(email);
+
+        }
+
+        /*mDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                DataSnapshot snapshot;
+                dataSnapshot.getChildren();
+                username = dataSnapshot.child("").child("name").getValue().toString();
+                nametext = view.findViewById(R.id.nametext);
+                nametext.setText(username);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+         */
+
+
+
 
         Button btn_change = (Button)view.findViewById(R.id.btn_change);
         btn_change.setOnClickListener(new View.OnClickListener(){
@@ -88,7 +125,7 @@ public class Mypage extends Fragment {
         });
 /* ---------------- ResultActivity에서 받아온 데이터----------------------*/
 
-
+        /*
         nametext = view.findViewById(R.id.nametext);
         mailtext = view.findViewById(R.id.mailtext);
 
@@ -104,6 +141,8 @@ public class Mypage extends Fragment {
 
 
         }
+
+         */
 
 
 
