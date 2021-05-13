@@ -31,7 +31,6 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Mypage extends Fragment {
 
     ResultActivity resultActivity;
-    private  String result1,result2;
     private  TextView nametext;
     private  TextView mailtext;
     private String username;
@@ -51,9 +50,8 @@ public class Mypage extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_mypage,null);
 
-        nametext = view.findViewById(R.id.nametext);
-        username = resultActivity.findViewById(R.id.user_name2).toString();
-        nametext.setText(username);
+
+
 
         Button btn_change = (Button)view.findViewById(R.id.btn_change);
         btn_change.setOnClickListener(new View.OnClickListener(){
@@ -86,24 +84,27 @@ public class Mypage extends Fragment {
                 }
             }
         });
-/* ---------------- ResultActivity에서 받아온 데이터----------------------*/
+/* ---------------- ResultActivity에서 받아온 데이터----------------------
+
 
 
         nametext = view.findViewById(R.id.nametext);
         mailtext = view.findViewById(R.id.mailtext);
 
-
+        Bundle bundle = getArguments();
 
         if(getArguments() != null) {
 
-             result1 = getArguments().getString("user_name");
-             nametext.setText(result1);
+            String text = bundle.getString("user_name2");
+            String mail = bundle.getString("user_mail2");
 
-            result2 = getArguments().getString("user_mail");
-            mailtext.setText(result2);
+            nametext.setText(text);
+            mailtext.setText(mail);
 
 
         }
+--------------------------------------------------------------------------*/
+
 
 
 

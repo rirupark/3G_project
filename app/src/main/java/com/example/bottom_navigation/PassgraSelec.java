@@ -40,6 +40,8 @@ public class PassgraSelec extends Fragment {
         });
 
 
+
+
         return view;
 
     }
