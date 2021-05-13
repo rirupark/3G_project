@@ -9,10 +9,12 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresPermission;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,6 +36,8 @@ public class Gyoyang extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
 
+    private ReadAndWriteSnippets readAndWriteSnippets;
+
     public static Gyoyang newinstance(){
     return new Gyoyang();
 }
@@ -53,6 +57,8 @@ public Gyoyang(){
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
+
+
         //User user= new User(email, name);
         //user.setName("nugulhie@gmail.com");
         //user.setEmail("nuuglhie");
@@ -61,7 +67,43 @@ public Gyoyang(){
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        databaseReference.orderByChild("id").startAt(41).endAt(69).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+
+                User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+
+                adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+        /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 //파이어베이스 데이터베이스의 데이터를 받아오는 곳
@@ -78,7 +120,7 @@ public Gyoyang(){
                 //디비를 가져오던중 에러발생시
 
             }
-        });
+        });  */
         adapter = new CustomAdapter(arrayList, getActivity());
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
 

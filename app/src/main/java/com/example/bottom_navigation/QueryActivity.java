@@ -96,6 +96,7 @@ public class QueryActivity extends AppCompatActivity {
         // [END basic_query]
     }
 
+
     public void basicQueryValueListener() {
         String myUserId = getUid();
         Query myTopPostsQuery = databaseReference.child("user-posts").child(myUserId)
@@ -107,7 +108,7 @@ public class QueryActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot postSnapshot: dataSnapshot.getChildren()) {
-                    // TODO: handle the post
+
                 }
             }
 
