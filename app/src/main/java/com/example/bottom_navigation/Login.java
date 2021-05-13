@@ -19,7 +19,7 @@ import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.net.InternetDomainName;
+//import com.google.common.net.InternetDomainName;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +41,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
@@ -55,6 +56,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private static final int REQ_SIGN_GOOGLE = 100; // 구글 로그인 결과 코드(임시로 선언)
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 앱이 실행될 때 처음 수행되는 곳
@@ -72,6 +74,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 .build();
 
         auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         btn_google = findViewById(R.id.btn_google_login);
         btn_google.setOnClickListener(new View.OnClickListener() { // 구글 로그인 버튼 클릭 시 이곳을 수행.
@@ -80,7 +83,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 Intent intent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
                 startActivityForResult(intent, REQ_SIGN_GOOGLE);
             }
-
 
         });
     }
@@ -94,6 +96,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             if (result.isSuccess()) { // 인증결과가 성공적이면...
                 GoogleSignInAccount account = result.getSignInAccount(); // account 라는 데이터는 구글로그인 정보를 담고 있음. (닉네임, 프로필 사진, 이메일 주소 등)
                 resultLogin(account); // 로그인 결과값 출력 수행 메소드
+
+
             }
         }
 
@@ -112,6 +116,17 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                             intent.putExtra("email", account.getEmail());
                             intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl())); // 특정 자료형을 String으로 변환.
                             startActivity(intent);
+
+                            FirebaseUser firebaseUser = auth.getCurrentUser();
+
+                            if (firebaseUser.getUid().toString() != firebaseUser.getIdToken(true).toString()) { //로그인 할 때마다 데이터 베이스에 사용자계정이 중복되어 저장되는 것을 막아준다.
+                                UserAccount account1 = new UserAccount();
+                                account1.setIdToken(firebaseUser.getUid());
+                                account1.setEmailId(firebaseUser.getEmail());
+
+                                mDatabase.child("UserInfo").child(firebaseUser.getUid()).setValue(account1);
+
+                            }
                         } else { // 로그인이 실패했으면 ...
                             Toast.makeText(Login.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                         }
@@ -119,12 +134,14 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 });
     }
 
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
+}
 
-
+    /*
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -198,4 +215,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
 
     }
-}
+
+     */
+
+
