@@ -1,6 +1,7 @@
 package com.example.bottom_navigation;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -37,6 +38,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //상단바 제거
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         setContentView(R.layout.activity_main);
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();

@@ -2,6 +2,7 @@ package com.example.bottom_navigation;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -61,6 +62,11 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 앱이 실행될 때 처음 수행되는 곳
         super.onCreate(savedInstanceState);
+
+        //상단바 제거
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         setContentView(R.layout.activity_login);
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

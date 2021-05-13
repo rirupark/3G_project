@@ -1,5 +1,6 @@
 package com.example.bottom_navigation;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,6 +22,11 @@ public class ResultActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //상단바 제거
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
         setContentView(R.layout.activity_result);
 
         Intent intent = getIntent();
