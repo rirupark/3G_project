@@ -44,6 +44,41 @@ public class ResultActivity extends AppCompatActivity {
         Glide.with(this).load(photoUrl).into(user_img2);
 
 
+
+        /* ------------마이페이지 프레그먼트에 사용자 데이터 (이름, 이메일) 띄우기.--------
+
+
+
+        //fragment 생성
+        Mypage mypage = new Mypage();
+
+        //번들객체 생성. text값 저장.
+        Bundle bundle = new Bundle();
+
+        bundle.putString("user_name", nickName);
+        bundle.putString("user_mail", email);
+
+        //fragment_mypage로 번들 전달.
+        mypage.setArguments(bundle);
+
+<<<<<<< HEAD
+        ----------------------------------------------------------------*/
+
+
+        /* ----------------------------------------------------------------*/
+//fragment 생성
+        Mypage mypage = new Mypage();
+
+        //번들객체 생성. text값 저장.
+        Bundle bundle = new Bundle();
+
+        bundle.putString("nickName", nickName);
+        bundle.putString("email", email);
+
+        //fragment_mypage로 번들 전달.
+        mypage.setArguments(bundle);
+
+
         Button imageButton = (Button) findViewById(R.id.btn_start_3g);
         imageButton.setOnClickListener(new View.OnClickListener() {
 

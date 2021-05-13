@@ -40,6 +40,7 @@ public class Calculator extends Fragment {
     private DatabaseReference databaseReference;
     private String O_jeonname;
     private TextView jeonname;
+    private LinearLayoutManager linearLayoutManager;
 
 
 
@@ -98,7 +99,7 @@ public class Calculator extends Fragment {
             }
         });
 
-
+        linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 4); // 스크롤 속도 조절
 
 
         Button button9 = (Button)view.findViewById(R.id.button9);

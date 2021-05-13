@@ -44,5 +44,19 @@ public class User {
         this.name = name;
     }
 
+    public String getArea() {
+        return area;
+    }
 
+    public void setArea(String area) {
+        this.area = area;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
 }

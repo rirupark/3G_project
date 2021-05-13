@@ -33,6 +33,7 @@ public class Gyoyang extends Fragment {
     private ArrayList<User> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private LinearLayoutManager linearLayoutManager;
 
     public static Gyoyang newinstance(){
     return new Gyoyang();
@@ -81,7 +82,7 @@ public Gyoyang(){
         });
         adapter = new CustomAdapter(arrayList, getActivity());
         recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
-
+        linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 1); // 스크롤 속도 조절
 
 
         /*

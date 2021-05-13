@@ -32,7 +32,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.okhttp.internal.DiskLruCache;
+
 
 public class Mypage extends Fragment {
 
@@ -62,11 +62,13 @@ public class Mypage extends Fragment {
             String name = user.getDisplayName();
             String email = user.getEmail();
 
+
             nametext = view.findViewById(R.id.nametext);
             nametext.setText(name);
 
             mailtext = view.findViewById(R.id.mailtext);
             mailtext.setText(email);
+
 
         }
 
@@ -123,7 +125,17 @@ public class Mypage extends Fragment {
                 }
             }
         });
+
+
+
+
+
+/* ---------------- ResultActivity에서 받아온 데이터----------------------
+
+
+=======
 /* ---------------- ResultActivity에서 받아온 데이터----------------------*/
+
 
         /*
         nametext = view.findViewById(R.id.nametext);
