@@ -58,7 +58,7 @@
                     android:forceDarkAllowed="false"
                     android:gravity="center"
                     android:text="사회봉사(택1)"
-                    android:textSize="15sp"
+                    android:textSize="15dp"
                     android:textStyle="bold" />
 
                 <LinearLayout
@@ -77,15 +77,9 @@
                             android:layout_height="wrap_content"
                             android:forceDarkAllowed="false"
                             android:text="사회봉사 30시간이상"
-
-                            android:textSize="14sp"
-                            android:textStyle="bold"></TextView>
-
-                            android:layout_marginTop="5dp"
                             android:textSize="13dp"
-                            android:textColor="@color/black"
-                            ></TextView>
 
+                            android:textStyle="bold"></TextView>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -93,14 +87,8 @@
                             android:layout_marginTop="5dp"
                             android:forceDarkAllowed="false"
                             android:text="국내,외 봉사프로그램 5일 이상 참가"
-
-                            android:textSize="14sp"
-                            android:textStyle="bold"></TextView>
-
                             android:textSize="13dp"
-                            android:textColor="@color/black"
-                            ></TextView>
-
+                            android:textStyle="bold"></TextView>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -108,15 +96,8 @@
                             android:layout_marginTop="5dp"
                             android:forceDarkAllowed="false"
                             android:text="1학기 당 1회 헌혈하여 총 3회 이상"
-
-                            android:textSize="14sp"
-                            android:textStyle="bold"></TextView>
-
                             android:textSize="13dp"
-                            android:textColor="@color/black"
-                           ></TextView>
-
-
+                            android:textStyle="bold"></TextView>
                         <TextView
                             android:id="@+id/textView39"
                             android:layout_width="wrap_content"
@@ -124,12 +105,8 @@
                             android:layout_marginTop="5dp"
                             android:forceDarkAllowed="false"
                             android:text="총장이 인정하는 1학기 이상의 교내 봉사활동"
-                            android:textSize="14sp"
-                            android:textStyle="bold"></TextView>
                             android:textSize="13dp"
-                            android:textColor="@color/black"
-                           ></TextView>
-
+                            android:textStyle="bold"></TextView>
                     </LinearLayout>
 
 
@@ -170,37 +147,27 @@
                 android:layout_marginTop="10dp"
                 android:forceDarkAllowed="false"
                 android:text="해외현장체험 참가 7일 이상"
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
                 android:textSize="13dp"
-                android:textColor="@color/black"
-               ></TextView>
+                android:textStyle="bold"></TextView>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
-
                 android:forceDarkAllowed="false"
                 android:text="Global Pioneer Program 참가 7일 이상"
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
                 android:textSize="13dp"
-                android:textColor="@color/black"
-               ></TextView>
-
+                android:textStyle="bold"></TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:forceDarkAllowed="false"
                 android:text="해외 단기 교환 프로그램 참가 7일 이상"
-
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
                 android:textSize="13dp"
-                android:textColor="@color/black"
-                ></TextView>
+                android:textStyle="bold"></TextView>
+
 
 
             <TextView
@@ -209,13 +176,9 @@
                 android:layout_marginLeft="20dp"
                 android:forceDarkAllowed="false"
                 android:text="해외 인턴십 수료 4주 이상"
-
-                android:textSize="14sp"
+                android:textSize="13dp"
                 android:textStyle="bold"></TextView>
 
-                android:textSize="13dp"
-                android:textColor="@color/black"
-                ></TextView>
 
 
             <TextView
@@ -224,16 +187,8 @@
                 android:layout_marginLeft="20dp"
                 android:forceDarkAllowed="false"
                 android:text="해외 교환학생 수료 1학기 이상"
-
-                android:textSize="14sp"
-                android:textStyle="bold"></TextView>
-
                 android:textSize="13dp"
-                android:textColor="@color/black"
-                ></TextView>
-
-
-
+                android:textStyle="bold"></TextView>
         </LinearLayout>
 
         <LinearLayout
@@ -265,12 +220,10 @@
                 android:layout_marginTop="10dp"
                 android:forceDarkAllowed="false"
                 android:text="위원회에서 선정한 도서를 읽고 컴퓨터 평가 시스템을 통한 문제 은행 평가에 응시하여 70점이상을 취득한 도서가 7권 이상인경우"
-
-                android:textSize="14sp"
+                android:textSize="13dp"
                 android:textStyle="bold"></TextView>
 
-                android:textColor="@color/black"
-                android:textSize="13dp"></TextView>
+
 
 
         </LinearLayout>
@@ -283,7 +236,6 @@
             android:layout_marginRight="30dp"
             android:background="#E0E9EF"
             android:orientation="vertical">
-
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
@@ -293,10 +245,8 @@
                 android:forceDarkAllowed="false"
                 android:gravity="center"
                 android:text="GNU 인성(택1),진로탐색(아래기준 모두이수)"
-                android:textSize="15sp"
+                android:textSize="13dp"
                 android:textStyle="bold" />
-
-
             <TextView
                 android:layout_width="290dp"
                 android:layout_height="wrap_content"
@@ -305,7 +255,8 @@
                 android:forceDarkAllowed="false"
                 android:text="교과목 이수(GNU인성)"
                 android:textSize="13dp"
-                android:textColor="@color/black"
+                android:textStyle="bold"
+
             ></TextView>
 
             <TextView
@@ -316,7 +267,8 @@
                 android:forceDarkAllowed="false"
                 android:text="기초교육원 인성개발 프로그램 12시간 이수(GNU인성)"
                 android:textSize="13dp"
-                android:textColor="@color/black"
+                android:textStyle="bold"
+
               ></TextView>
 
             <TextView
@@ -327,7 +279,7 @@
                 android:forceDarkAllowed="false"
                 android:text="진로,취업상담 1회이상이수(진로탐색)"
                 android:textSize="13dp"
-                android:textColor="@color/black"
+                android:textStyle="bold"
                 ></TextView>
 
             <TextView
@@ -338,7 +290,8 @@
                 android:forceDarkAllowed="false"
                 android:text="비교과 프로그램 3회이상 이수(진로탐색)"
                 android:textSize="13dp"
-                android:textColor="@color/black"
+                android:textStyle="bold"
+
                 ></TextView>
 
             <TextView
@@ -349,7 +302,8 @@
                 android:forceDarkAllowed="false"
                 android:text="설명회 및 박람회 2회이상 이수(진로탐색)"
                 android:textSize="13dp"
-                android:textColor="@color/black"
+                android:textStyle="bold"
+
                 ></TextView>
 
 
