@@ -57,12 +57,12 @@ public class QueryActivity extends AppCompatActivity {
                 Log.d(TAG, "Number of messages: " + dataSnapshot.getChildrenCount());
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     // Extract a Message object from the DataSnapshot
-                    //Message message = child.getValue(Message.class); ----임시-----
+                    Message message = child.getValue(Message.class);
 
                     // Use the Message
                     // [START_EXCLUDE]
-                    //Log.d(TAG, "message text:" + message.getText());----임시-----
-                    //Log.d(TAG, "message sender name:" + message.getName());----임시-----
+                    Log.d(TAG, "message text:" + message.getText());
+                    Log.d(TAG, "message sender name:" + message.getName());
                     // [END_EXCLUDE]
                 }
             }
@@ -171,7 +171,7 @@ public class QueryActivity extends AppCompatActivity {
                 Log.d(TAG, "onChildAdded:" + dataSnapshot.getKey());
 
                 // A new comment has been added, add it to the displayed list
-                //Comment comment = dataSnapshot.getValue(Comment.class);----임시-----
+                Comment comment = dataSnapshot.getValue(Comment.class);
 
                 // ...
             }
@@ -182,8 +182,8 @@ public class QueryActivity extends AppCompatActivity {
 
                 // A comment has changed, use the key to determine if we are displaying this
                 // comment and if so displayed the changed comment.
-                //Comment newComment = dataSnapshot.getValue(Comment.class);----임시-----
-                //String commentKey = dataSnapshot.getKey();
+                Comment newComment = dataSnapshot.getValue(Comment.class);
+                String commentKey = dataSnapshot.getKey();
 
                 // ...
             }
@@ -205,7 +205,7 @@ public class QueryActivity extends AppCompatActivity {
 
                 // A comment has changed position, use the key to determine if we are
                 // displaying this comment and if so move it.
-                //Comment movedComment = dataSnapshot.getValue(Comment.class);----임시-----
+                Comment movedComment = dataSnapshot.getValue(Comment.class);
                 //String commentKey = dataSnapshot.getKey();
 
                 // ...
