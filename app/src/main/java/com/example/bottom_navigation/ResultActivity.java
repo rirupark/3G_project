@@ -67,8 +67,8 @@ public class ResultActivity extends AppCompatActivity {
         //번들객체 생성. text값 저장.
         Bundle bundle = new Bundle();
 
-        bundle.putString("user_name2", nickName);
-        bundle.putString("user_mail2", email);
+        bundle.putString("nickName", nickName);
+        bundle.putString("email", email);
 
         //fragment_mypage로 번들 전달.
         mypage.setArguments(bundle);

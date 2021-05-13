@@ -84,6 +84,21 @@ public class Mypage extends Fragment {
                 }
             }
         });
+        nametext = view.findViewById(R.id.nametext);
+        mailtext = view.findViewById(R.id.mailtext);
+
+        Bundle bundle = getArguments();
+
+        if(getArguments() != null) {
+
+            String text = bundle.getString("nickName");
+            String mail = bundle.getString("email");
+
+            nametext.setText(text);
+            mailtext.setText(mail);
+
+
+        }
 /* ---------------- ResultActivity에서 받아온 데이터----------------------
 
 
