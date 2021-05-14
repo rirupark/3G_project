@@ -61,9 +61,8 @@ public class Calculator extends Fragment {
         databaseReference = database.getReference("User"); // DB테이블 연결
 
 
-
         Button button7 = (Button)view.findViewById(R.id.button7);
-       button7.setOnClickListener(new View.OnClickListener(){
+        button7.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 databaseReference.orderByChild("id").startAt(1).endAt(40).addChildEventListener(new ChildEventListener() {
