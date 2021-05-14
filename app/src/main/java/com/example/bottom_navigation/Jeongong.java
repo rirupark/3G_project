@@ -312,6 +312,8 @@ public class Jeongong extends Fragment {
                 }
 
 
+
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
