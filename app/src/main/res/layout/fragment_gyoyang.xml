@@ -63,7 +63,9 @@
             android:id="@+id/re_jeongong2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="?attr/actionBarSize" />
+            android:paddingBottom="?attr/actionBarSize"
+            android:scrollbarSize="4dp"
+            android:scrollbars="vertical"/>
 
     </LinearLayout>
 
