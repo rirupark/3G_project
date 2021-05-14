@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -96,6 +97,134 @@ public Gyoyang(){
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        spn_gyoyang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position == 0){
+                    databaseReference.orderByChild("area").equalTo("a_necessary").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+
+                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+
+                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    arrayList.clear();
+                    adapter = new CustomAdapter(arrayList, getActivity());
+                    recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+                }
+
+                else if(position == 1){
+                    databaseReference.orderByChild("area").equalTo("basic").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+
+                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+
+                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    arrayList.clear();
+                    adapter = new CustomAdapter(arrayList, getActivity());
+                    recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+                }
+                else if(position == 2){
+                    databaseReference.orderByChild("area").equalTo("e_learning").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+
+                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+
+                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                    arrayList.clear();
+                    adapter = new CustomAdapter(arrayList, getActivity());
+                    recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+                }
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });

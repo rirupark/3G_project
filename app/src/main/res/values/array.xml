@@ -32,11 +32,11 @@
 
     </string-array>
     <string-array name="list_gyoyang">
-        <item> 통합교양</item>
         <item> 역량교양</item>
         <item> 기초교양</item>
-        <item> 개척교양</item>
         <item> 일반선택이러닝</item>
+        <item> 통합교양(직접입력)</item>
+        <item> 개척교양(직접입력)</item>
 
 
     </string-array>
