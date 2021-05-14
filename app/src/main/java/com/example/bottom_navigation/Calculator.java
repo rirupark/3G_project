@@ -39,8 +39,6 @@ public class Calculator extends Fragment {
     private ArrayList<User> arrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    private String O_jeonname;
-    private TextView jeonname;
     private LinearLayoutManager linearLayoutManager;
 
 
@@ -72,12 +70,8 @@ public class Calculator extends Fragment {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-
                         User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                         arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
                         adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                     }
 
@@ -102,6 +96,7 @@ public class Calculator extends Fragment {
                     }
                 });
 
+                arrayList.clear();
                 adapter = new CalAdapter(arrayList, getActivity());
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
             }
@@ -118,12 +113,8 @@ public class Calculator extends Fragment {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-
                         User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                         arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
                         adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                     }
 

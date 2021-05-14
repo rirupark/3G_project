@@ -34,7 +34,6 @@ public class CalAdapter extends RecyclerView.Adapter<CalAdapter.CustomViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        final User user = arrayList.get(position);
         holder.tv_name.setText(arrayList.get(position).getName());
 
 
