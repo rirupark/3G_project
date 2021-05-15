@@ -36,6 +36,14 @@
         <item> 개척교양(직접입력)</item>
     </string-array>
 
+    <string-array name="list_gyoyang_ability">
+        <item> 역량 필수</item>
+        <item> 역량 선택</item>
+
+
+
+    </string-array>
+
     <string-array name="area_gyoyang">
         <item>문학과 문화영역</item>
         <item> 역사와 철학영역</item>
