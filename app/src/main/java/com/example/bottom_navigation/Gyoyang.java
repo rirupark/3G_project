@@ -50,7 +50,7 @@ public Gyoyang(){
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-     view =inflater.inflate(R.layout.fragment_gyoyang,container,false);
+     view =inflater.inflate(R.layout.fragment_gyoyang,null);
 
         //리사이클러뷰.
         recyclerView = view.findViewById(R.id.re_jeongong2);//아이디 연결
@@ -58,6 +58,19 @@ public Gyoyang(){
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
+
+
+
+
+
+
+        Spinner spn_gyoyang = (Spinner)view.findViewById(R.id.spn_gyoyang);
+        Spinner spn_areagyo = (Spinner)view.findViewById(R.id.spn_areagyo);
+
+        spn_gyoyang = (Spinner)view.findViewById(R.id.spn_gyoyang);
+        spn_areagyo = (Spinner)view.findViewById(R.id.spn_areagyo);
+
+
 
 
 
@@ -70,7 +83,7 @@ public Gyoyang(){
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
 
-        databaseReference.orderByChild("id").startAt(41).endAt(69).addChildEventListener(new ChildEventListener() {
+        /*databaseReference.orderByChild("id").startAt(41).endAt(69).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
@@ -99,7 +112,7 @@ public Gyoyang(){
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
-        });
+        });*/
 
         spn_gyoyang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -248,9 +261,9 @@ public Gyoyang(){
 
             }
         });  */
-        adapter = new CustomAdapter(arrayList, getActivity());
-        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
-        linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 1); // 스크롤 속도 조절
+        //adapter = new CustomAdapter(arrayList, getActivity());
+        //recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+        linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 100); // 스크롤 속도 조절
 
 
         /*
