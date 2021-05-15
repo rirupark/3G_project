@@ -3,15 +3,23 @@ package com.example.bottom_navigation;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -45,40 +53,6 @@ public class ResultActivity extends AppCompatActivity {
 
 
 
-        /* ------------마이페이지 프레그먼트에 사용자 데이터 (이름, 이메일) 띄우기.--------
-
-
-
-        //fragment 생성
-        Mypage mypage = new Mypage();
-
-        //번들객체 생성. text값 저장.
-        Bundle bundle = new Bundle();
-
-        bundle.putString("user_name", nickName);
-        bundle.putString("user_mail", email);
-
-        //fragment_mypage로 번들 전달.
-        mypage.setArguments(bundle);
-
-<<<<<<< HEAD
-        ----------------------------------------------------------------*/
-
-
-        /* ----------------------------------------------------------------*/
-//fragment 생성
-        Mypage mypage = new Mypage();
-
-        //번들객체 생성. text값 저장.
-        Bundle bundle = new Bundle();
-
-        bundle.putString("nickName", nickName);
-        bundle.putString("email", email);
-
-        //fragment_mypage로 번들 전달.
-        mypage.setArguments(bundle);
-
-
         Button imageButton = (Button) findViewById(R.id.btn_start_3g);
         imageButton.setOnClickListener(new View.OnClickListener() {
 
@@ -89,6 +63,7 @@ public class ResultActivity extends AppCompatActivity {
                 //finish();
             }
         });
-    }
 
+
+    }
 }

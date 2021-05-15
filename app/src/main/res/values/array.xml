@@ -6,21 +6,19 @@
         <item> c언어프로그래밍  </item>
         <item> 소프트웨어설계PBL  </item>
         <item> 프로그래밍 언어론</item>
-
     </string-array>
+
     <string-array name="okgyoyang">
         <item> 이수한 교양</item>
         <item> 문학의 이해</item>
         <item> 일본문화의 이해</item>
         <item> 컴퓨터사고와 코딩</item>
         <item> 공학윤리</item>
-
-
     </string-array>
+
     <string-array name="area_jeongong">
         <item> 필수전공</item>
         <item> 선택전공</item>
-
     </string-array>
 
     <string-array name="grade_jeongong">
@@ -28,17 +26,14 @@
         <item> 2학년</item>
         <item> 3학년</item>
         <item> 4학년</item>
-
-
     </string-array>
+
     <string-array name="list_gyoyang">
         <item> 역량교양</item>
         <item> 기초교양</item>
         <item> 일반선택이러닝</item>
         <item> 통합교양(직접입력)</item>
         <item> 개척교양(직접입력)</item>
-
-
     </string-array>
 
     <string-array name="area_gyoyang">
@@ -49,8 +44,13 @@
         <item> 과학과 기술영역</item>
         <item> 예술과 체육영역</item>
         <item> 융복합 영역</item>
+    </string-array>
 
-
+    <string-array name="std_grade">
+        <item>18학번</item>
+        <item>19학번</item>
+        <item>20학번</item>
+        <item>21학번</item>
     </string-array>
 
 

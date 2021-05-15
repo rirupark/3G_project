@@ -72,26 +72,6 @@ public class Mypage extends Fragment {
 
         }
 
-        /*mDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
-        mDatabase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                DataSnapshot snapshot;
-                dataSnapshot.getChildren();
-                username = dataSnapshot.child("").child("name").getValue().toString();
-                nametext = view.findViewById(R.id.nametext);
-                nametext.setText(username);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-         */
-
-
 
 
         Button btn_change = (Button)view.findViewById(R.id.btn_change);
