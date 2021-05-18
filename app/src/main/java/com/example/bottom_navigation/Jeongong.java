@@ -41,8 +41,8 @@ public class Jeongong extends Fragment {
     private DatabaseReference databaseReference;
     private LinearLayoutManager linearLayoutManager;
 
-    CheckBox check_jeon;
-    String shared = "file";
+
+
     public static Jeongong newinstance() {
         return new Jeongong();
     }
@@ -51,6 +51,13 @@ public class Jeongong extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
+
+
+
+
+
         view = inflater.inflate(R.layout.fragment_jeongong, null);
         recyclerView = view.findViewById(R.id.re_jeongong2);//아이디 연결
         recyclerView.setHasFixedSize(true);//리사이클러뷰 기존성능강화
@@ -321,11 +328,9 @@ public class Jeongong extends Fragment {
 
         /*--------- sharedPreference (체크박스 유지) -------------*/
 
-        Context context = getActivity();
-        check_jeon = (CheckBox)view.findViewById(R.id.check_jeon);
-        SharedPreferences sharedPreferences = context.getSharedPreferences(shared, 0);
-        String value = sharedPreferences.getString("checkbox","");
-        check_jeon.setText(value);
+
+
+
 
 
 
@@ -364,16 +369,8 @@ public class Jeongong extends Fragment {
         return view;
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Context context = getActivity();
-        SharedPreferences sharedPreferences = context.getSharedPreferences(shared, 0);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        String value = check_jeon.getText().toString();
-        editor.putString("checkbox",value);   //저장하는 구문    chekcbox = 별명
-        editor.commit(); // 세이브를 완료해라.
-    }
+
+
 }
 
         /*
