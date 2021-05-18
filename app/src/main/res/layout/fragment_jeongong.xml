@@ -36,40 +36,30 @@
 
             <Spinner
                 android:id="@+id/spn_grade"
-                android:layout_width="280dp"
+                android:layout_width="391dp"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/spinner_custom2"
                 android:entries="@array/grade_jeongong"
-                android:popupBackground="#C4D4E8"
-                android:background="@drawable/spinner_custom2"></Spinner>
+                android:popupBackground="#C4D4E8"></Spinner>
 
-            <Button
-                android:id="@+id/jeongong_search"
-                android:layout_width="80dp"
-                android:layout_height="61dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="10dp"
-                android:backgroundTint="#4F78B0"
-                android:forceDarkAllowed="false"
-                android:text="SEARCH"
-                android:textSize="10sp"></Button>
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="625dp"
+        android:layout_height="570dp"
         android:orientation="vertical"
         android:layout_marginTop="160dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/re_jeongong2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="571dp"
             android:paddingBottom="?attr/actionBarSize"
             android:scrollbarSize="4dp"
-          android:scrollbars="vertical"
+            android:scrollbars="vertical"
 
 
             />

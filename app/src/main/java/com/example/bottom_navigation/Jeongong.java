@@ -1,10 +1,14 @@
 package com.example.bottom_navigation;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
+import android.widget.Checkable;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -37,7 +41,8 @@ public class Jeongong extends Fragment {
     private DatabaseReference databaseReference;
     private LinearLayoutManager linearLayoutManager;
 
-
+    CheckBox check_jeon;
+    String shared = "file";
     public static Jeongong newinstance() {
         return new Jeongong();
     }
@@ -321,6 +326,17 @@ public class Jeongong extends Fragment {
         });
 
 
+        /*--------- sharedPreference (체크박스 유지) -------------*/
+
+        Context context = getActivity();
+        check_jeon = (CheckBox)view.findViewById(R.id.check_jeon);
+        SharedPreferences sharedPreferences = context.getSharedPreferences(shared, 0);
+        String value = sharedPreferences.getString("checkbox","");
+        check_jeon.setText(value);
+
+
+
+
 
 
 
@@ -355,7 +371,16 @@ public class Jeongong extends Fragment {
         return view;
     }
 
-
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Context context = getActivity();
+        SharedPreferences sharedPreferences = context.getSharedPreferences(shared, 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String value = check_jeon.getText().toString();
+        editor.putString("checkbox",value);   //저장하는 구문    chekcbox = 별명
+        editor.commit(); // 세이브를 완료해라.
+    }
 }
 
         /*

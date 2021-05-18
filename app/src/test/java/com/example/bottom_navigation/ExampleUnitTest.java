@@ -1,5 +1,10 @@
 package com.example.bottom_navigation;
 
+import android.content.Intent;
+import android.view.View;
+
+import androidx.fragment.app.Fragment;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,9 +14,10 @@ import static org.junit.Assert.*;
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
-public class ExampleUnitTest {
+public class ExampleUnitTest extends Fragment {
     @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
+
+    public void onClick() {
+        ((MainActivity)getActivity()).replaceFragment(Gyoyang.newinstance());
     }
 }
