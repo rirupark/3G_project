@@ -55,7 +55,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private FirebaseAuth auth; // 파베 인증 객체
     private GoogleApiClient googleApiClient; // 구글 API 클라이언트 객체
     private static final int REQ_SIGN_GOOGLE = 100; // 구글 로그인 결과 코드(임시로 선언)
-    private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
 
@@ -122,6 +121,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                             intent.putExtra("email", account.getEmail());
                             intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl())); // 특정 자료형을 String으로 변환.
                             startActivity(intent);
+                            finish();
 
                             FirebaseUser firebaseUser = auth.getCurrentUser();
 
