@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -143,14 +144,9 @@ public class Mypage extends Fragment {
                         hopperRef.removeValue();
 
                         Log.e("회원탈퇴","버튼입력");
+
                         break;
                 }
-//                mAuth.getCurrentUser().delete();
-//                mDatabase.child("UserInfo").child(firebaseUser.getUid()).removeValue();
-//                getActivity().finish();
-//                startActivity(new Intent(getActivity(), Login.class));
-//                Toast.makeText(getActivity(), "회원탈퇴 되었습니다.",
-//                        Toast.LENGTH_SHORT).show();
             }
         });
 

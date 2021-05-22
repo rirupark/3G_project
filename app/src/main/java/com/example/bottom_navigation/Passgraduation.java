@@ -77,6 +77,23 @@ public Passgraduation(){
         cb_5.setChecked(pref.getBoolean("check4",false));
 
 
+        View view_mypage = inflater.inflate(R.layout.fragment_mypage,null);
+        Button btn_quit = (Button) view_mypage.findViewById(R.id.btn_quit);
+        btn_quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cb_1.isChecked())
+                    cb_1.setChecked(false);
+                if (cb_2.isChecked())
+                    cb_2.setChecked(false);
+                if (cb_3.isChecked())
+                    cb_3.setChecked(false);
+                if (cb_4.isChecked())
+                    cb_4.setChecked(false);
+                if (cb_5.isChecked())
+                    cb_5.setChecked(false);
+            }
+        });
 
 
         return view;
