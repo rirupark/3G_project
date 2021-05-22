@@ -27,6 +27,18 @@
         <item> 3학년</item>
         <item> 4학년</item>
     </string-array>
+    <string-array name="grade_jeongong_necessary">
+    <item> 1학년</item>
+    <item> 2학년</item>
+    <item> 3학년</item>
+    <item> 4학년</item>
+</string-array>
+    <string-array name="grade_jeongong_select">
+        <item> 1학년</item>
+        <item> 2학년</item>
+        <item> 3학년</item>
+        <item> 4학년</item>
+    </string-array>
 
     <string-array name="list_gyoyang">
         <item> 역량교양</item>
