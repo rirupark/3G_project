@@ -28,22 +28,16 @@
             android:background="@drawable/spinner_custom2">
         </Spinner>
 
+        <Spinner
+            android:id="@+id/spn_grade"
+            android:layout_width="391dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/spinner_custom2"
+            android:entries="@array/grade_jeongong"
+            android:popupBackground="#C4D4E8" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="1dp">
 
-            <Spinner
-                android:id="@+id/spn_grade"
-                android:layout_width="391dp"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/spinner_custom2"
-                android:entries="@array/grade_jeongong"
-                android:popupBackground="#C4D4E8"></Spinner>
-
-        </LinearLayout>
 
     </LinearLayout>
 
