@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.ChildEventListener;
@@ -20,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -59,6 +62,28 @@ public class Calculator extends Fragment {
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
+
+/*------------------ 계산 ----------------------------- 가공된 데이터값 넣을 예정*/
+
+
+        int sum = 10;
+        int jeon_sum = 30;
+        int gyo_sum = 14;
+
+        /*------------------ 이수학점계산텍스트출력 ----------------------------- */
+        // sum을 가공된 데이터값으로 바꾸기
+
+        TextView tv_calview = (TextView)view.findViewById(R.id.tv_calview);
+        tv_calview.setText("총이수한 학점은 "+sum+"점 입니다.");
+
+        /*------------------ 프로그레스바 퍼센테이지 바 ----------------------------- */
+        // jeon_sum 과 gyo_sum을 데이터값으로 바꾸기
+
+        ProgressBar bar_jeon = (ProgressBar)view.findViewById(R.id.bar_jeon);
+        bar_jeon.setProgress(jeon_sum);
+        ProgressBar bar_gyo = (ProgressBar)view.findViewById(R.id.bar_gyo);
+        bar_gyo.setProgress(gyo_sum);
+
 
 
         Button button7 = (Button)view.findViewById(R.id.button7);

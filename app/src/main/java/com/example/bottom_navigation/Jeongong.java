@@ -43,6 +43,7 @@ public class Jeongong extends Fragment {
 
 
 
+
     public static Jeongong newinstance() {
         return new Jeongong();
     }
@@ -51,11 +52,6 @@ public class Jeongong extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-
-
-
 
 
         view = inflater.inflate(R.layout.fragment_jeongong, null);
@@ -368,6 +364,7 @@ public class Jeongong extends Fragment {
 
         return view;
     }
+
 
 
 
