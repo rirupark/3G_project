@@ -37,6 +37,15 @@ public Passgraduation(){
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_passgraduation,null);
+
+        ImageButton btn_back = (ImageButton)view.findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Checklist.newinstance());
+            }
+        });
+
         ImageButton btn_ess = (ImageButton)view.findViewById(R.id.btn_ess_passgra);
         btn_ess.setOnClickListener(new View.OnClickListener() {
             @Override

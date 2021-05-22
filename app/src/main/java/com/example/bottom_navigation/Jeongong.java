@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.Checkable;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ArrayAdapter;
@@ -55,10 +56,16 @@ public class Jeongong extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-
         view = inflater.inflate(R.layout.fragment_jeongong, null);
+
+        ImageButton btn_back = (ImageButton)view.findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Checklist.newinstance());
+            }
+        });
+
         recyclerView = view.findViewById(R.id.re_jeongong2);//아이디 연결
         recyclerView.setHasFixedSize(true);//리사이클러뷰 기존성능강화
         layoutManager = new LinearLayoutManager(getActivity());
