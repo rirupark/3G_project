@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,11 +22,16 @@ import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ResultActivity extends AppCompatActivity {
 
     private TextView user_name2;
     private ImageView user_img2;
     private TextView user_mail2;
+    private DatabaseReference mDatabase;
+    private FirebaseAuth auth; // 파베 인증 객체
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +66,65 @@ public class ResultActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-                //finish();
+                finish();
             }
         });
 
 
+        /* -----학번 스피너에서 항목 선택 시 데이터 베이스 사용자 테이블에 학번 필드 생성 및 저장 ----------*/
+
+        UserAccount account1 = new UserAccount();
+        auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+
+        Spinner spn_grade_choose = (Spinner)findViewById(R.id.spn_grade_choose);
+        spn_grade_choose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if(position == 0)
+                    updateGradeNum("18학번");
+
+                else if(position == 1)
+                    updateGradeNum("19학번");
+
+                else if(position == 2)
+                    updateGradeNum("20학번");
+
+                else
+                    updateGradeNum("21학번");
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                Toast.makeText(ResultActivity.this, "학번을 선택해주세요.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
+    //값을 파이어베이스 Realtime database에 업데이트하는 함수
+//    public void updateGradeNum(String fieldName, String value) {
+//        FirebaseUser firebaseUser = auth.getCurrentUser();
+//        DatabaseReference hopperRef = mDatabase.child("UserInfo").child(firebaseUser.getUid());
+//        Map<String, Object> hopperUpdates = new HashMap<>(); // 기존 사용자 테이블에 학번 데이터 추가.
+//        hopperUpdates.put(fieldName, value);
+//        hopperRef.updateChildren(hopperUpdates);
+//    }
+
+
+    //값을 파이어베이스 Realtime database의 std_grade_num 필드에 업데이트하는 함수
+        public void updateGradeNum(String value) {
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+        DatabaseReference hopperRef = mDatabase.child("UserInfo").child(firebaseUser.getUid());
+        Map<String, Object> hopperUpdates = new HashMap<>(); // 기존 사용자 테이블에 학번 데이터 추가.
+        hopperUpdates.put("std_grade_num", value);
+        hopperRef.updateChildren(hopperUpdates);
     }
 }
+
+
+
+

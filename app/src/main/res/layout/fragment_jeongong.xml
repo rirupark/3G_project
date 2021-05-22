@@ -36,7 +36,7 @@
 
             <Spinner
                 android:id="@+id/spn_grade"
-                android:layout_width="391dp"
+                android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/spinner_custom2"

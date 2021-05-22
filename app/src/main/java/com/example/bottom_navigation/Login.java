@@ -6,6 +6,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -41,8 +42,13 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
@@ -56,6 +62,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private GoogleApiClient googleApiClient; // 구글 API 클라이언트 객체
     private static final int REQ_SIGN_GOOGLE = 100; // 구글 로그인 결과 코드(임시로 선언)
     private DatabaseReference mDatabase;
+    private String grade_num;
 
 
     @Override
@@ -101,12 +108,12 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             if (result.isSuccess()) { // 인증결과가 성공적이면...
                 GoogleSignInAccount account = result.getSignInAccount(); // account 라는 데이터는 구글로그인 정보를 담고 있음. (닉네임, 프로필 사진, 이메일 주소 등)
                 resultLogin(account); // 로그인 결과값 출력 수행 메소드
-
-
             }
         }
 
     }
+
+
 
     private void resultLogin(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
@@ -115,29 +122,50 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) { // 로그인이 성공했으면 ...
-                            Toast.makeText(Login.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-                            intent.putExtra("nickName", account.getDisplayName());
-                            intent.putExtra("email", account.getEmail());
-                            intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl())); // 특정 자료형을 String으로 변환.
-                            startActivity(intent);
-                            finish();
 
                             FirebaseUser firebaseUser = auth.getCurrentUser();
+                            UserAccount account1 = new UserAccount();
 
                             if (firebaseUser.getUid().toString() != firebaseUser.getIdToken(true).toString()) { //로그인 할 때마다 데이터 베이스에 사용자계정이 중복되어 저장되는 것을 막아준다.
-                                UserAccount account1 = new UserAccount();
                                 account1.setIdToken(firebaseUser.getUid());
                                 account1.setEmailId(firebaseUser.getEmail());
 
                                 mDatabase.child("UserInfo").child(firebaseUser.getUid()).setValue(account1);
-
                             }
-                        } else { // 로그인이 실패했으면 ...
-                            Toast.makeText(Login.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+
+                                //grade_num = account1.getStd_grade_num();
+
+                                if (mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("std_grade_num").getKey() != "std_grade_num"){
+
+                                    Log.e("fff", "grade"+ mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("emailId").getKey());
+
+                                    Toast.makeText(Login.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
+                                    intent.putExtra("nickName", account.getDisplayName());
+                                    intent.putExtra("email", account.getEmail());
+                                    intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl())); // 특정 자료형을 String으로 변환.
+                                    startActivity(intent);
+
+
+                                }
+
+
+                                 else {
+                                    Toast.makeText(Login.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(intent);
+
+
+
+                                }
+
+                            } else { // 로그인이 실패했으면 ...
+                                Toast.makeText(Login.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
+
                 });
+
     }
 
 
