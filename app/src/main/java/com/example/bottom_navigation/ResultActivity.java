@@ -1,5 +1,7 @@
 package com.example.bottom_navigation;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
@@ -7,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -16,14 +19,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.squareup.okhttp.internal.DiskLruCache;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.RegEx;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -70,30 +80,31 @@ public class ResultActivity extends AppCompatActivity {
             }
         });
 
-
-        /* -----학번 스피너에서 항목 선택 시 데이터 베이스 사용자 테이블에 학번 필드 생성 및 저장 ----------*/
-
         UserAccount account1 = new UserAccount();
         auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseUser firebaseUser = auth.getCurrentUser();
 
+        /* -----학번 스피너에서 항목 선택 시 데이터 베이스 사용자 테이블에 학번 필드 생성 및 저장 ----------*/
         Spinner spn_grade_choose = (Spinner)findViewById(R.id.spn_grade_choose);
         spn_grade_choose.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        updateGradeNum("18학번");
+                        break;
+                    case 1:
+                        updateGradeNum("19학번");
+                        break;
+                    case 2:
+                        updateGradeNum("20학번");
+                        break;
+                    case 3:
+                        updateGradeNum("21학번");
+                        break;
 
-                if(position == 0)
-                    updateGradeNum("18학번");
-
-                else if(position == 1)
-                    updateGradeNum("19학번");
-
-                else if(position == 2)
-                    updateGradeNum("20학번");
-
-                else
-                    updateGradeNum("21학번");
+                }
             }
 
             @Override
@@ -101,7 +112,9 @@ public class ResultActivity extends AppCompatActivity {
                 Toast.makeText(ResultActivity.this, "학번을 선택해주세요.", Toast.LENGTH_SHORT).show();
             }
         });
+
     }
+
 
 
 
@@ -122,6 +135,7 @@ public class ResultActivity extends AppCompatActivity {
         Map<String, Object> hopperUpdates = new HashMap<>(); // 기존 사용자 테이블에 학번 데이터 추가.
         hopperUpdates.put("std_grade_num", value);
         hopperRef.updateChildren(hopperUpdates);
+
     }
 }
 
