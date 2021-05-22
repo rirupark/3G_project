@@ -67,8 +67,8 @@ public class Calculator extends Fragment {
 
 
         int sum = 10;
-        int jeon_sum = 30;
-        int gyo_sum = 14;
+        int jeon_sum = 60;
+        int gyo_sum = 30;
 
         /*------------------ 이수학점계산텍스트출력 ----------------------------- */
         // sum을 가공된 데이터값으로 바꾸기
