@@ -47,7 +47,7 @@
 
 
     <TextView
-        android:id="@+id/textView17"
+        android:id="@+id/tv_calview"
         android:layout_width="94dp"
         android:layout_height="80dp"
         android:layout_marginTop="264dp"
