@@ -66,8 +66,9 @@ public class Mypage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mypage,null);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
+        database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        mDatabase = database.getReference("UserInfo");
 
 
         if (user != null) {
@@ -75,6 +76,7 @@ public class Mypage extends Fragment {
             String name = user.getDisplayName();
             String email = user.getEmail();
             String grade = getActivity().getIntent().getStringExtra("grade");
+            final String[] grd = new String[1];
 
 
 
@@ -85,9 +87,41 @@ public class Mypage extends Fragment {
             mailtext.setText(email);
 
             gradetext = view.findViewById(R.id.gradetext);
-            gradetext.setText(grade);
 
 
+
+
+            mDatabase.orderByChild("idToken").equalTo(user.getUid()).limitToFirst(1).addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    UserAccount userAccount = snapshot.getValue(UserAccount.class);
+                    grd[0] = userAccount.getStd_grade_num();
+
+
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            gradetext.setText(grd[0]);
             // ---------------------- 사용자테이블에서 학번 데이터 출력하기 수정중 ---------------------------
 //            gradetext = view.findViewById(R.id.gradetext);
 //            mDatabase.child("UserInfo").child("std_grade_num").equalTo("19학번").addChildEventListener(new ChildEventListener() {
