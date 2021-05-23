@@ -47,6 +47,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         });
 
         holder.tv_name.setText(arrayList.get(position).getName());
+        holder.tv_credit.setText(String.valueOf(arrayList.get(position).getCredit()));
 
 
     }
@@ -67,6 +68,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             super(itemView);
 
             this.tv_name = itemView.findViewById(R.id.tv_name);
+            this.tv_credit = itemView.findViewById(R.id.tv_credit);
             this.check_jeon = itemView.findViewById(R.id.check_jeon);
 
         }

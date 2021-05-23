@@ -139,7 +139,6 @@ public class ResultActivity extends AppCompatActivity {
         Intent intent = new Intent(ResultActivity.this, Mypage.class);
         intent.putExtra("grade", value);
 
-
     }
 }
 
