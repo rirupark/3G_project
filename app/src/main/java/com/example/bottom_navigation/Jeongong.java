@@ -3,12 +3,14 @@ package com.example.bottom_navigation;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
 import android.widget.Checkable;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ArrayAdapter;
@@ -55,6 +57,15 @@ public class Jeongong extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_jeongong, null);
+
+        ImageButton btn_back = (ImageButton)view.findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Checklist.newinstance());
+            }
+        });
 
 
 
@@ -63,6 +74,8 @@ public class Jeongong extends Fragment {
 
 
         view = inflater.inflate(R.layout.fragment_jeongong, null);
+
+
         recyclerView = view.findViewById(R.id.re_jeongong2);//아이디 연결
         recyclerView.setHasFixedSize(true);//리사이클러뷰 기존성능강화
         layoutManager = new LinearLayoutManager(getActivity());
@@ -80,6 +93,7 @@ public class Jeongong extends Fragment {
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
+        Log.e("userDB", databaseReference.toString());
 
 
 
@@ -89,9 +103,44 @@ public class Jeongong extends Fragment {
         spn_jeongong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                arrayList.clear();
+                adapter = new CustomAdapter(arrayList, getActivity());
+                recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                 if(position == 0){
+                    databaseReference.orderByChild("area_grade").equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
+                        @Override
+                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
+
+
+                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                        }
+
+                        @Override
+                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+
+
+
+                        }
+
+                        @Override
+                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                        }
+
+                        @Override
+                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
 
                     spn_grade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override

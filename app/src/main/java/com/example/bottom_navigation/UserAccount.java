@@ -21,5 +21,11 @@ public class UserAccount {
 
     public void setEmailId(String emailId) {this.emailId = emailId;}
 
+    public String getStd_grade_num() { return std_grade_num;}
+
+    public void setStd_grade_num(String std_grade_num) {this.std_grade_num = std_grade_num;}
+
+
+
 
 }

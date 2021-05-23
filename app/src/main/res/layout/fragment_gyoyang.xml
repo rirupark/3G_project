@@ -6,14 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".Mypage">
 
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        android:background="@color/white"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="7dp"></ImageButton>
+
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="110dp"
         android:orientation="vertical"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="1dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="35dp">
 
         <Spinner
             android:id="@+id/spn_gyoyang"
@@ -21,43 +30,39 @@
             android:layout_height="50dp"
             android:layout_gravity="left"
             android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:entries="@array/list_gyoyang"
+            android:popupBackground="#C4D4E8"
             android:background="@drawable/spinner_custom2"></Spinner>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:layout_marginTop="1dp">
+            android:layout_height="50dp"
+            android:layout_marginTop="1dp"
+            android:id="@+id/tong_cul"
+            android:visibility="gone">
 
             <Spinner
                 android:id="@+id/spn_areagyo"
-                android:layout_width="280dp"
-                android:layout_height="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_margin="10dp"
+                android:background="@drawable/spinner_custom3"
                 android:entries="@array/area_gyoyang"
-                android:background="@drawable/spinner_custom2"></Spinner>
+                android:popupBackground="#EBF1F6">
+                </Spinner>
 
-            <Button
-                android:id="@+id/jeongong_search"
-                android:layout_width="80dp"
-                android:layout_height="61dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="10dp"
-                android:backgroundTint="#4F78B0"
-                android:forceDarkAllowed="false"
-                android:text="SEARCH"
-                android:textSize="10sp"></Button>
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="625dp"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="160dp">
+        android:layout_marginTop="120dp"
+        android:id="@+id/recyc_gyo_list">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/re_jeongong2"
@@ -68,6 +73,88 @@
             android:scrollbars="vertical"/>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="150dp"
+        android:id="@+id/input_window"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textColor="#2B2B2B">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+            <Spinner
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:entries="@array/credit"
+                android:background="@drawable/spinner_custom4"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_done_outline_24"
+                android:background="@color/white"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </ListView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="625dp"
+        android:orientation="vertical"
+        android:layout_marginTop="120dp"
+        android:id="@+id/input_window_gae"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="230dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"> 
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+            <Spinner
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:entries="@array/credit"
+                android:background="@drawable/spinner_custom4"/>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_baseline_done_outline_24"
+                android:background="@color/white"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 
 
 

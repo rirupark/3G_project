@@ -121,10 +121,10 @@
         android:layout_marginTop="60dp">
 
         <Button
-            android:id="@+id/btn_change"
-            android:layout_width="125dp"
-            android:layout_height="49dp"
-            android:text="개인정보수정"
+            android:id="@+id/btn_quit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="회원탈퇴"
             app:backgroundTint="#4F78B0"
             android:layout_gravity="center" />
 

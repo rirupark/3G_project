@@ -37,6 +37,15 @@ public Passgraduation(){
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_passgraduation,null);
+
+        ImageButton btn_back = (ImageButton)view.findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Checklist.newinstance());
+            }
+        });
+
         ImageButton btn_ess = (ImageButton)view.findViewById(R.id.btn_ess_passgra);
         btn_ess.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +77,23 @@ public Passgraduation(){
         cb_5.setChecked(pref.getBoolean("check4",false));
 
 
+        View view_mypage = inflater.inflate(R.layout.fragment_mypage,null);
+        Button btn_quit = (Button) view_mypage.findViewById(R.id.btn_quit);
+        btn_quit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cb_1.isChecked())
+                    cb_1.setChecked(false);
+                if (cb_2.isChecked())
+                    cb_2.setChecked(false);
+                if (cb_3.isChecked())
+                    cb_3.setChecked(false);
+                if (cb_4.isChecked())
+                    cb_4.setChecked(false);
+                if (cb_5.isChecked())
+                    cb_5.setChecked(false);
+            }
+        });
 
 
         return view;

@@ -1,12 +1,17 @@
 package com.example.bottom_navigation;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -43,14 +48,22 @@ public class Gyoyang extends Fragment {
     public static Gyoyang newinstance(){
     return new Gyoyang();
 }
-public Gyoyang(){
+    public Gyoyang(){
 
-}
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
      view =inflater.inflate(R.layout.fragment_gyoyang,null);
+
+        ImageButton btn_back = (ImageButton)view.findViewById(R.id.btn_back);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ((MainActivity)getActivity()).replaceFragment(Checklist.newinstance());
+            }
+        });
 
         //리사이클러뷰.
         recyclerView = view.findViewById(R.id.re_jeongong2);//아이디 연결
@@ -118,6 +131,18 @@ public Gyoyang(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position == 0){
+                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                    tong_linear.setVisibility(View.INVISIBLE);
+
+                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                    recyc_list.setVisibility(View.VISIBLE);
+
+                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                    input_window.setVisibility(View.INVISIBLE);
+
+                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                    input_window_gae.setVisibility(View.INVISIBLE);
+
                     databaseReference.orderByChild("area").equalTo("a_necessary").addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -157,6 +182,18 @@ public Gyoyang(){
                 }
 
                 else if(position == 1){
+                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                    tong_linear.setVisibility(View.INVISIBLE);
+
+                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                    recyc_list.setVisibility(View.VISIBLE);
+
+                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                    input_window.setVisibility(View.INVISIBLE);
+
+                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                    input_window_gae.setVisibility(View.INVISIBLE);
+
                     databaseReference.orderByChild("area").equalTo("basic").addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -195,6 +232,18 @@ public Gyoyang(){
                     recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                 }
                 else if(position == 2){
+                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                    tong_linear.setVisibility(View.INVISIBLE);
+
+                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                    recyc_list.setVisibility(View.VISIBLE);
+
+                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                    input_window.setVisibility(View.INVISIBLE);
+
+                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                    input_window_gae.setVisibility(View.INVISIBLE);
+
                     databaseReference.orderByChild("area").equalTo("e_learning").addChildEventListener(new ChildEventListener() {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -233,6 +282,38 @@ public Gyoyang(){
                     recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                 }
 
+                else if (position == 3){
+                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                    tong_linear.setVisibility(View.VISIBLE);
+
+                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                    recyc_list.setVisibility(View.INVISIBLE);
+
+                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                    input_window.setVisibility(View.VISIBLE);
+
+                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                    input_window_gae.setVisibility(View.INVISIBLE);
+
+
+                }
+
+                else if (position == 4){
+                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                    tong_linear.setVisibility(View.INVISIBLE);
+
+                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                    recyc_list.setVisibility(View.INVISIBLE);
+
+                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                    input_window.setVisibility(View.INVISIBLE);
+
+                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                    input_window_gae.setVisibility(View.VISIBLE);
+
+                    arrayList.clear();
+                }
+
 
             }
 
@@ -241,6 +322,8 @@ public Gyoyang(){
 
             }
         });
+
+
 
 
         /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
