@@ -136,6 +136,9 @@ public class ResultActivity extends AppCompatActivity {
         hopperUpdates.put("std_grade_num", value);
         hopperRef.updateChildren(hopperUpdates);
 
+        //Intent intent = new Intent(ResultActivity.this, Mypage.class);
+        //intent.putExtra("grade", value);
+
     }
 }
 

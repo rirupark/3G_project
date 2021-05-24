@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.okhttp.internal.DiskLruCache;
 
@@ -57,7 +59,6 @@ public class Mypage extends Fragment {
     public Mypage(){
     }
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -65,11 +66,18 @@ public class Mypage extends Fragment {
         View view = inflater.inflate(R.layout.fragment_mypage,null);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = database.getReference("UserInfo");
+
 
         if (user != null) {
             // Name, email address, and profile photo Url
             String name = user.getDisplayName();
             String email = user.getEmail();
+            String grade = getActivity().getIntent().getStringExtra("grade");
+            final String[] grd = new String[1];
+
 
 
             nametext = view.findViewById(R.id.nametext);
@@ -78,6 +86,42 @@ public class Mypage extends Fragment {
             mailtext = view.findViewById(R.id.mailtext);
             mailtext.setText(email);
 
+            gradetext = view.findViewById(R.id.gradetext);
+
+
+
+
+            mDatabase.orderByChild("idToken").equalTo(user.getUid()).limitToFirst(1).addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    UserAccount userAccount = snapshot.getValue(UserAccount.class);
+                    grd[0] = userAccount.getStd_grade_num();
+
+
+                }
+
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+            gradetext.setText(grd[0]);
             // ---------------------- 사용자테이블에서 학번 데이터 출력하기 수정중 ---------------------------
 //            gradetext = view.findViewById(R.id.gradetext);
 //            mDatabase.child("UserInfo").child("std_grade_num").equalTo("19학번").addChildEventListener(new ChildEventListener() {
