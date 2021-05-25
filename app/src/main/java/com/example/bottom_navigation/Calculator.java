@@ -25,6 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.stream.IntStream;
 
 
 public class Calculator extends Fragment {
@@ -43,8 +44,7 @@ public class Calculator extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private LinearLayoutManager linearLayoutManager;
-
-
+    int sum;
 
 
     @Nullable
@@ -63,10 +63,30 @@ public class Calculator extends Fragment {
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
 
+
 /*------------------ 계산 ----------------------------- 가공된 데이터값 넣을 예정*/
 
+        databaseReference.child("credit").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot snapshot1 : snapshot.getChildren()){
+                    User user = snapshot1.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                    arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+                }
+            }
 
-        int sum = 90;
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+            for (int i = 0; i < arrayList.size(); i++) {
+                sum += Integer.parseInt(String.valueOf(arrayList.get(i)));
+
+            }
+
         int jeon_sum = 60;
         int gyo_sum = 30;
 
@@ -168,7 +188,6 @@ public class Calculator extends Fragment {
             }
         });
 
-        
         return view;
     }
 }
