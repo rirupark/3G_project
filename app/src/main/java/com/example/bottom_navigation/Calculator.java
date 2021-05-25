@@ -66,7 +66,7 @@ public class Calculator extends Fragment {
 /*------------------ 계산 ----------------------------- 가공된 데이터값 넣을 예정*/
 
 
-        int sum = 10;
+        int sum = 90;
         int jeon_sum = 60;
         int gyo_sum = 30;
 
