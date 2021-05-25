@@ -20,6 +20,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,9 +47,21 @@ public class Jeongong extends Fragment {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private LinearLayoutManager linearLayoutManager;
+    private FirebaseAuth auth;
 
 
 
+
+
+    DatabaseReference ref = database.getReference("UserInfo");
+
+
+    public String classname;
+    public String area;
+    public String credit;
+    public String token;
+
+    DatabaseReference usersRef = ref.child("UserClass");
 
     public static Jeongong newinstance() {
         return new Jeongong();
@@ -57,6 +71,9 @@ public class Jeongong extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        FirebaseUser firebaseUser = auth.getCurrentUser();
+        auth = FirebaseAuth.getInstance();
+        token = firebaseUser.getUid();
         view = inflater.inflate(R.layout.fragment_jeongong, null);
 
         ImageButton btn_back = (ImageButton)view.findViewById(R.id.btn_back);
