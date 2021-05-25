@@ -2,6 +2,7 @@ package com.example.bottom_navigation;
 
 import android.content.ClipData;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,6 +40,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         final User user = arrayList.get(position);
         holder.tv_name.setText(arrayList.get(position).getName());
         holder.tv_credit.setText(String.valueOf(arrayList.get(position).getCredit()));
+
+
 
 
     }
