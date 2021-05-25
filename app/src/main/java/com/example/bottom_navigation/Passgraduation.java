@@ -106,7 +106,6 @@ public Passgraduation(){
         super.onDestroy();
         Context context = getActivity();
         SharedPreferences pref = context.getSharedPreferences("pref", 0);
-
         SharedPreferences.Editor editor = pref.edit();
 
         editor.putBoolean("check",cb_1.isChecked());
