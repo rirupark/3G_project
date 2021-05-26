@@ -65,7 +65,7 @@ public class Calculator extends Fragment {
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
 
-/*------------------ 계산 ----------------------------- 가공된 데이터값 넣을 예정*/
+        /*------------------ 계산 ----------------------------- 가공된 데이터값 넣을 예정*/
 
         databaseReference.orderByChild("credit").startAt(1).endAt(40).addChildEventListener(new ChildEventListener() {
             @Override

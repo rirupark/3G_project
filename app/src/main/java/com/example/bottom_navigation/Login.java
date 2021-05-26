@@ -62,8 +62,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     private GoogleApiClient googleApiClient; // 구글 API 클라이언트 객체
     private static final int REQ_SIGN_GOOGLE = 100; // 구글 로그인 결과 코드(임시로 선언)
     private DatabaseReference mDatabase;
-    private String grade_num;
-    private String token;
+
+
 
 
     @Override

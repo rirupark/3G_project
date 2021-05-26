@@ -53,15 +53,10 @@ public class Jeongong extends Fragment {
 
 
 
-    DatabaseReference ref = database.getReference("UserInfo");
-
-
     public String classname;
     public String area;
     public String credit;
     public String token;
-
-    DatabaseReference usersRef = ref.child("UserClass");
 
     public static Jeongong newinstance() {
         return new Jeongong();
@@ -71,9 +66,7 @@ public class Jeongong extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        FirebaseUser firebaseUser = auth.getCurrentUser();
-        auth = FirebaseAuth.getInstance();
-        token = firebaseUser.getUid();
+
         view = inflater.inflate(R.layout.fragment_jeongong, null);
 
         ImageButton btn_back = (ImageButton)view.findViewById(R.id.btn_back);
