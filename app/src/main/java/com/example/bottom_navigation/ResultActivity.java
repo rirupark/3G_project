@@ -42,6 +42,7 @@ public class ResultActivity extends AppCompatActivity {
     private TextView user_mail2;
     private DatabaseReference mDatabase;
     private FirebaseAuth auth; // 파베 인증 객체
+    private boolean flag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,10 @@ public class ResultActivity extends AppCompatActivity {
         user_img2 = findViewById(R.id.user_img2);
         Glide.with(this).load(photoUrl).into(user_img2);
 
-
+        UserAccount account1 = new UserAccount();
+        auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
 
         Button imageButton = (Button) findViewById(R.id.btn_start_3g);
         imageButton.setOnClickListener(new View.OnClickListener() {
@@ -75,15 +79,13 @@ public class ResultActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                PreferenceManager.setBoolean(ResultActivity.this, firebaseUser.getUid().toString(), true);
                 startActivity(intent);
                 finish();
             }
         });
 
-        UserAccount account1 = new UserAccount();
-        auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        FirebaseUser firebaseUser = auth.getCurrentUser();
+
 
         /* -----학번 스피너에서 항목 선택 시 데이터 베이스 사용자 테이블에 학번 필드 생성 및 저장 ----------*/
         Spinner spn_grade_choose = (Spinner)findViewById(R.id.spn_grade_choose);

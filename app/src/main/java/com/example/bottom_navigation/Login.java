@@ -124,25 +124,36 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             UserAccount account1 = new UserAccount();
+                            boolean flag = PreferenceManager.getBoolean(Login.this, firebaseUser.getUid().toString());
+                            if ( firebaseUser.getUid().toString() != firebaseUser.getIdToken(true).toString()) { //로그인 할 때마다 데이터 베이스에 사용자계정이 중복되어 저장되는 것을 막아준다.
 
-                            Toast.makeText(Login.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-
-                                Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-                                intent.putExtra("nickName", account.getDisplayName());
-                                intent.putExtra("email", account.getEmail());
-                                intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl())); // 특정 자료형을 String으로 변환.
-                                startActivity(intent);
-
-                                if (firebaseUser.getUid().toString() != firebaseUser.getIdToken(true).toString()) { //로그인 할 때마다 데이터 베이스에 사용자계정이 중복되어 저장되는 것을 막아준다.
+                                if(!flag) {
                                     account1.setIdToken(firebaseUser.getUid());
                                     account1.setEmailId(firebaseUser.getEmail());
-
                                     mDatabase.child("UserInfo").child(firebaseUser.getUid()).setValue(account1);
-                                    Log.e("spn", "resultactivity : " + mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("std_grade_num").getKey().isEmpty());
                                 }
+                                Toast.makeText(Login.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+                                Intent flagFalse = new Intent(getApplicationContext(), ResultActivity.class);
+                                flagFalse.putExtra("nickName", account.getDisplayName());
+                                flagFalse.putExtra("email", account.getEmail());
+                                flagFalse.putExtra("photoUrl", String.valueOf(account.getPhotoUrl())); // 특정 자료형을 String으로 변환.
+                                if (flag) { //최초실행 이후
+                                    Intent flagTrue = new Intent(getApplicationContext(), MainActivity.class);
+                                    startActivity(flagTrue);
+                                } else {
+                                    startActivity(flagFalse); //최초실행시 ResultActivity실행 조건문
+                                }
+                                Log.e("spn", "resultactivity : " + mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("std_grade_num").getKey().isEmpty());
+                            }
+                        } else { // 로그인이 실패했으면 ...
+                            Toast.makeText(Login.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                        }
 
 
-                                //grade_num = account1.getStd_grade_num();
+
+
+
+                            //grade_num = account1.getStd_grade_num();
 
 //                                if (mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("std_grade_num").getKey().contains("null")){
 //
@@ -166,10 +177,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 //                                    startActivity(intent);
 //                                }
 
-                            } else { // 로그인이 실패했으면 ...
-                                Toast.makeText(Login.this, "로그인 실패", Toast.LENGTH_SHORT).show();
-                            }
-                        }
+
+                    }
 
 
                 });
