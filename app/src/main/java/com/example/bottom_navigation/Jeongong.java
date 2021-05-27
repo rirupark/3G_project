@@ -58,7 +58,8 @@ public class Jeongong extends Fragment {
     public String token;
     public String grade;
     public String gradenum;
-
+    DataTemp dataTemp = DataTemp.getInstance();
+    public static ArrayList<String> list = new ArrayList<String>();
 
     public static Jeongong newinstance() {
         return new Jeongong();
@@ -85,6 +86,7 @@ public class Jeongong extends Fragment {
 
 
 
+
         view = inflater.inflate(R.layout.fragment_jeongong, null);
 
 
@@ -93,7 +95,7 @@ public class Jeongong extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
-
+        //Log.e("userDB", databaseReference.toString());
 
         Spinner spn_jeongong = (Spinner) view.findViewById(R.id.spn_jeongong);
         //spn_jeongong.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) view.getContext());
@@ -108,8 +110,29 @@ public class Jeongong extends Fragment {
 
                     assert userAccount != null;
                     grade = userAccount.getStd_grade_num();
-                    Log.d("1597", "onCreateView: " + grade);
+                    if (grade.equals("18학번")) {
+                        dataTemp.setTempString("User18/area_grade");
+                        databaseReference = database.getReference("User18");
+                        gradenum = dataTemp.getTempString();
+                        Log.d("gradenum", "onChildAdded: "+gradenum);
+                    } else if (grade.equals("19학번")) {
+                        dataTemp.setTempString("User19/area_grade");
+                        databaseReference = database.getReference("User19");
+                        gradenum = dataTemp.getTempString();
+                        Log.d("gradenum", "onChildAdded: "+gradenum);
+                    } else if (grade.equals("20학번")) {
+                        dataTemp.setTempString("User20/area_grade");
+                        databaseReference = database.getReference("User20");
+                        gradenum = dataTemp.getTempString();
+                        Log.d("gradenum", "onChildAdded: "+gradenum);
+                    } else if (grade.equals("21학번")) {
+                        dataTemp.setTempString("User/area_grade");
+                        databaseReference = database.getReference("User");
+                        gradenum = dataTemp.getTempString();
+                        Log.d("gradenum", "onChildAdded: "+gradenum);
+                    }
 
+                    Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
                 }
 
@@ -134,29 +157,8 @@ public class Jeongong extends Fragment {
                 }
 
             });
-            Log.d("1597531", "onCreateView: " + grade);
 
-            UserAccount userAccount = new UserAccount();
-            if (grade == "18학번") {
-                gradenum = "User18";
-            } else if (grade == "19학번") {
-                gradenum = "User19";
-            } else if (grade == "20학번") {
-                gradenum = "User20";
-            } else if (grade == "21학번") {
-                gradenum = "User";
-            }
-            Log.d("15975", "onCreateView: " + gradenum);
-            Log.d("159753", "onCreateView: " + grade);
-
-
-            database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
-            databaseReference = database.getReference("User"); // DB테이블 연결
-            Log.e("userDB", databaseReference.toString());
-
-
-//----------------------------------------------------선택, 필수------------------------------------------------------------
-
+            //UserAccount userAccount = new UserAccount();
             spn_jeongong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -164,12 +166,12 @@ public class Jeongong extends Fragment {
                     adapter = new CustomAdapter(arrayList, getActivity());
                     recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                     if (position == 0) {
-                        databaseReference.orderByChild(gradenum).equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
+                        databaseReference.orderByChild("area_grade").equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
                             @Override
                             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                 User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                 arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
+                                Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
                                 adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                             }
@@ -204,14 +206,14 @@ public class Jeongong extends Fragment {
                                 adapter = new CustomAdapter(arrayList, getActivity());
                                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                                 if (position == 0) {
-                                    databaseReference.orderByChild(gradenum).equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
+                                    databaseReference.orderByChild("area_grade").equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
                                         @Override
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-
+                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -236,13 +238,13 @@ public class Jeongong extends Fragment {
                                         }
                                     });
                                 } else if (position == 1) {
-                                    databaseReference.orderByChild(gradenum).equalTo("m_necessary_2").addChildEventListener(new ChildEventListener() {
+                                    databaseReference.orderByChild("area_grade").equalTo("m_necessary_2").addChildEventListener(new ChildEventListener() {
                                         @Override
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-
+                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -267,13 +269,13 @@ public class Jeongong extends Fragment {
                                         }
                                     });
                                 } else if (position == 2) {
-                                    databaseReference.orderByChild(gradenum).equalTo("m_necessary_3").addChildEventListener(new ChildEventListener() {
+                                    databaseReference.orderByChild("area_grade").equalTo("m_necessary_3").addChildEventListener(new ChildEventListener() {
                                         @Override
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-
+                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -298,12 +300,12 @@ public class Jeongong extends Fragment {
                                         }
                                     });
                                 } else if (position == 3) {
-                                    databaseReference.orderByChild(gradenum).equalTo("m_necessary_4").addChildEventListener(new ChildEventListener() {
+                                    databaseReference.orderByChild("area_grade").equalTo("m_necessary_4").addChildEventListener(new ChildEventListener() {
                                         @Override
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
+                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
@@ -351,14 +353,14 @@ public class Jeongong extends Fragment {
                                 adapter = new CustomAdapter(arrayList, getActivity());
                                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                                 if (position == 0) {
-                                    databaseReference.orderByChild(gradenum).equalTo("m_select_1").addChildEventListener(new ChildEventListener() {
+                                    databaseReference.orderByChild("area_grade").equalTo("m_select_1").addChildEventListener(new ChildEventListener() {
                                         @Override
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-
+                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -383,13 +385,13 @@ public class Jeongong extends Fragment {
                                         }
                                     });
                                 } else if (position == 1) {
-                                    databaseReference.orderByChild(gradenum).equalTo("m_select_2").addChildEventListener(new ChildEventListener() {
+                                    databaseReference.orderByChild("area_grade").equalTo("m_select_2").addChildEventListener(new ChildEventListener() {
                                         @Override
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-
+                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -414,12 +416,12 @@ public class Jeongong extends Fragment {
                                         }
                                     });
                                 } else if (position == 2) {
-                                    databaseReference.orderByChild(gradenum).equalTo("m_select_3").addChildEventListener(new ChildEventListener() {
+                                    databaseReference.orderByChild("area_grade").equalTo("m_select_3").addChildEventListener(new ChildEventListener() {
                                         @Override
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
+                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
@@ -445,13 +447,13 @@ public class Jeongong extends Fragment {
                                         }
                                     });
                                 } else if (position == 3) {
-                                    databaseReference.orderByChild(gradenum).equalTo("m_select_4").addChildEventListener(new ChildEventListener() {
+                                    databaseReference.orderByChild("area_grade").equalTo("m_select_4").addChildEventListener(new ChildEventListener() {
                                         @Override
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-
+                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -494,8 +496,13 @@ public class Jeongong extends Fragment {
 
                 }
             });
+            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
 
+
+
+
+//----------------------------------------------------선택, 필수------------------------------------------------------------
             linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 100); // 스크롤 속도 조절
             return view;
         }
