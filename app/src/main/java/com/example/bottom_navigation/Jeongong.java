@@ -48,15 +48,17 @@ public class Jeongong extends Fragment {
     private DatabaseReference databaseReference;
     private LinearLayoutManager linearLayoutManager;
     private FirebaseAuth auth;
-
-
-
+    private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
 
 
     public String classname;
     public String area;
     public String credit;
     public String token;
+    public String grade;
+    public String gradenum;
+
 
     public static Jeongong newinstance() {
         return new Jeongong();
@@ -69,17 +71,17 @@ public class Jeongong extends Fragment {
 
         view = inflater.inflate(R.layout.fragment_jeongong, null);
 
-        ImageButton btn_back = (ImageButton)view.findViewById(R.id.btn_back);
+        ImageButton btn_back = (ImageButton) view.findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(Checklist.newinstance());
+                ((MainActivity) getActivity()).replaceFragment(Checklist.newinstance());
             }
         });
-
-
-
-
+        database = FirebaseDatabase.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+        mDatabase = database.getReference("UserInfo");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
 
 
@@ -93,393 +95,414 @@ public class Jeongong extends Fragment {
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
 
-
-        Spinner spn_jeongong = (Spinner)view.findViewById(R.id.spn_jeongong);
+        Spinner spn_jeongong = (Spinner) view.findViewById(R.id.spn_jeongong);
         //spn_jeongong.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) view.getContext());
-        Spinner spn_grade = (Spinner)view.findViewById(R.id.spn_grade);
+        Spinner spn_grade = (Spinner) view.findViewById(R.id.spn_grade);
         //spn_grade.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) view.getContext());
+        if (user != null) {
+            // Name, email address, and profile photo Url
+            mDatabase.orderByChild("idToken").equalTo(user.getUid()).addChildEventListener(new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                    UserAccount userAccount = snapshot.getValue(UserAccount.class);
+
+                    assert userAccount != null;
+                    grade = userAccount.getStd_grade_num();
+                    Log.d("1597", "onCreateView: " + grade);
 
 
+                }
 
-        database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
-        databaseReference = database.getReference("User"); // DB테이블 연결
-        Log.e("userDB", databaseReference.toString());
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+
+            });
+            Log.d("1597531", "onCreateView: " + grade);
+
+            UserAccount userAccount = new UserAccount();
+            if (grade == "18학번") {
+                gradenum = "User18";
+            } else if (grade == "19학번") {
+                gradenum = "User19";
+            } else if (grade == "20학번") {
+                gradenum = "User20";
+            } else if (grade == "21학번") {
+                gradenum = "User";
+            }
+            Log.d("15975", "onCreateView: " + gradenum);
+            Log.d("159753", "onCreateView: " + grade);
 
 
+            database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+            databaseReference = database.getReference("User"); // DB테이블 연결
+            Log.e("userDB", databaseReference.toString());
 
 
 //----------------------------------------------------선택, 필수------------------------------------------------------------
 
-        spn_jeongong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                arrayList.clear();
-                adapter = new CustomAdapter(arrayList, getActivity());
-                recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
-                if(position == 0){
-                    databaseReference.orderByChild("area_grade").equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                        }
-
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-
-
-
-                        }
-
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                        }
-
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-
-                    spn_grade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            arrayList.clear();
-                            adapter = new CustomAdapter(arrayList, getActivity());
-                            recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
-                            if(position == 0){
-                                databaseReference.orderByChild("area_grade").equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                                    }
-
-                                    @Override
-                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                            else if(position == 1){
-                                databaseReference.orderByChild("area_grade").equalTo("m_necessary_2").addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                                    }
-
-                                    @Override
-                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                            else if(position == 2){
-                                databaseReference.orderByChild("area_grade").equalTo("m_necessary_3").addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                                    }
-
-                                    @Override
-                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                            else if(position == 3){
-                                databaseReference.orderByChild("area_grade").equalTo("m_necessary_4").addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-                                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                                    }
-
-                                    @Override
-                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
+            spn_jeongong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     arrayList.clear();
                     adapter = new CustomAdapter(arrayList, getActivity());
                     recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+                    if (position == 0) {
+                        databaseReference.orderByChild(gradenum).equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
+                            @Override
+                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
+
+                                adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                            }
+
+                            @Override
+                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+
+                            }
+
+                            @Override
+                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                            }
+
+                            @Override
+                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        spn_grade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                arrayList.clear();
+                                adapter = new CustomAdapter(arrayList, getActivity());
+                                recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+                                if (position == 0) {
+                                    databaseReference.orderByChild(gradenum).equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+                                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                } else if (position == 1) {
+                                    databaseReference.orderByChild(gradenum).equalTo("m_necessary_2").addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+                                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                } else if (position == 2) {
+                                    databaseReference.orderByChild(gradenum).equalTo("m_necessary_3").addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+                                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                } else if (position == 3) {
+                                    databaseReference.orderByChild(gradenum).equalTo("m_necessary_4").addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+                                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+
+                        arrayList.clear();
+                        adapter = new CustomAdapter(arrayList, getActivity());
+                        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+
+                    } else if (position == 1) {
+
+                        spn_grade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                            @Override
+
+                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                arrayList.clear();
+                                adapter = new CustomAdapter(arrayList, getActivity());
+                                recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+                                if (position == 0) {
+                                    databaseReference.orderByChild(gradenum).equalTo("m_select_1").addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+                                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                } else if (position == 1) {
+                                    databaseReference.orderByChild(gradenum).equalTo("m_select_2").addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+                                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                } else if (position == 2) {
+                                    databaseReference.orderByChild(gradenum).equalTo("m_select_3").addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+                                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                } else if (position == 3) {
+                                    databaseReference.orderByChild(gradenum).equalTo("m_select_4").addChildEventListener(new ChildEventListener() {
+                                        @Override
+                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+                                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                        }
+
+                                        @Override
+                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                        }
+
+                                        @Override
+                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+                                }
+                            }
+
+                            @Override
+                            public void onNothingSelected(AdapterView<?> parent) {
+
+                            }
+                        });
+                        arrayList.clear();
+                        adapter = new CustomAdapter(arrayList, getActivity());
+                        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+                    }
                 }
 
-                else if(position == 1){
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
 
-                    spn_grade.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            arrayList.clear();
-                            adapter = new CustomAdapter(arrayList, getActivity());
-                            recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
-                            if(position == 0){
-                                databaseReference.orderByChild("area_grade").equalTo("m_select_1").addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                                    }
-
-                                    @Override
-                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                            else if(position == 1){
-                                databaseReference.orderByChild("area_grade").equalTo("m_select_2").addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                                    }
-
-                                    @Override
-                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                            else if(position == 2){
-                                databaseReference.orderByChild("area_grade").equalTo("m_select_3").addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                                    }
-
-                                    @Override
-                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                            else if(position == 3){
-                                databaseReference.orderByChild("area_grade").equalTo("m_select_4").addChildEventListener(new ChildEventListener() {
-                                    @Override
-                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                                    }
-
-                                    @Override
-                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                            }
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-                    arrayList.clear();
-                    adapter = new CustomAdapter(arrayList, getActivity());
-                    recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                 }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+            });
 
 
+            linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 100); // 스크롤 속도 조절
+            return view;
+        }
 
 
-
-
-
-
-
-        linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 100); // 스크롤 속도 조절
-        return view;
+        return null;
     }
-
-
-
 }
 
 
