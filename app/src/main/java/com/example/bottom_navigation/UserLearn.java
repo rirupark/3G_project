@@ -6,8 +6,6 @@ public class UserLearn {
     private String credit;
     private String area;
 
-
-
     public String getClassName() {
         return className;
     }
