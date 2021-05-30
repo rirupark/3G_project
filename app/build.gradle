@@ -61,7 +61,7 @@ dependencies {
 
     /* -------로딩화면 --------------*/
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
-    //implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support:appcompat-v7:27.1.1'
 
     //파이어베이스 및 리사이클러뷰
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
