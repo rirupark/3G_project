@@ -49,7 +49,7 @@ public class Gyoyang extends Fragment {
     private LinearLayoutManager linearLayoutManager;
 
     private String area_tong;
-    private String credit_tong;
+    private int credit_tong;
     private Integer credit_gae;
     private String data_tong;
     private String data_gae;
@@ -171,15 +171,15 @@ public class Gyoyang extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    credit_tong = "1";
+                    credit_tong = 1;
                 }
 
                 else if (position == 1) {
-                    credit_tong = "2";
+                    credit_tong = 2;
                 }
 
                 else if (position == 2) {
-                    credit_tong = "3";
+                    credit_tong = 3;
                 }
             }
 
