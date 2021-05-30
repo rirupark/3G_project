@@ -103,41 +103,6 @@ public class Mypage extends Fragment {
                 }
             });
 
-            // ---------------------- 사용자테이블에서 학번 데이터 출력하기 수정중 ---------------------------
-//            gradetext = view.findViewById(R.id.gradetext);
-//            mDatabase.child("UserInfo").child("std_grade_num").equalTo("19학번").addChildEventListener(new ChildEventListener() {
-//                @Override
-//                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                    UserAccount userAccount = snapshot.getValue(UserAccount.class);
-//                    Log.e("학번","사용자의 학번 : " + userAccount.getStd_grade_num());
-//                    grade = userAccount.getStd_grade_num();
-//
-//                }
-//
-//                @Override
-//                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//                }
-//
-//                @Override
-//                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//
-//                }
-//
-//                @Override
-//                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//                }
-//
-//                @Override
-//                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                }
-//            });
-//
-//            gradetext.setText(grade);
-//
-//
         }
 
         /* ------- 회원탈퇴 -----------------------------------------------*/
@@ -201,38 +166,7 @@ public class Mypage extends Fragment {
 
 
 
-
-
-/* ---------------- ResultActivity에서 받아온 데이터----------------------
-
-
-=======
-/* ---------------- ResultActivity에서 받아온 데이터----------------------*/
-
-
-        /*
-        nametext = view.findViewById(R.id.nametext);
-        mailtext = view.findViewById(R.id.mailtext);
-
-
-
-        if(getArguments() != null) {
-
-             result1 = getArguments().getString("user_name");
-             nametext.setText(result1);
-
-            result2 = getArguments().getString("user_mail");
-            mailtext.setText(result2);
-
-
-        }
-
-         */
-
-
-
         return view;
-
 
 
 

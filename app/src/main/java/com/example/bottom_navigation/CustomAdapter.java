@@ -65,6 +65,27 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             this.tv_credit = itemView.findViewById(R.id.tv_credit);
             this.check_jeon = itemView.findViewById(R.id.check_jeon);
 
+
+
+            // 리사이클러뷰 아이템 클릭 이벤트.
+            check_jeon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Log.d("Recyclerview", "position = "+ getAdapterPosition());
+
+                }
+            });
+
+            check_jeon.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Log.d("Recyclerview", "position = "+ getAdapterPosition());
+                    return false;
+                }
+            });
         }
+
     }
+
 }

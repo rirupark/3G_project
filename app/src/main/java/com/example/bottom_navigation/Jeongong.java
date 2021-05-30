@@ -70,24 +70,19 @@ public class Jeongong extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = inflater.inflate(R.layout.fragment_jeongong, null);
+        View view = inflater.inflate(R.layout.fragment_jeongong, null);
 
-        ImageButton btn_back = (ImageButton) view.findViewById(R.id.btn_back);
+        ImageButton btn_back = (ImageButton) view.findViewById(R.id.btn_back2);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity) getActivity()).replaceFragment(Checklist.newinstance());
+                ((MainActivity)getActivity()).replaceFragment(Checklist.newinstance());
             }
         });
         database = FirebaseDatabase.getInstance();
         mAuth = FirebaseAuth.getInstance();
         mDatabase = database.getReference("UserInfo");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
-
-
-        view = inflater.inflate(R.layout.fragment_jeongong, null);
 
 
         recyclerView = view.findViewById(R.id.re_jeongong2);//아이디 연결

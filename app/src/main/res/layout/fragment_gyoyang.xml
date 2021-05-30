@@ -68,7 +68,6 @@
             android:id="@+id/re_jeongong2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="?attr/actionBarSize"
             android:scrollbarSize="4dp"
             android:scrollbars="vertical"/>
 
@@ -91,7 +90,9 @@
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
-                android:textColor="#2B2B2B">
+                android:textColor="#2B2B2B"
+                android:hint="과목이름을 입력해주세요."
+                android:id="@+id/tong_input">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -99,7 +100,8 @@
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:entries="@array/credit"
-                android:background="@drawable/spinner_custom4"/>
+                android:background="@drawable/spinner_custom4"
+                android:id="@+id/tonggyo_credit"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -107,14 +109,16 @@
                 android:src="@drawable/ic_baseline_done_outline_24"
                 android:background="@color/white"
                 android:layout_marginRight="10dp"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:id="@+id/btn_save_check_tong"/>
         </LinearLayout>
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/re_tong"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </ListView>
+            android:layout_height="match_parent"
+            android:scrollbarSize="4dp"
+            android:scrollbars="vertical"/>
 
     </LinearLayout>
 
@@ -133,15 +137,16 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="230dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"> 
-
-            </com.google.android.material.textfield.TextInputEditText>
+                android:layout_marginLeft="15dp"
+                android:hint="과목이름을 입력해주세요."
+                android:id="@+id/gae_input"/>
 
             <Spinner
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:entries="@array/credit"
-                android:background="@drawable/spinner_custom4"/>
+                android:background="@drawable/spinner_custom4"
+                android:id="@+id/gaegyo_credit"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -149,7 +154,8 @@
                 android:src="@drawable/ic_baseline_done_outline_24"
                 android:background="@color/white"
                 android:layout_marginRight="10dp"
-                android:layout_marginLeft="5dp"/>
+                android:layout_marginLeft="5dp"
+                android:id="@+id/btn_save_check_gae"/>
         </LinearLayout>
 
     </LinearLayout>

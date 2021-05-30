@@ -118,18 +118,6 @@ public class ResultActivity extends AppCompatActivity {
     }
 
 
-
-
-    //값을 파이어베이스 Realtime database에 업데이트하는 함수
-//    public void updateGradeNum(String fieldName, String value) {
-//        FirebaseUser firebaseUser = auth.getCurrentUser();
-//        DatabaseReference hopperRef = mDatabase.child("UserInfo").child(firebaseUser.getUid());
-//        Map<String, Object> hopperUpdates = new HashMap<>(); // 기존 사용자 테이블에 학번 데이터 추가.
-//        hopperUpdates.put(fieldName, value);
-//        hopperRef.updateChildren(hopperUpdates);
-//    }
-
-
     //값을 파이어베이스 Realtime database의 std_grade_num 필드에 업데이트하는 함수
         public void updateGradeNum(String value) {
         FirebaseUser firebaseUser = auth.getCurrentUser();
@@ -137,9 +125,6 @@ public class ResultActivity extends AppCompatActivity {
         Map<String, Object> hopperUpdates = new HashMap<>(); // 기존 사용자 테이블에 학번 데이터 추가.
         hopperUpdates.put("std_grade_num", value);
         hopperRef.updateChildren(hopperUpdates);
-
-
-
     }
 }
 

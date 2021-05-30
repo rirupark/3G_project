@@ -131,6 +131,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                                     account1.setIdToken(firebaseUser.getUid());
                                     account1.setEmailId(firebaseUser.getEmail());
                                     mDatabase.child("UserInfo").child(firebaseUser.getUid()).setValue(account1);
+
                                 }
                                 Toast.makeText(Login.this, "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent flagFalse = new Intent(getApplicationContext(), ResultActivity.class);
