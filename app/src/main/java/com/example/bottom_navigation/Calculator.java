@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,16 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.database.ValueEventListener;
 
 import org.w3c.dom.Text;
@@ -41,9 +53,12 @@ public class Calculator extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<User> arrayList;
+    private ArrayList<UserLearn> userLearnArrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private LinearLayoutManager linearLayoutManager;
+    private FirebaseAuth auth;
+    private DatabaseReference mDatabase;
     int sum;
 
 
@@ -54,16 +69,22 @@ public class Calculator extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calculator, null);
 
-
+        auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser firebaseUser = auth.getCurrentUser();
 
         recyclerView = view.findViewById(R.id.re_jeongong);//아이디 연결
         recyclerView.setHasFixedSize(true);//리사이클러뷰 기존성능강화
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
+        userLearnArrayList = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
+
+
+
 
         /*------------------ 계산 ----------------------------- 가공된 데이터값 넣을 예정*/
 
@@ -121,17 +142,19 @@ public class Calculator extends Fragment {
 
 
 
+
+
         Button button7 = (Button)view.findViewById(R.id.button7);
         button7.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                databaseReference.orderByChild("id").startAt(1).endAt(40).addChildEventListener(new ChildEventListener() {
+                databaseReference.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                        UserLearn userLearn = snapshot.getValue(UserLearn.class);
+                        //Log.d("159123", "onChildAdded: "+userLearn.getClassName());
+                        userLearnArrayList.add(userLearn);
+                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -155,8 +178,10 @@ public class Calculator extends Fragment {
                     }
                 });
 
+
+
                 arrayList.clear();
-                adapter = new CalAdapter(arrayList, getActivity());
+                adapter = new CalAdapter(userLearnArrayList, getActivity());
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
             }
         });
@@ -168,13 +193,12 @@ public class Calculator extends Fragment {
         button9.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                databaseReference.orderByChild("id").startAt(41).endAt(69).addChildEventListener(new ChildEventListener() {
+                databaseReference.addChildEventListener(new ChildEventListener() {
                     @Override
                     public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                        UserLearn userLearn = snapshot.getValue(UserLearn.class);
+                        userLearnArrayList.add(userLearn);
+                        adapter.notifyDataSetChanged();
                     }
 
                     @Override
@@ -198,7 +222,7 @@ public class Calculator extends Fragment {
                     }
                 });
                 arrayList.clear();
-                adapter = new CalAdapter(arrayList, getActivity());
+                adapter = new CalAdapter(userLearnArrayList, getActivity());
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
             }
         });

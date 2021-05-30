@@ -481,8 +481,8 @@ public class Gyoyang extends Fragment {
                             LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
                             tong_linear.setVisibility(View.VISIBLE);
 
-                            //LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
-                            //recyc_list.setVisibility(View.INVISIBLE);
+                            LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                            recyc_list.setVisibility(View.INVISIBLE);
 
                             LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
                             input_window.setVisibility(View.VISIBLE);
