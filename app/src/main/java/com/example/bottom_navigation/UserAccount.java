@@ -13,6 +13,7 @@ public class UserAccount {
     private String className;
     private String tongArea;
     private String credit;
+    private String area;
 
 
     public UserAccount() { } // 빈 생성자를 선언해줘야 firebase에 값을 가져오고 넣을 때, 오류가 생기지 않음
@@ -35,11 +36,15 @@ public class UserAccount {
 
     public String getTongArea() {return tongArea;}
 
-    public void  setTongArea(String Area) {this.tongArea = tongArea;}
+    public void  setTongArea(String tongArea) {this.tongArea = tongArea;}
 
     public String getCredit() {return credit;}
 
-    public void  setCredit(String Credit) {this.credit = credit;}
+    public void  setCredit(String credit) {this.credit = credit;}
+
+    public String getArea() {return area;}
+
+    public void setArea(String area) {this.area = area;}
 
 
 

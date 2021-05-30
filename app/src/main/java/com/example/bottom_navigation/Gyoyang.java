@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Gyoyang extends Fragment {
     private  View view;
@@ -47,16 +49,24 @@ public class Gyoyang extends Fragment {
     private LinearLayoutManager linearLayoutManager;
 
     private String area_tong;
-    private Integer credit_tong;
+    private String credit_tong;
     private Integer credit_gae;
     private String data_tong;
     private String data_gae;
+    private String final_dataTong;
 
     private FirebaseAuth auth; // 파베 인증 객체
     private DatabaseReference mDatabase;
 
-    //통교 리사이클러뷰
-    private RecyclerView recyclerViewFinish;
+    private ListView listView;
+    private ListViewAdapter adapterlist;
+
+//    //통교 리사이클러뷰
+//    private RecyclerView recyclerViewFinish;
+//    private RecyclerView.Adapter adapterFinish;
+//    private ArrayList<UserAccount> arrayListFinish;
+//    private RecyclerView.LayoutManager layoutManagerFinish;
+//    private DatabaseReference databaseReferenceFinish;
 
     private ReadAndWriteSnippets readAndWriteSnippets;
 
@@ -88,12 +98,12 @@ public class Gyoyang extends Fragment {
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
 
-        //통교 리사이클러뷰
-        recyclerViewFinish = view.findViewById(R.id.re_tong);//아이디 연결
-        recyclerViewFinish.setHasFixedSize(true);//리사이클러뷰 기존성능강화
-        layoutManager = new LinearLayoutManager(getActivity());
-        recyclerViewFinish.setLayoutManager(layoutManager);
-        arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
+//        //통교 리사이클러뷰
+//        recyclerViewFinish = view.findViewById(R.id.re_tong);//아이디 연결
+//        recyclerViewFinish.setHasFixedSize(true);//리사이클러뷰 기존성능강화
+//        layoutManagerFinish = new LinearLayoutManager(getActivity());
+//        recyclerViewFinish.setLayoutManager(layoutManagerFinish);
+//        arrayListFinish = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
 
         Spinner spn_gyoyang = (Spinner)view.findViewById(R.id.spn_gyoyang);
@@ -106,6 +116,13 @@ public class Gyoyang extends Fragment {
         Spinner spn_gaecredit = (Spinner)view.findViewById(R.id.gaegyo_credit);
         EditText gae_name = (EditText)view.findViewById(R.id.gae_input);
         ImageButton btn_gae_save = (ImageButton)view.findViewById(R.id.btn_save_check_gae);
+
+        TextView txt_tongTitle = (TextView)view.findViewById(R.id.txt_title);
+
+        listView = (ListView)view.findViewById(R.id.listview);
+
+
+
 
 
         /* ------------------------------------------------통합교양 입력값 DB에 저장하기 ----------------------------------------*/
@@ -154,15 +171,15 @@ public class Gyoyang extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    credit_tong = 1;
+                    credit_tong = "1";
                 }
 
                 else if (position == 1) {
-                    credit_tong = 2;
+                    credit_tong = "2";
                 }
 
                 else if (position == 2) {
-                    credit_tong = 3;
+                    credit_tong = "3";
                 }
             }
 
@@ -177,11 +194,16 @@ public class Gyoyang extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseUser firebaseUser = auth.getCurrentUser();
 
+
+
         //통교 체크버튼 클릭 시 입력 텍스트 데이터베이스에 저장하기.
+
         btn_tong_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 data_tong = tong_name.getText().toString();
+                final_dataTong = data_tong;
+
                 //파이어베이스 Realtime database에서 UserInfo테이블 속, tongGyo필드를 생성하고 그 안에 className필드를 생성. 그리고 그 안에 className, area, credit값을 저장한다.
                 mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(data_tong).child("className").setValue(data_tong);
                 mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(data_tong).child("tongArea").setValue(area_tong);
@@ -191,8 +213,35 @@ public class Gyoyang extends Fragment {
 
                 Log.e("data", data_tong);
 
+                adapterlist.addItem(area_tong, data_tong, credit_tong);
+
+                adapterlist.notifyDataSetChanged();
+
             }
         });
+
+        adapterlist = new ListViewAdapter(getActivity(), new ListViewAdapter.OnDeleteClickListener() {
+            @Override
+            public void onDelete(View v, int pos) {
+                adapterlist.removeItem(pos);
+
+                //RealTime DB에서 해당 과목데이터 삭제.
+                FirebaseUser firebaseUser = auth.getCurrentUser();
+                DatabaseReference hopperRef = mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong);
+                hopperRef.removeValue();
+            }
+        });
+        listView.setAdapter(adapterlist);
+
+
+
+
+
+
+
+
+
+
 
         /* ---------------------------------------------------------------------------------------------------------------*/
 
@@ -252,7 +301,6 @@ public class Gyoyang extends Fragment {
 
 
 
-
         /*databaseReference.orderByChild("id").startAt(41).endAt(69).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -274,203 +322,228 @@ public class Gyoyang extends Fragment {
             }
         });*/
 
-        spn_gyoyang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if(position == 0){
-                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
-                    tong_linear.setVisibility(View.INVISIBLE);
+                spn_gyoyang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        if (position == 0) {
+                            LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                            tong_linear.setVisibility(View.INVISIBLE);
 
-                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
-                    recyc_list.setVisibility(View.VISIBLE);
+                            LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                            recyc_list.setVisibility(View.VISIBLE);
 
-                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
-                    input_window.setVisibility(View.INVISIBLE);
+                            LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                            input_window.setVisibility(View.INVISIBLE);
 
-                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
-                    input_window_gae.setVisibility(View.INVISIBLE);
+                            LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                            input_window_gae.setVisibility(View.INVISIBLE);
 
-                    databaseReference.orderByChild("area").equalTo("a_necessary").addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-
-                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+                            databaseReference.orderByChild("area").equalTo("a_necessary").addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
 
+                                    User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                    arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+
+                                    adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                }
+
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                 public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                            arrayList.clear();
+                            adapter = new CustomAdapter(arrayList, getActivity());
+                            recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+
+                        } else if (position == 1) {
+                            LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                            tong_linear.setVisibility(View.INVISIBLE);
+
+                            LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                            recyc_list.setVisibility(View.VISIBLE);
+
+                            LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                            input_window.setVisibility(View.INVISIBLE);
+
+                            LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                            input_window_gae.setVisibility(View.INVISIBLE);
+
+                            databaseReference.orderByChild("area").equalTo("basic").addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    UserAccount userAccount = snapshot.getValue(UserAccount.class);
+
+                                    User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                    arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+
+                                    adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                }
+
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                            arrayList.clear();
+                            adapter = new CustomAdapter(arrayList, getActivity());
+                            recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+
+                        } else if (position == 2) {
+                            LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                            tong_linear.setVisibility(View.INVISIBLE);
+
+                            LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                            recyc_list.setVisibility(View.VISIBLE);
+
+                            LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                            input_window.setVisibility(View.INVISIBLE);
+
+                            LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                            input_window_gae.setVisibility(View.INVISIBLE);
+
+                            databaseReference.orderByChild("area").equalTo("e_learning").addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                    User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
+                                    arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+
+                                    adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+                                }
+
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                            arrayList.clear();
+                            adapter = new CustomAdapter(arrayList, getActivity());
+                            recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+
+                        } else if (position == 3) {
+                            LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                            tong_linear.setVisibility(View.VISIBLE);
+
+                            LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                            recyc_list.setVisibility(View.INVISIBLE);
+
+                            LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                            input_window.setVisibility(View.VISIBLE);
+
+                            LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                            input_window_gae.setVisibility(View.INVISIBLE);
+
+
+
+//                            databaseReferenceFinish.equalTo("tongGyo").addChildEventListener(new ChildEventListener() {
+//                                @Override
+//                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//                                    UserAccount userAccount = snapshot.getValue(UserAccount.class); // 만들어둔 User 객체에 데이터를 담는다.
+//                                    arrayListFinish.add(userAccount); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+//
+//                                    adapterFinish.notifyDataSetChanged();  // 리스트 저장 및 새로고침
+//                                }
+//
+//                                @Override
+//                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//
+//                                }
+//
+//                                @Override
+//                                public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                }
+//                            });
+//                            arrayListFinish.clear();
+//                            adapterFinish = new FinishAdapter(arrayListFinish, getActivity());
+//                            recyclerViewFinish.setAdapter(adapterFinish); //리사이클러뷰에 어댑터연결
+
+
+                        } else if (position == 4) {
+                            LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
+                            tong_linear.setVisibility(View.INVISIBLE);
+
+                            LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                            recyc_list.setVisibility(View.INVISIBLE);
+
+                            LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
+                            input_window.setVisibility(View.INVISIBLE);
+
+                            LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
+                            input_window_gae.setVisibility(View.VISIBLE);
+
+                            arrayList.clear();
                         }
 
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                        }
+                    }
 
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
 
-                        }
-
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    arrayList.clear();
-                    adapter = new CustomAdapter(arrayList, getActivity());
-                    recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
-                }
-
-                else if(position == 1){
-                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
-                    tong_linear.setVisibility(View.INVISIBLE);
-
-                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
-                    recyc_list.setVisibility(View.VISIBLE);
-
-                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
-                    input_window.setVisibility(View.INVISIBLE);
-
-                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
-                    input_window_gae.setVisibility(View.INVISIBLE);
-
-                    databaseReference.orderByChild("area").equalTo("basic").addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-
-                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                        }
-
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                        }
-
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    arrayList.clear();
-                    adapter = new CustomAdapter(arrayList, getActivity());
-                    recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
-                }
-                else if(position == 2){
-                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
-                    tong_linear.setVisibility(View.INVISIBLE);
-
-                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
-                    recyc_list.setVisibility(View.VISIBLE);
-
-                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
-                    input_window.setVisibility(View.INVISIBLE);
-
-                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
-                    input_window_gae.setVisibility(View.INVISIBLE);
-
-                    databaseReference.orderByChild("area").equalTo("e_learning").addChildEventListener(new ChildEventListener() {
-                        @Override
-                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-
-                            User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                            arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-
-
-
-                            adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                        }
-
-                        @Override
-                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                        }
-
-                        @Override
-                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
-                    arrayList.clear();
-                    adapter = new CustomAdapter(arrayList, getActivity());
-                    recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
-                }
-
-                else if (position == 3){
-                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
-                    tong_linear.setVisibility(View.VISIBLE);
-
-                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
-                    recyc_list.setVisibility(View.INVISIBLE);
-
-                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
-                    input_window.setVisibility(View.VISIBLE);
-
-                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
-                    input_window_gae.setVisibility(View.INVISIBLE);
-
-
-
-
-                }
-
-                else if (position == 4){
-                    LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
-                    tong_linear.setVisibility(View.INVISIBLE);
-
-                    LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
-                    recyc_list.setVisibility(View.INVISIBLE);
-
-                    LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
-                    input_window.setVisibility(View.INVISIBLE);
-
-                    LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
-                    input_window_gae.setVisibility(View.VISIBLE);
-
-                    arrayList.clear();
-                }
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+                    }
+                });
 
 
 

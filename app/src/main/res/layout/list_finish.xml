@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/txt_title"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/tv_classArea"
-            android:text="영역"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="10dp"/>
+            android:layout_weight="1"
+            android:background="#656565"
+            android:textColor="#FFFFFF"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/txt_sub"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/tv_className"
-            android:text="과목명"
-            android:layout_marginRight="20dp"/>
+            android:layout_weight="1"
+            android:background="#B8B8B8"
+            android:textColor="#393939"/>
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/txt_credit"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/tv_classCredit"
-            android:text="학점" />
+            android:layout_weight="1"
+            android:background="#DCDADA"
+            android:textColor="#393939"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="#FF0000"
+        android:text="삭제"/>
 
 </LinearLayout>
