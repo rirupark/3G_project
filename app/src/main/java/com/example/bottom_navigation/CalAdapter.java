@@ -15,11 +15,11 @@ import java.util.ArrayList;
 public class CalAdapter extends RecyclerView.Adapter<CalAdapter.CustomViewHolder> {
 
     private ArrayList<User> arrayList;
-    private ArrayList<UserLearn> userLearnArrayList;
+
     private Context context;
 
-    public CalAdapter(ArrayList<UserLearn> userLearnArrayList, Context context) {
-        this.userLearnArrayList = userLearnArrayList;
+    public CalAdapter(ArrayList<User> arrayList, Context context) {
+        this.arrayList = arrayList;
         this.context = context;
     }
 
@@ -35,8 +35,7 @@ public class CalAdapter extends RecyclerView.Adapter<CalAdapter.CustomViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        //holder.tv_name.setText(userLearnArrayList.get(position).getClassName());
-        holder.tv_credit.setText(userLearnArrayList.get(position).getCredit());
+        holder.tv_name.setText(arrayList.get(position).getName());
 
 
     }
@@ -44,7 +43,7 @@ public class CalAdapter extends RecyclerView.Adapter<CalAdapter.CustomViewHolder
     @Override
     public int getItemCount() {
         // 삼향연산자
-        return (userLearnArrayList != null ? userLearnArrayList.size() : 0);
+        return (arrayList != null ? arrayList.size() : 0);
     }
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -57,7 +56,6 @@ public class CalAdapter extends RecyclerView.Adapter<CalAdapter.CustomViewHolder
             super(itemView);
 
             this.tv_name = itemView.findViewById(R.id.tv_name);
-            this.tv_credit = itemView.findViewById(R.id.tv_credit);
 
 
         }
