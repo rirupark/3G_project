@@ -44,6 +44,8 @@ public class Gyoyang extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<User> arrayList;
+    private ArrayList<UserAccount> accountArrayList;
+    private ArrayList<UserLearn> userLearnArrayList;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private LinearLayoutManager linearLayoutManager;
@@ -57,6 +59,7 @@ public class Gyoyang extends Fragment {
 
     private FirebaseAuth auth; // 파베 인증 객체
     private DatabaseReference mDatabase;
+    private DatabaseReference listdata;
 
     private ListView listView;
     private ListViewAdapter adapterlist;
@@ -298,6 +301,9 @@ public class Gyoyang extends Fragment {
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
+        listdata = database.getReference("UserInfo");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
 
 
@@ -390,7 +396,7 @@ public class Gyoyang extends Fragment {
                             databaseReference.orderByChild("area").equalTo("basic").addChildEventListener(new ChildEventListener() {
                                 @Override
                                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                    UserAccount userAccount = snapshot.getValue(UserAccount.class);
+
 
                                     User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                     arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
@@ -471,17 +477,91 @@ public class Gyoyang extends Fragment {
                             recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
 
                         } else if (position == 3) {
+
                             LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
                             tong_linear.setVisibility(View.VISIBLE);
 
-                            LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
-                            recyc_list.setVisibility(View.INVISIBLE);
+                            //LinearLayout recyc_list = (LinearLayout) getActivity().findViewById(R.id.recyc_gyo_list);
+                            //recyc_list.setVisibility(View.INVISIBLE);
 
                             LinearLayout input_window = (LinearLayout) getActivity().findViewById(R.id.input_window);
                             input_window.setVisibility(View.VISIBLE);
 
                             LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
                             input_window_gae.setVisibility(View.INVISIBLE);
+
+
+
+                                listdata.orderByChild("idToken").equalTo(user.getUid()).addChildEventListener(new ChildEventListener() {
+                                    @Override
+                                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        listdata.orderByChild(user.getUid()+"finishGyo/area").equalTo("tongGyo").addChildEventListener(new ChildEventListener() {
+                                            @Override
+                                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                                UserLearn userLearn = snapshot.getValue(UserLearn.class);
+
+                                                Log.d("1597", "onChildAdded: "+userLearn.getClassName());
+
+                                                Log.d("1597", "onChildAdded: "+userLearn.getCredit());
+
+                                                Log.d("1597", "onChildAdded: "+userLearn.getTongArea());
+                                                userLearnArrayList.add(userLearn);
+
+                                                adapterlist.notifyDataSetChanged();
+                                            }
+
+                                            @Override
+                                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                            }
+
+                                            @Override
+                                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                            }
+
+                                            @Override
+                                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                            }
+                                        });
+
+
+
+
+
+
+
+
+
+                                    }
+
+                                    @Override
+                                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                    }
+
+                                    @Override
+                                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
 
 
 
