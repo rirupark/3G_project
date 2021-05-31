@@ -89,9 +89,8 @@ public class Calculator extends Fragment {
             }
         });
 
-
-
         return view;
+
     }
     void getRecyclerViewData( String classname, ClassnameAdapter adapter){
 
@@ -100,7 +99,7 @@ public class Calculator extends Fragment {
     } //리사이클러뷰 연결 어댑터
     void getDataFromFireBase(){
 
-        databaseReference.child(mAuth.getUid()).child("finishGyo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Log.d("159753", "onComplete: " + task.getResult().getValue());
@@ -115,14 +114,14 @@ public class Calculator extends Fragment {
                     for (int i = 0; i < a.length; i++) {
                         Log.d("741852", "onComplete: " + a[i]);
                         String[] l = new String[30];
-                        l = a[i].split("영역, credit=");
+                        l = a[i].split("credit=");
                         c[i] = l[1];
                         sum += Integer.parseInt(c[i]);
                         Log.d("156321", "onComplete: " + sum);
                         TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
                         tv_calview.setText("총이수한 학점은 " + sum + "점 입니다.");
                         TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
-                        tv_progress.setText("현재" + sum / 130 + "% 이수했습니다.");
+                        tv_progress.setText("현재" + (sum*100)/130 + "% 이수했습니다.");
                         ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
                         bar_jeon.setProgress(sum);
 
@@ -131,8 +130,10 @@ public class Calculator extends Fragment {
             }
         });
     } // userInfo에 저장된 credit 값 불러오는 함수
+
+
     void getClassNameFromFireBase(){
-        databaseReference.child(mAuth.getUid()).child("finishGyo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
@@ -143,13 +144,12 @@ public class Calculator extends Fragment {
                     className[i] = e[0];
                     getRecyclerViewData(className[i], adapter);
                 }
-
-
                 //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
                 // 리스트 저장 및 새로고침
             }
         });
     } // userInfo에 저장된 className 값 불러오는 함수
+
 }
 
 
