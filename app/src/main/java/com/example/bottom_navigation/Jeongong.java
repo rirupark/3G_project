@@ -1,5 +1,6 @@
 package com.example.bottom_navigation;
 
+import android.app.Person;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ArrayAdapter;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -42,6 +45,7 @@ public class Jeongong extends Fragment {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
+    private CustomAdapter customAdapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<User> arrayList;
     private FirebaseDatabase database;
@@ -90,6 +94,10 @@ public class Jeongong extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
         //Log.e("userDB", databaseReference.toString());
+
+        adapter = new CustomAdapter(arrayList, getActivity());
+        recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+
 
         Spinner spn_jeongong = (Spinner) view.findViewById(R.id.spn_jeongong);
         //spn_jeongong.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) view.getContext());
@@ -161,8 +169,6 @@ public class Jeongong extends Fragment {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     arrayList.clear();
-                    adapter = new CustomAdapter(arrayList, getActivity());
-                    recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                     if (position == 0) {
                         databaseReference.orderByChild("area_grade").equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
                             @Override
@@ -201,8 +207,6 @@ public class Jeongong extends Fragment {
 
                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                 arrayList.clear();
-                                adapter = new CustomAdapter(arrayList, getActivity());
-                                recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                                 if (position == 0) {
                                     databaseReference.orderByChild("area_grade").equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
                                         @Override
