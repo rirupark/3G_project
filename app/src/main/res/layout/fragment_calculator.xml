@@ -18,6 +18,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.084" />
 
+
     <View
 
         android:id="@+id/view"
@@ -70,66 +71,32 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
-    <ProgressBar
-        android:id="@+id/bar_gyo"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="169dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="320dp"
-        android:max="36"
-        android:progress="18"
-        android:progressBackgroundTint="#FFFFFF"
-        android:progressBackgroundTintMode="src_over"
-        android:progressDrawable="@drawable/cal_bar"
-        android:progressTint="#2D4361"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-
-        />
-
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="232dp"
-        android:text="전공학점"
+        android:text="학점그래프"
         android:textColor="#FFFFFF"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
-        android:text="66학점"
-        android:textColor="#FFFFFF"
-        android:textSize="10sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.921"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/tv_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="320dp"
-        android:text="36학점"
+        android:text=""
         android:textColor="#FFFFFF"
-        android:textSize="10sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.923"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="@+id/view2"
+        app:layout_constraintHorizontal_bias="0.121"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.685" />
 
     <ProgressBar
         android:id="@+id/bar_jeon"
@@ -151,20 +118,8 @@
 
         />
 
-    <TextView
-        android:id="@+id/textView21"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="292dp"
-        android:text="필수교양학점"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.519"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="375dp"
         android:layout_height="288dp"
         android:orientation="vertical"
@@ -179,24 +134,18 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:backgroundTint="#4F78B0"
-            android:text="이수한 전공"
-            app:iconTint="#000000" />
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="#4F78B0"
-            android:text="이수한 교양"
+            android:text="이수한 과목"
             app:iconTint="#000000" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/re_jeongong"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="?attr/actionBarSize"
-            />
+            android:paddingBottom="?attr/actionBarSize" />
 
     </LinearLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

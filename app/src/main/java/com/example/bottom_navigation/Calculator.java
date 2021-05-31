@@ -9,13 +9,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -27,190 +33,121 @@ import com.google.firebase.database.ValueEventListener;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.IntStream;
 
 
 public class Calculator extends Fragment {
-    public static Calculator newinstance(){    //////모든 프레그먼트에 newinstance메소드가 있어야함..!!
+    public static Calculator newinstance() {    //////모든 프레그먼트에 newinstance메소드가 있어야함..!!
         return new Calculator();
     }
 
-    public Calculator(){
+    public Calculator() {
     }
 
     private View view;
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
+    private ClassnameAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<User> arrayList;
+    private ArrayList<String> arrayList1;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private LinearLayoutManager linearLayoutManager;
-
-    int sum;
-
-
-
-
+    private FirebaseAuth mAuth;
+    public int sum=0;
+    public static String[] className = new String[20];
+    public boolean flag = true;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calculator, null);
-
+        adapter = new ClassnameAdapter();
 
         recyclerView = view.findViewById(R.id.re_jeongong);//아이디 연결
         recyclerView.setHasFixedSize(true);//리사이클러뷰 기존성능강화
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
+        arrayList1 = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
-        databaseReference = database.getReference("User"); // DB테이블 연결
+        databaseReference = database.getReference("UserInfo"); // DB테이블 연결
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        getDataFromFireBase();
 
 
-
-
-        /*------------------ 계산 ----------------------------- 가공된 데이터값 넣을 예정*/
-
-        databaseReference.orderByChild("credit").startAt(1).endAt(40).addChildEventListener(new ChildEventListener() {
+        Button button7 = (Button) view.findViewById(R.id.button7);
+        button7.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                for (int i = 0; i < arrayList.size(); i++) {
-                    sum +=  Integer.parseInt(String.valueOf(arrayList.get(i).getCredit()));
+            public void onClick(View view) {
+                if(flag) {
+                    getClassNameFromFireBase();
+                    flag = false;
                 }
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-
-
-
-        int jeon_sum = 60;
-        int gyo_sum = 30;
-
-        /*------------------ 이수학점계산텍스트출력 ----------------------------- */
-        // sum을 가공된 데이터값으로 바꾸기
-
-        TextView tv_calview = (TextView)view.findViewById(R.id.tv_calview);
-        tv_calview.setText("총이수한 학점은 "+sum+"점 입니다.");
-
-        /*------------------ 프로그레스바 퍼센테이지 바 ----------------------------- */
-        // jeon_sum 과 gyo_sum을 데이터값으로 바꾸기
-
-        ProgressBar bar_jeon = (ProgressBar)view.findViewById(R.id.bar_jeon);
-        bar_jeon.setProgress(jeon_sum);
-        ProgressBar bar_gyo = (ProgressBar)view.findViewById(R.id.bar_gyo);
-        bar_gyo.setProgress(gyo_sum);
-
-
-
-
-
-        Button button7 = (Button)view.findViewById(R.id.button7);
-        button7.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                databaseReference.orderByChild("id").startAt(1).endAt(40).addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-
-
-                arrayList.clear();
-                adapter = new CalAdapter(arrayList, getActivity());
-                recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
-            }
-        });
-
-        linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 4); // 스크롤 속도 조절
-
-
-        Button button9 = (Button)view.findViewById(R.id.button9);
-        button9.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                databaseReference.orderByChild("id").startAt(41).endAt(69).addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                        User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                        arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                        adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-                    }
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
-                arrayList.clear();
-                adapter = new CalAdapter(arrayList, getActivity());
-                recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
             }
         });
 
         return view;
+
     }
+    void getRecyclerViewData( String classname, ClassnameAdapter adapter){
+
+        adapter.addItem(classname);
+        adapter.notifyDataSetChanged();
+    } //리사이클러뷰 연결 어댑터
+    void getDataFromFireBase(){
+
+        databaseReference.child(mAuth.getUid()).child("finishGyo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                Log.d("159753", "onComplete: " + task.getResult().getValue());
+
+                if (task.getResult().getValue() != null) {
+                    String t = String.valueOf(task.getResult().getValue());
+
+
+                    sum = 0;
+                    String[] c = new String[30];
+                    String a[] = t.split("\\}");
+                    for (int i = 0; i < a.length; i++) {
+                        Log.d("741852", "onComplete: " + a[i]);
+                        String[] l = new String[30];
+                        l = a[i].split("영역, credit=");
+                        c[i] = l[1];
+                        sum += Integer.parseInt(c[i]);
+                        Log.d("156321", "onComplete: " + sum);
+                        TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
+                        tv_calview.setText("총이수한 학점은 " + sum + "점 입니다.");
+                        TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
+                        tv_progress.setText("현재" + 130 / sum + "% 이수했습니다.");
+                        ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
+                        bar_jeon.setProgress(sum);
+
+                    }
+                }
+            }
+        });
+    } // userInfo에 저장된 credit 값 불러오는 함수
+
+
+    void getClassNameFromFireBase(){
+        databaseReference.child(mAuth.getUid()).child("finishGyo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+                String a = String.valueOf(task.getResult().getValue());
+                String[] d = a.split("className=");
+                for (int i = 1; i < d.length; i++) {
+                    String[] e = d[i].split(",");
+                    className[i] = e[0];
+                    getRecyclerViewData(className[i], adapter);
+                }
+                //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+                // 리스트 저장 및 새로고침
+            }
+        });
+    } // userInfo에 저장된 className 값 불러오는 함수
+
 }
-
-
