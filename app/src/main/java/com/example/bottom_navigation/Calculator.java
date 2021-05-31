@@ -99,7 +99,7 @@ public class Calculator extends Fragment {
     } //리사이클러뷰 연결 어댑터
     void getDataFromFireBase(){
 
-        databaseReference.child(mAuth.getUid()).child("finishGyo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 Log.d("159753", "onComplete: " + task.getResult().getValue());
@@ -114,7 +114,7 @@ public class Calculator extends Fragment {
                     for (int i = 0; i < a.length; i++) {
                         Log.d("741852", "onComplete: " + a[i]);
                         String[] l = new String[30];
-                        l = a[i].split("영역, credit=");
+                        l = a[i].split("credit=");
                         c[i] = l[1];
                         sum += Integer.parseInt(c[i]);
                         Log.d("156321", "onComplete: " + sum);
@@ -133,7 +133,7 @@ public class Calculator extends Fragment {
 
 
     void getClassNameFromFireBase(){
-        databaseReference.child(mAuth.getUid()).child("finishGyo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
