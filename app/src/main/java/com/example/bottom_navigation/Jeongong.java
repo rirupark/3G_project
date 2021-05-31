@@ -113,31 +113,24 @@ public class Jeongong extends Fragment {
                     assert userAccount != null;
                     grade = userAccount.getStd_grade_num();
                     if (grade.equals("18학번")) {
-                        dataTemp.setTempString("User18/area_grade");
+
                         databaseReference = database.getReference("User18");
-                        gradenum = dataTemp.getTempString();
-                        Log.d("gradenum", "onChildAdded: "+gradenum);
+
 
                     } else if (grade.equals("19학번")) {
-                        dataTemp.setTempString("User19/area_grade");
 
                         databaseReference = database.getReference("User19");
-                        gradenum = dataTemp.getTempString();
-                        Log.d("gradenum", "onChildAdded: "+gradenum);
+
 
                     } else if (grade.equals("20학번")) {
-                        dataTemp.setTempString("User20/area_grade");
 
                         databaseReference = database.getReference("User20");
-                        gradenum = dataTemp.getTempString();
-                        Log.d("gradenum", "onChildAdded: "+gradenum);
+
 
                     } else if (grade.equals("21학번")) {
-                        dataTemp.setTempString("User/area_grade");
 
                         databaseReference = database.getReference("User");
-                        gradenum = dataTemp.getTempString();
-                        Log.d("gradenum", "onChildAdded: "+gradenum);
+
                     }
 
                 }
@@ -175,7 +168,6 @@ public class Jeongong extends Fragment {
                             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                 User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                 arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                                Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
                                 adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                             }
@@ -215,7 +207,6 @@ public class Jeongong extends Fragment {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -246,7 +237,6 @@ public class Jeongong extends Fragment {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -277,7 +267,6 @@ public class Jeongong extends Fragment {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -307,7 +296,6 @@ public class Jeongong extends Fragment {
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
@@ -362,7 +350,6 @@ public class Jeongong extends Fragment {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -393,7 +380,6 @@ public class Jeongong extends Fragment {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -423,7 +409,6 @@ public class Jeongong extends Fragment {
                                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
@@ -455,7 +440,6 @@ public class Jeongong extends Fragment {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
-                                            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
                                             adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
                                         }
 
@@ -498,7 +482,6 @@ public class Jeongong extends Fragment {
 
                 }
             });
-            Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
 
 

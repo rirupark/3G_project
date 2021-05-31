@@ -91,9 +91,8 @@ public class Calculator extends Fragment {
             }
         });
 
-
-
         return view;
+
     }
     void getRecyclerViewData( String classname, ClassnameAdapter adapter){
 
@@ -108,7 +107,7 @@ public class Calculator extends Fragment {
                 Log.d("159753", "onComplete: " + task.getResult().getValue());
 
                 if (task.getResult().getValue() != null) {
-                String t = String.valueOf(task.getResult().getValue());
+                    String t = String.valueOf(task.getResult().getValue());
 
                     sum = 0;
                     String[] c = new String[30];
@@ -123,7 +122,11 @@ public class Calculator extends Fragment {
                         TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
                         tv_calview.setText("총이수한 학점은 " + sum + "점 입니다.");
                         TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
+
                         tv_progress.setText("현재" + (sum*100)/130 + "% 이수했습니다.");
+
+                        tv_progress.setText("현재" + 130 / sum + "% 이수했습니다.");
+
                         ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
                         bar_jeon.setProgress(sum);
 
@@ -132,12 +135,15 @@ public class Calculator extends Fragment {
             }
         });
     } // userInfo에 저장된 credit 값 불러오는 함수
+
+
     void getClassNameFromFireBase(){
         databaseReference.child(mAuth.getUid()).child("finishGyo").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                 String a = String.valueOf(task.getResult().getValue());
+
 
                     String[] d = a.split("className=");
                     for (int i = 1; i < d.length; i++) {
@@ -158,3 +164,17 @@ public class Calculator extends Fragment {
 
 
 
+                String[] d = a.split("className=");
+                for (int i = 1; i < d.length; i++) {
+                    String[] e = d[i].split(",");
+                    className[i] = e[0];
+                    getRecyclerViewData(className[i], adapter);
+                }
+                //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
+                // 리스트 저장 및 새로고침
+            }
+        });
+    } // userInfo에 저장된 className 값 불러오는 함수
+
+
+}

@@ -9,6 +9,27 @@ public class User {
     public String username;
     public String email;
 
+    private String className;
+
+    public User(){}
+
+    public String getTongArea() {
+        return tongArea;
+    }
+
+    public void setTongArea(String tongArea) {
+        this.tongArea = tongArea;
+    }
+
+    private String tongArea;
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
 
     public boolean getSelected(){
         return isSelected;
@@ -24,7 +45,7 @@ public class User {
         this.email = email;
     }
 
-    public User(){}
+
 
     public int getId() {
         return id;
