@@ -53,7 +53,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         TextView tv_name;
         TextView tv_credit;
         TextView tv_area;
-        CheckBox check_jeon;
+        //CheckBox check_jeon;
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -61,24 +61,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             this.tv_credit = itemView.findViewById(R.id.tv_credit);
 
 
-
-            // 리사이클러뷰 아이템 클릭 이벤트.
-            check_jeon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    Log.d("Recyclerview", "position = "+ getAdapterPosition());
-
-                }
-            });
-
-            check_jeon.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    Log.d("Recyclerview", "position = "+ getAdapterPosition());
-                    return false;
-                }
-            });
+//
+//            // 리사이클러뷰 아이템 클릭 이벤트.
+//            check_jeon.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                    Log.d("Recyclerview", "position = "+ getAdapterPosition());
+//
+//                }
+//            });
+//
+//            check_jeon.setOnLongClickListener(new View.OnLongClickListener() {
+//                @Override
+//                public boolean onLongClick(View v) {
+//                    Log.d("Recyclerview", "position = "+ getAdapterPosition());
+//                    return false;
+//                }
+//            });
         }
 
     }

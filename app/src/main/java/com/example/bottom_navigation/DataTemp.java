@@ -6,12 +6,20 @@ public class DataTemp {
             return dataTemp;
         }
         String tempString;
-
+        int tempInt;
     public String getTempString() {
         return tempString;
     }
 
     public void setTempString(String tempString) {
         this.tempString = tempString;
+    }
+
+    public void setTempInt(int tempInt) {
+        this.tempInt = tempInt;
+    }
+
+    public int getTempInt() {
+        return tempInt;
     }
 }
