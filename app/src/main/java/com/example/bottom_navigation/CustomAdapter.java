@@ -12,13 +12,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
-public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> implements OnCustomItemClickListener{
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomViewHolder> implements OnCustomItemClickListener {
 
     private ArrayList<User> arrayList;
     private Context context;
     OnCustomItemClickListener listener;
+    private ArrayList<String> listData = new ArrayList<String>();
+    private FirebaseAuth auth; // 파베 인증 객체
+    private DatabaseReference mDatabase;
 
     public CustomAdapter(ArrayList<User> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -30,7 +38,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item2, parent, false);
-        CustomViewHolder holder = new CustomViewHolder(view, this);
+        CustomViewHolder holder = new CustomViewHolder(view);
 
         return holder;
     }
@@ -51,8 +59,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     @Override
     public void onItemClick(CustomViewHolder holder, View view, int position) {
 
-        if(listener != null) {
-            listener.onItemClick(holder,view,position);
+        if (listener != null) {
+            listener.onItemClick(holder, view, position);
         }
 
     }
@@ -63,6 +71,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
     // OnItemClickListener 리스너 객체 참조를 어댑터에 전달하는 메서드
 
+    public void addItem(String string) {
+        // 외부에서 item을 추가시킬 함수입니다.
+        listData.add(string);
+    }
+
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         TextView tv_id;
@@ -72,22 +85,54 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         ImageButton btn_checked;
         ImageButton btn_noncheck;
 
-        public CustomViewHolder(View itemView, final OnCustomItemClickListener listener) {
+        public CustomViewHolder(View itemView) {
             super(itemView);
+
             this.tv_name = itemView.findViewById(R.id.tv_name);
             this.tv_credit = itemView.findViewById(R.id.tv_credit);
             this.btn_checked = itemView.findViewById(R.id.checkbox_check);
             this.btn_noncheck = itemView.findViewById(R.id.checkbox_blank);
 
+            Integer pos = getAdapterPosition();
+
+
+
+            auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
+            mDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
+            FirebaseUser firebaseUser = auth.getCurrentUser();
+
+            //tv_name.setText();
 
             // 리사이클러뷰 아이템 클릭 이벤트.
             btn_noncheck.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("Recyclerview_check", "position = "+ getAdapterPosition());
+                    Log.d("Recyclerview_check", "position = " + getAdapterPosition());
                     btn_noncheck.setVisibility(View.INVISIBLE);
                     btn_checked.setVisibility(View.VISIBLE);
-                    int position = getAdapterPosition();
+
+                    Log.e("user", firebaseUser.getUid());
+
+                    int pos = getAdapterPosition() ;
+                    if (pos != RecyclerView.NO_POSITION) {
+                        // 데이터 리스트로부터 아이템 데이터 참조.
+                        User item = arrayList.get(pos);
+
+                        Log.e("tv_name", item.getName());
+
+
+                        mDatabase.child(firebaseUser.getUid()).child("finish").child(item.getName()).child("className").setValue(item.getName());
+                        mDatabase.child(firebaseUser.getUid()).child("finish").child(item.getName()).child("credit").setValue(item.getCredit());
+                        if(mDatabase.child(firebaseUser.getUid()).child("finish").getKey().contains(item.getName())) {
+                            btn_noncheck.setVisibility(View.GONE);
+                            btn_checked.setVisibility(View.VISIBLE);
+                        }
+
+
+                    }
+
+                    //mDatabase.child(firebaseUser.getUid()).child("finishJeon").child(tv_name.toString()).child("className").setValue(tv_name.toString());
+
                 }
             });
 
@@ -95,7 +140,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             btn_checked.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.d("Recyclerview_nocheck", "position = "+ getAdapterPosition());
+                    Log.d("Recyclerview_nocheck", "position = " + getAdapterPosition());
                     btn_checked.setVisibility(View.INVISIBLE);
                     btn_noncheck.setVisibility(View.VISIBLE);
 
@@ -103,7 +148,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             });
 
         }
-
     }
-
 }
+

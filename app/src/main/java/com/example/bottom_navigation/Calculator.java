@@ -121,7 +121,7 @@ public class Calculator extends Fragment {
                         TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
                         tv_calview.setText("총이수한 학점은 " + sum + "점 입니다.");
                         TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
-                        tv_progress.setText("현재" + (sum*100)/130+ "% 이수했습니다.");
+                        tv_progress.setText("현재" + (sum*100)/130 + "% 이수했습니다.");
                         ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
                         bar_jeon.setProgress(sum);
 
@@ -151,5 +151,3 @@ public class Calculator extends Fragment {
     } // userInfo에 저장된 className 값 불러오는 함수
 
 }
-
-

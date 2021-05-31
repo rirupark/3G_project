@@ -221,10 +221,10 @@ public class Gyoyang extends Fragment {
                 final_dataTong = data_tong;
 
                 //파이어베이스 Realtime database에서 UserInfo테이블 속, tongGyo필드를 생성하고 그 안에 className필드를 생성. 그리고 그 안에 className, area, credit값을 저장한다.
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("className").setValue(data_tong);
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("tongArea").setValue(area_tong);
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("credit").setValue(credit_tong);
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("area").setValue("tongGyo");
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finish").child(final_dataTong).child("className").setValue(data_tong);
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finish").child(final_dataTong).child("tongArea").setValue(area_tong);
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finish").child(final_dataTong).child("credit").setValue(credit_tong);
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finish").child(final_dataTong).child("area").setValue("tongGyo");
                 tong_name.setText(null);
 
 
