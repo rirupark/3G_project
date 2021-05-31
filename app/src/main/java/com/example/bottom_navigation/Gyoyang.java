@@ -44,12 +44,13 @@ public class Gyoyang extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<User> arrayList;
+
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private LinearLayoutManager linearLayoutManager;
 
     private String area_tong;
-    private String credit_tong;
+    private int credit_tong;
     private Integer credit_gae;
     private String data_tong;
     private String data_gae;
@@ -57,6 +58,7 @@ public class Gyoyang extends Fragment {
 
     private FirebaseAuth auth; // 파베 인증 객체
     private DatabaseReference mDatabase;
+
 
     private ListView listView;
     private ListViewAdapter adapterlist;
@@ -171,15 +173,15 @@ public class Gyoyang extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
-                    credit_tong = "1";
+                    credit_tong = 1;
                 }
 
                 else if (position == 1) {
-                    credit_tong = "2";
+                    credit_tong = 2;
                 }
 
                 else if (position == 2) {
-                    credit_tong = "3";
+                    credit_tong = 3;
                 }
             }
 
@@ -292,6 +294,8 @@ public class Gyoyang extends Fragment {
 
 
 
+
+
         /*databaseReference.orderByChild("id").startAt(41).endAt(69).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -381,8 +385,8 @@ public class Gyoyang extends Fragment {
                             databaseReference.orderByChild("area").equalTo("basic").addChildEventListener(new ChildEventListener() {
                                 @Override
                                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                                    UserAccount userAccount = snapshot.getValue(UserAccount.class);
 
+                                    UserAccount userAccount = snapshot.getValue(UserAccount.class);
                                     User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                     arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
@@ -462,6 +466,7 @@ public class Gyoyang extends Fragment {
                             recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
 
                         } else if (position == 3) {
+
                             LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
                             tong_linear.setVisibility(View.VISIBLE);
 
@@ -473,6 +478,16 @@ public class Gyoyang extends Fragment {
 
                             LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
                             input_window_gae.setVisibility(View.INVISIBLE);
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -109,24 +109,28 @@ public class Jeongong extends Fragment {
                         databaseReference = database.getReference("User18");
                         gradenum = dataTemp.getTempString();
                         Log.d("gradenum", "onChildAdded: "+gradenum);
+
                     } else if (grade.equals("19학번")) {
                         dataTemp.setTempString("User19/area_grade");
+
                         databaseReference = database.getReference("User19");
                         gradenum = dataTemp.getTempString();
                         Log.d("gradenum", "onChildAdded: "+gradenum);
+
                     } else if (grade.equals("20학번")) {
                         dataTemp.setTempString("User20/area_grade");
+
                         databaseReference = database.getReference("User20");
                         gradenum = dataTemp.getTempString();
                         Log.d("gradenum", "onChildAdded: "+gradenum);
+
                     } else if (grade.equals("21학번")) {
                         dataTemp.setTempString("User/area_grade");
+
                         databaseReference = database.getReference("User");
                         gradenum = dataTemp.getTempString();
                         Log.d("gradenum", "onChildAdded: "+gradenum);
                     }
-
-                    Log.d("159753", "onChildAdded: "+dataTemp.getTempString());
 
                 }
 
