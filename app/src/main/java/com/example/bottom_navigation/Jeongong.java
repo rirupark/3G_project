@@ -59,7 +59,6 @@ public class Jeongong extends Fragment {
     public String grade;
     public String gradenum;
     DataTemp dataTemp = DataTemp.getInstance();
-    public static ArrayList<String> list = new ArrayList<String>();
 
     public static Jeongong newinstance() {
         return new Jeongong();
@@ -506,7 +505,6 @@ public class Jeongong extends Fragment {
         return null;
     }
 }
-
 
 
 

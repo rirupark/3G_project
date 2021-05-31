@@ -45,12 +45,31 @@
             android:textSize="15sp"></TextView>
 
 
-        <CheckBox
-            android:id="@+id/check_jeon"
-            android:layout_width="match_parent"
+<!--        <CheckBox-->
+<!--            android:id="@+id/check_jeon"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="43dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:layout_marginBottom="2dp"></CheckBox>-->
+
+
+        <ImageButton
+            android:layout_width="43dp"
             android:layout_height="43dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="2dp"></CheckBox>
+            android:src="@drawable/ic_baseline_check_box_24"
+            android:background="@color/white"
+            android:id="@+id/checkbox_check"
+            android:visibility="gone"/>
+
+        <ImageButton
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:src="@drawable/ic_baseline_check_box_outline_blank_24"
+            android:background="@color/white"
+            android:id="@+id/checkbox_blank" />
+
+
+
     </LinearLayout>
 
 </LinearLayout>
