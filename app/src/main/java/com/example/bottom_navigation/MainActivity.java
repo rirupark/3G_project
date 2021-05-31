@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
     public void replaceFragment(Fragment fragment){      ////// 화면전환 메소드 프레그먼트는 이메소드를 받아서 화면전환!!!!
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        transaction.addToBackStack(null);
         fragmentTransaction.replace(R.id.main_frame,fragment).commit();
     }
 
@@ -121,24 +122,32 @@ public class MainActivity extends AppCompatActivity {
         transaction = manager.beginTransaction();
 
 
+
+
+
         switch (n){
             case 0:
                 transaction.replace(R.id.main_frame, calculator);
+                transaction.addToBackStack(null);
                 transaction.commit();
                 break;
             case 1:
                 transaction.replace(R.id.main_frame, checklist);
+                transaction.addToBackStack(null);
                 transaction.commit();
                 break;
             case 2:
                 transaction.replace(R.id.main_frame, ppt);
+                transaction.addToBackStack(null);
                 transaction.commit();
                 break;
             case 3:
                 transaction.replace(R.id.main_frame, mypage);
+                transaction.addToBackStack(null);
                 transaction.commit();
                 break;
         }
+
     }
 
 }

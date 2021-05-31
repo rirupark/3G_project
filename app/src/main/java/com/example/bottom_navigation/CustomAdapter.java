@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -68,41 +69,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         TextView tv_name;
         TextView tv_credit;
         TextView tv_area;
-<<<<<<< HEAD
-        //CheckBox check_jeon;
-        public CustomViewHolder(@NonNull View itemView) {
-            super(itemView);
-=======
         ImageButton btn_checked;
         ImageButton btn_noncheck;
->>>>>>> e975ac6798e478bf5e348df7363a2006527cf41f
 
         public CustomViewHolder(View itemView, final OnCustomItemClickListener listener) {
             super(itemView);
             this.tv_name = itemView.findViewById(R.id.tv_name);
             this.tv_credit = itemView.findViewById(R.id.tv_credit);
-<<<<<<< HEAD
-
-
-//
-//            // 리사이클러뷰 아이템 클릭 이벤트.
-//            check_jeon.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    Log.d("Recyclerview", "position = "+ getAdapterPosition());
-//
-//                }
-//            });
-//
-//            check_jeon.setOnLongClickListener(new View.OnLongClickListener() {
-//                @Override
-//                public boolean onLongClick(View v) {
-//                    Log.d("Recyclerview", "position = "+ getAdapterPosition());
-//                    return false;
-//                }
-//            });
-=======
             this.btn_checked = itemView.findViewById(R.id.checkbox_check);
             this.btn_noncheck = itemView.findViewById(R.id.checkbox_blank);
 
@@ -129,7 +102,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                 }
             });
 
->>>>>>> e975ac6798e478bf5e348df7363a2006527cf41f
         }
 
     }
