@@ -38,6 +38,7 @@ public class CalAdapter extends RecyclerView.Adapter<CalAdapter.CustomViewHolder
         holder.tv_name.setText(arrayList.get(position).getName());
 
 
+
     }
 
     @Override

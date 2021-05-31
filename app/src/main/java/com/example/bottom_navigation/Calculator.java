@@ -162,7 +162,6 @@ public class Calculator extends Fragment {
                 });
 
 
-
                 arrayList.clear();
                 adapter = new CalAdapter(arrayList, getActivity());
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
