@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class CalAdapter extends RecyclerView.Adapter<CalAdapter.CustomViewHolder> {
 
     private ArrayList<User> arrayList;
+
     private Context context;
 
     public CalAdapter(ArrayList<User> arrayList, Context context) {

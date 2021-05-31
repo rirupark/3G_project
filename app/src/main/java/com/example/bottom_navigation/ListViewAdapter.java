@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.protobuf.StringValue;
+
 import java.util.ArrayList;
 
 public class ListViewAdapter extends BaseAdapter {
@@ -73,12 +75,12 @@ public class ListViewAdapter extends BaseAdapter {
         return convertView;
     }
 
-    public void addItem(String title, String sub, String credit){
+    public void addItem(String title, String sub, int credit){
         Listitem listItem = new Listitem();
 
         listItem.setTitle(title);
         listItem.setSub(sub);
-        listItem.setCredit(credit);
+        listItem.setCredit(String.valueOf(credit));
 
         listItems.add(listItem);
     }
