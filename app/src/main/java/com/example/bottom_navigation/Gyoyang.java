@@ -32,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +55,7 @@ public class Gyoyang extends Fragment {
     private Integer credit_gae;
     private String data_tong;
     private String data_gae;
-    private String final_dataTong;
+    static String final_dataTong = "";
 
     private FirebaseAuth auth; // 파베 인증 객체
     private DatabaseReference mDatabase;
@@ -195,30 +197,51 @@ public class Gyoyang extends Fragment {
         FirebaseUser firebaseUser = auth.getCurrentUser();
 
 
-
         //통교 체크버튼 클릭 시 입력 텍스트 데이터베이스에 저장하기.
 
         btn_tong_save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 data_tong = tong_name.getText().toString();
                 final_dataTong = data_tong;
 
                 //파이어베이스 Realtime database에서 UserInfo테이블 속, tongGyo필드를 생성하고 그 안에 className필드를 생성. 그리고 그 안에 className, area, credit값을 저장한다.
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(data_tong).child("className").setValue(data_tong);
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(data_tong).child("tongArea").setValue(area_tong);
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(data_tong).child("credit").setValue(credit_tong);
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(data_tong).child("area").setValue("tongGyo");
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("className").setValue(data_tong);
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("tongArea").setValue(area_tong);
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("credit").setValue(credit_tong);
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("area").setValue("tongGyo");
                 tong_name.setText(null);
 
-                Log.e("data", data_tong);
-
                 adapterlist.addItem(area_tong, data_tong, credit_tong);
+
+//                mDatabase.addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot snapshot) {
+//                        String data_Tong;
+//                        String area_Tong;
+//                        String credit_Tong;
+//                        for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
+//                            data_Tong = snapshot.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("className").getValue().toString();
+//                            area_Tong = snapshot.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("tongArea").getValue().toString();
+//                            credit_Tong = snapshot.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("credit").getValue().toString();
+//                            Log.v("0100", data_Tong + area_Tong + credit_Tong);
+//                            adapterlist.addItem(area_Tong, data_Tong, credit_Tong);
+//
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError error) {
+//                    }
+//                });
+
 
                 adapterlist.notifyDataSetChanged();
 
             }
         });
+
 
         adapterlist = new ListViewAdapter(getActivity(), new ListViewAdapter.OnDeleteClickListener() {
             @Override
@@ -231,16 +254,8 @@ public class Gyoyang extends Fragment {
                 hopperRef.removeValue();
             }
         });
+
         listView.setAdapter(adapterlist);
-
-
-
-
-
-
-
-
-
 
 
         /* ---------------------------------------------------------------------------------------------------------------*/
