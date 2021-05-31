@@ -5,8 +5,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -109,6 +107,7 @@ public class Calculator extends Fragment {
                 if (task.getResult().getValue() != null) {
                     String t = String.valueOf(task.getResult().getValue());
 
+
                     sum = 0;
                     String[] c = new String[30];
                     String a[] = t.split("\\}");
@@ -122,11 +121,7 @@ public class Calculator extends Fragment {
                         TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
                         tv_calview.setText("총이수한 학점은 " + sum + "점 입니다.");
                         TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
-
-                        tv_progress.setText("현재" + (sum*100)/130 + "% 이수했습니다.");
-
-                        tv_progress.setText("현재" + 130 / sum + "% 이수했습니다.");
-
+                        tv_progress.setText("현재" + (sum*100)/130+ "% 이수했습니다.");
                         ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
                         bar_jeon.setProgress(sum);
 
@@ -143,27 +138,6 @@ public class Calculator extends Fragment {
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                 String a = String.valueOf(task.getResult().getValue());
-
-
-                    String[] d = a.split("className=");
-                    for (int i = 1; i < d.length; i++) {
-                        String[] e = d[i].split(",");
-                        className[i] = e[0];
-                        getRecyclerViewData(className[i], adapter);
-
-                }
-
-            }
-        });
-    } // userInfo에 저장된 className 값 불러오는 함수
-
-
-
-
-}
-
-
-
                 String[] d = a.split("className=");
                 for (int i = 1; i < d.length; i++) {
                     String[] e = d[i].split(",");
@@ -176,5 +150,6 @@ public class Calculator extends Fragment {
         });
     } // userInfo에 저장된 className 값 불러오는 함수
 
-
 }
+
+
