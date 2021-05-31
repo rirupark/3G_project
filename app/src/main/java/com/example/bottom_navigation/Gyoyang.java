@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,6 +47,7 @@ public class Gyoyang extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<User> arrayList;
+    List<UserLearn> learnArrayList = new ArrayList<UserLearn>();
 
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
@@ -60,6 +62,8 @@ public class Gyoyang extends Fragment {
 
     private FirebaseAuth auth; // 파베 인증 객체
     private DatabaseReference mDatabase;
+    private DatabaseReference gyoDatabase;
+    String mPath;
 
 
     private ListView listView;
@@ -100,6 +104,12 @@ public class Gyoyang extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
+
+        listView = view.findViewById(R.id.listview);
+        learnArrayList = new ArrayList<>();
+
+
+
 
 
 //        //통교 리사이클러뷰
@@ -196,6 +206,8 @@ public class Gyoyang extends Fragment {
 
         auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        gyoDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseUser firebaseUser = auth.getCurrentUser();
 
 
@@ -215,7 +227,8 @@ public class Gyoyang extends Fragment {
                 mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finish").child(final_dataTong).child("area").setValue("tongGyo");
                 tong_name.setText(null);
 
-                adapterlist.addItem(area_tong, data_tong, credit_tong);
+
+
 
 //                mDatabase.addValueEventListener(new ValueEventListener() {
 //                    @Override
@@ -410,7 +423,6 @@ public class Gyoyang extends Fragment {
                                 @Override
                                 public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
-                                    UserAccount userAccount = snapshot.getValue(UserAccount.class);
                                     User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                     arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
@@ -490,7 +502,7 @@ public class Gyoyang extends Fragment {
                             recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
 
                         } else if (position == 3) {
-
+                            adapterlist.clear();
                             LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
                             tong_linear.setVisibility(View.VISIBLE);
 
@@ -503,15 +515,39 @@ public class Gyoyang extends Fragment {
                             LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
                             input_window_gae.setVisibility(View.INVISIBLE);
 
+                            mPath = "UserInfo/"+firebaseUser.getUid()+"/finishGyo";
+                            gyoDatabase = database.getReference("UserInfo");
+
+                            gyoDatabase.child(firebaseUser.getUid()).child("finishGyo").orderByChild("area").equalTo("tongGyo").addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    UserLearn userLearn = snapshot.getValue(UserLearn.class);
+                                    adapterlist.addItem(userLearn.getTongArea(), userLearn.getClassName(), userLearn.getCredit());
 
 
+                                    adapterlist.notifyDataSetChanged();
+                                }
 
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+                                }
 
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
 
+                                }
 
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 
+                                }
 
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
 
 
 
@@ -562,6 +598,37 @@ public class Gyoyang extends Fragment {
 
                             LinearLayout input_window_gae = (LinearLayout) getActivity().findViewById(R.id.input_window_gae);
                             input_window_gae.setVisibility(View.VISIBLE);
+
+                            gyoDatabase.child(firebaseUser.getUid()).child("finishGyo").orderByChild("area").equalTo("gaeGyo").addChildEventListener(new ChildEventListener() {
+                                @Override
+                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                    UserLearn userLearn = snapshot.getValue(UserLearn.class);
+                                    adapterlist.addItem(userLearn.getTongArea(), userLearn.getClassName(), userLearn.getCredit());
+
+
+                                    adapterlist.notifyDataSetChanged();
+                                }
+
+                                @Override
+                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+                                }
+
+                                @Override
+                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
 
                             arrayList.clear();
                         }

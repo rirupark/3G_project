@@ -11,12 +11,18 @@ import android.widget.TextView;
 import com.google.protobuf.StringValue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListViewAdapter extends BaseAdapter {
 
     private Context mContext;
     private ArrayList<Listitem> listItems = new ArrayList<Listitem>();
+    List<UserLearn> data=new ArrayList<UserLearn>();
     private OnDeleteClickListener mListener;
+
+    public void clear() {
+        listItems.clear();
+    }
 
     public interface OnDeleteClickListener{
         void onDelete(View v, int pos);
@@ -63,6 +69,11 @@ public class ListViewAdapter extends BaseAdapter {
         txt_title.setText(listItem.getTitle());
         txt_sub.setText(listItem.getSub());
         txt_credit.setText(listItem.getCredit());
+
+        //UserLearn userLearn = data.get(position);
+        //txt_title.setText(userLearn.getTongArea());
+        //txt_sub.setText(userLearn.getClassName());
+        //txt_credit.setText(userLearn.getCredit());
 
         // 리스트 아이템 삭제
         btn_delete.setOnClickListener(new View.OnClickListener() {

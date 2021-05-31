@@ -3,8 +3,20 @@ package com.example.bottom_navigation;
 public class UserLearn {
     private String className;
     private String tongArea;
-    private String credit;
+
+
+
+    private int credit;
     private String area;
+
+    public UserLearn() {}
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
+    }
 
     public String getClassName() {
         return className;
@@ -14,21 +26,10 @@ public class UserLearn {
         this.className = className;
     }
 
-    public String getTongArea() {
-        return tongArea;
-    }
+    public String getTongArea() {return tongArea;}
 
-    public void setTongArea(String tongArea) {
-        this.tongArea = tongArea;
-    }
+    public void setTongArea(String tongArea) { this.tongArea = tongArea; }
 
-    public String getCredit() {
-        return credit;
-    }
-
-    public void setCredit(String credit) {
-        this.credit = credit;
-    }
 
     public String getArea() {
         return area;
