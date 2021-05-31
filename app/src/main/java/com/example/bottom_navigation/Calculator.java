@@ -78,17 +78,6 @@ public class Calculator extends Fragment {
         getDataFromFireBase();
 
 
-        Button button7 = (Button) view.findViewById(R.id.button7);
-        button7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(flag) {
-                    getClassNameFromFireBase();
-                    flag = false;
-                }
-            }
-        });
-
         return view;
 
     }
@@ -150,4 +139,9 @@ public class Calculator extends Fragment {
         });
     } // userInfo에 저장된 className 값 불러오는 함수
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getClassNameFromFireBase();
+    }
 }
