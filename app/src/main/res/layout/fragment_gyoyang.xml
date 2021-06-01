@@ -51,7 +51,7 @@
                 android:background="@drawable/spinner_custom3"
                 android:entries="@array/area_gyoyang"
                 android:popupBackground="#EBF1F6">
-                </Spinner>
+            </Spinner>
 
         </LinearLayout>
 
@@ -163,7 +163,9 @@
             android:id="@+id/listview2"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:dividerHeight="0px"
+            android:divider="#FFFFFF"/>
 
     </LinearLayout>
 
@@ -173,4 +175,3 @@
 
 
 </FrameLayout>
-

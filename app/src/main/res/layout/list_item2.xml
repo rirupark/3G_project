@@ -45,14 +45,6 @@
             android:textSize="15sp"></TextView>
 
 
-<!--        <CheckBox-->
-<!--            android:id="@+id/check_jeon"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="43dp"-->
-<!--            android:layout_marginRight="10dp"-->
-<!--            android:layout_marginBottom="2dp"></CheckBox>-->
-
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -74,6 +66,7 @@
 
 
         </RelativeLayout>
+
 
     </LinearLayout>
 

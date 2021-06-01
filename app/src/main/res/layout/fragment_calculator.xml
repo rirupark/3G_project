@@ -10,7 +10,8 @@
         android:layout_width="79dp"
         android:layout_height="72dp"
         android:src="@drawable/logo"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"/>
 
         <TextView
             android:id="@+id/textView14"
@@ -33,10 +34,6 @@
             android:text="이수학점 텍스트"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"/>
-
-
-
-
 
 
     <TextView
@@ -79,7 +76,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp">
 
         <TextView
             android:id="@+id/textView21"

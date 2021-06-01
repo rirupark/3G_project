@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.protobuf.StringValue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,6 +95,8 @@ public class ListViewAdapter extends BaseAdapter {
 
         listItems.add(listItem);
     }
+
+
 
     public void removeItem(int pos){
         listItems.remove(pos);

@@ -609,8 +609,7 @@ public class Gyoyang extends Fragment {
                         @Override
                         public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                             UserLearn userLearn = snapshot.getValue(UserLearn.class);
-                            adapterlist.addItem("개 척 교 양", userLearn.getClassName(), userLearn.getCredit());
-
+                            adapterlist.addItem("개척교양", userLearn.getClassName(), userLearn.getCredit());
 
                             adapterlist.notifyDataSetChanged();
                         }
