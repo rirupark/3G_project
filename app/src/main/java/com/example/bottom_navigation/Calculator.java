@@ -107,20 +107,26 @@ public class Calculator extends Fragment {
                         c[i] = l[1];
                         sum += Integer.parseInt(c[i]);
                         Log.d("156321", "onComplete: " + sum);
-                        TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
-                        tv_calview.setText("총이수한 학점은 " + sum + "점 입니다.");
-                        TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
-                        tv_progress.setText("현재" + (sum*100)/130 + "% 이수했습니다.");
-                        ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
-                        bar_jeon.setProgress(sum);
 
                     }
+                    TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
+                    tv_calview.setText("총이수한 학점은 " + sum + "점 입니다.");
+                    TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
+                    tv_progress.setText("현재" + (sum*100)/130 + "% 이수했습니다.");
+                    ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
+                    bar_jeon.setProgress(sum);
+                }
+                else{
+                    TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
+                    tv_calview.setText("총이수한 학점은 " + 0+ "점 입니다.");
+                    TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
+                    tv_progress.setText("현재" + 0 + "% 이수했습니다.");
+                    ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
+                    bar_jeon.setProgress(0);
                 }
             }
         });
     } // userInfo에 저장된 credit 값 불러오는 함수
-
-
     void getClassNameFromFireBase(){
         databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
