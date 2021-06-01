@@ -149,5 +149,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
         }
     }
+
 }
 
