@@ -2,8 +2,8 @@ package com.example.bottom_navigation;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+//import androidx.annotation.NonNull;
+//import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +13,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -22,19 +21,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.IntStream;
 
 
 public class Calculator extends Fragment {
@@ -58,9 +49,10 @@ public class Calculator extends Fragment {
     public int sum=0;
     public static String[] className = new String[20];
     public boolean flag = true;
-    @Nullable
+
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_calculator, null);
         adapter = new ClassnameAdapter();
 
@@ -78,6 +70,8 @@ public class Calculator extends Fragment {
         getDataFromFireBase();
 
 
+
+
         return view;
 
     }
@@ -90,7 +84,7 @@ public class Calculator extends Fragment {
 
         databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
+            public void onComplete(Task<DataSnapshot> task) {
                 Log.d("159753", "onComplete: " + task.getResult().getValue());
 
                 if (task.getResult().getValue() != null) {
@@ -110,17 +104,17 @@ public class Calculator extends Fragment {
 
                     }
                     TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
-                    tv_calview.setText("총이수한 학점은 " + sum + "점 입니다.");
+                    tv_calview.setText("총 이수한 학점은 " + sum + "학점 입니다.");
                     TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
-                    tv_progress.setText("현재" + (sum*100)/130 + "% 이수했습니다.");
+                    tv_progress.setText("현재 " + (sum*100)/130 + "% 이수했습니다.");
                     ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
                     bar_jeon.setProgress(sum);
                 }
                 else{
                     TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
-                    tv_calview.setText("총이수한 학점은 " + 0+ "점 입니다.");
+                    tv_calview.setText("총 이수한 학점은 " + 0+ "점 입니다.");
                     TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
-                    tv_progress.setText("현재" + 0 + "% 이수했습니다.");
+                    tv_progress.setText("현재 " + 0 + "% 이수했습니다.");
                     ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
                     bar_jeon.setProgress(0);
                 }
@@ -130,7 +124,7 @@ public class Calculator extends Fragment {
     void getClassNameFromFireBase(){
         databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
+            public void onComplete(Task<DataSnapshot> task) {
                 recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
                 String a = String.valueOf(task.getResult().getValue());
                 String[] d = a.split("className=");
@@ -144,6 +138,9 @@ public class Calculator extends Fragment {
             }
         });
     } // userInfo에 저장된 className 값 불러오는 함수
+
+
+
 
     @Override
     public void onResume() {

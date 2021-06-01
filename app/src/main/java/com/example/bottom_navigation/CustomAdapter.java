@@ -5,11 +5,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,10 +32,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         this.context = context;
     }
 
-    @NonNull
     @Override
 
-    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item2, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
 
@@ -44,7 +42,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+    public void onBindViewHolder(CustomViewHolder holder, int position) {
         final User user = arrayList.get(position);
         holder.tv_name.setText(arrayList.get(position).getName());
         holder.tv_credit.setText(String.valueOf(arrayList.get(position).getCredit()));
@@ -150,4 +148,3 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         }
     }
 }
-

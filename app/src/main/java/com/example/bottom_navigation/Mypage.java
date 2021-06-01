@@ -6,36 +6,25 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.ImageView;
-import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.squareup.okhttp.internal.DiskLruCache;
 
 
@@ -61,7 +50,7 @@ public class Mypage extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_mypage,null);
 
@@ -75,7 +64,7 @@ public class Mypage extends Fragment {
             // Name, email address, and profile photo Url
             mDatabase.orderByChild("idToken").equalTo(user.getUid()).addChildEventListener(new ChildEventListener() {
                 @Override
-                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                     UserAccount userAccount = snapshot.getValue(UserAccount.class);
                     if(userAccount.getStd_grade_num() != null){
                         loadText(user, view, userAccount);
@@ -83,22 +72,22 @@ public class Mypage extends Fragment {
                 }
 
                 @Override
-                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                 }
 
                 @Override
-                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                public void onChildRemoved(DataSnapshot snapshot) {
 
                 }
 
                 @Override
-                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                public void onCancelled(DatabaseError error) {
 
                 }
             });
@@ -119,7 +108,7 @@ public class Mypage extends Fragment {
                         AuthUI.getInstance()
                                 .delete(getActivity())
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    public void onComplete(@NonNull Task<Void> task) {
+                                    public void onComplete(Task<Void> task) {
                                         getActivity().finish();
                                         startActivity(new Intent(getActivity(), Login.class));
                                         Toast.makeText(getActivity(), "회원탈퇴 되었습니다.",
@@ -151,7 +140,7 @@ public class Mypage extends Fragment {
                         AuthUI.getInstance()
                                 .signOut(getActivity())
                                 .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    public void onComplete(@NonNull Task<Void> task) {
+                                    public void onComplete(Task<Void> task) {
                                         getActivity().finish();
                                         startActivity(new Intent(getActivity(), Login.class));
                                         Toast.makeText(getActivity(), "로그아웃 되었습니다.",

@@ -1,12 +1,10 @@
 package com.example.bottom_navigation;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,32 +26,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
-
-
-import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
 public class Login extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -119,7 +95,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         auth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(Task<AuthResult> task) {
                         if (task.isSuccessful()) { // 로그인이 성공했으면 ...
 
                             FirebaseUser firebaseUser = auth.getCurrentUser();
@@ -188,7 +164,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
 
     @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
 }

@@ -40,22 +40,22 @@ public class OfflineActivity extends AppCompatActivity {
         DatabaseReference scoresRef = FirebaseDatabase.getInstance().getReference("scores");
         scoresRef.orderByValue().limitToLast(4).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, String previousChild) {
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
                 Log.d(TAG, "The " + snapshot.getKey() + " dinosaur's score is " + snapshot.getValue());
             }
 
             // [START_EXCLUDE]
             @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {}
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
 
             @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+            public void onChildMoved(DataSnapshot dataSnapshot, @Nullable String s) {}
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {}
 
             @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+            public void onChildChanged(DataSnapshot dataSnapshot, @Nullable String s) {}
             // [END_EXCLUDE]
         });
         // [END rtdb_query_recent_scores]
@@ -63,22 +63,22 @@ public class OfflineActivity extends AppCompatActivity {
         // [START rtdb_query_recent_scores_overlap]
         scoresRef.orderByValue().limitToLast(2).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, String previousChild) {
+            public void onChildAdded(DataSnapshot snapshot, String previousChild) {
                 Log.d(TAG, "The " + snapshot.getKey() + " dinosaur's score is " + snapshot.getValue());
             }
 
             // [START_EXCLUDE]
             @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {}
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
 
             @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+            public void onChildMoved(DataSnapshot dataSnapshot, @Nullable String s) {}
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {}
 
             @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+            public void onChildChanged(DataSnapshot dataSnapshot, @Nullable String s) {}
             // [END_EXCLUDE]
         });
         // [END rtdb_query_recent_scores_overlap]
@@ -94,7 +94,7 @@ public class OfflineActivity extends AppCompatActivity {
         // [START rtdb_on_disconnect_remove]
         presenceRef.onDisconnect().removeValue(new DatabaseReference.CompletionListener() {
             @Override
-            public void onComplete(DatabaseError error, @NonNull DatabaseReference reference) {
+            public void onComplete(DatabaseError error, DatabaseReference reference) {
                 if (error != null) {
                     Log.d(TAG, "could not establish onDisconnect event:" + error.getMessage());
                 }
@@ -117,7 +117,7 @@ public class OfflineActivity extends AppCompatActivity {
         DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
         connectedRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(DataSnapshot snapshot) {
                 boolean connected = snapshot.getValue(Boolean.class);
                 if (connected) {
                     Log.d(TAG, "connected");
@@ -127,7 +127,7 @@ public class OfflineActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
                 Log.w(TAG, "Listener was cancelled");
             }
         });
@@ -146,13 +146,13 @@ public class OfflineActivity extends AppCompatActivity {
         DatabaseReference offsetRef = FirebaseDatabase.getInstance().getReference(".info/serverTimeOffset");
         offsetRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(DataSnapshot snapshot) {
                 double offset = snapshot.getValue(Double.class);
                 double estimatedServerTimeMs = System.currentTimeMillis() + offset;
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError error) {
                 Log.w(TAG, "Listener was cancelled");
             }
         });
