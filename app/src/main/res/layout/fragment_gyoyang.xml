@@ -51,7 +51,7 @@
                 android:background="@drawable/spinner_custom3"
                 android:entries="@array/area_gyoyang"
                 android:popupBackground="#EBF1F6">
-                </Spinner>
+            </Spinner>
 
         </LinearLayout>
 
@@ -171,4 +171,3 @@
 
 
 </FrameLayout>
-
