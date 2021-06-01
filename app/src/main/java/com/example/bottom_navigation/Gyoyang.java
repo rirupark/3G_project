@@ -61,6 +61,7 @@ public class Gyoyang extends Fragment {
 
 
     private ListView listView;
+    private ListView listview2;
     private ListViewAdapter adapterlist;
 
 //    //통교 리사이클러뷰
@@ -100,6 +101,7 @@ public class Gyoyang extends Fragment {
         arrayList = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
         listView = view.findViewById(R.id.listview);
+        listview2 = view.findViewById(R.id.listview2);
         learnArrayList = new ArrayList<>();
 
 
@@ -128,6 +130,7 @@ public class Gyoyang extends Fragment {
         TextView txt_tongTitle = (TextView)view.findViewById(R.id.txt_title);
 
         listView = (ListView)view.findViewById(R.id.listview);
+        listview2 = (ListView)view.findViewById(R.id.listview2);
 
 
 
@@ -265,6 +268,7 @@ public class Gyoyang extends Fragment {
         });
 
         listView.setAdapter(adapterlist);
+        listview2.setAdapter(adapterlist);
 
 
         /* ---------------------------------------------------------------------------------------------------------------*/
@@ -301,9 +305,9 @@ public class Gyoyang extends Fragment {
             public void onClick(View v) {
                 data_gae = gae_name.getText().toString();
                 //파이어베이스 Realtime database에서 UserInfo테이블 속, tongGyo필드를 생성하고 그 안에 className필드를 생성. 그리고 그 안에 className, area, credit값을 저장한다.
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(data_gae).child("className").setValue(data_gae);
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(data_gae).child("credit").setValue(credit_gae);
-                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(data_gae).child("area").setValue("gaeGyo");
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finish").child(data_gae).child("className").setValue(data_gae);
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finish").child(data_gae).child("credit").setValue(credit_gae);
+                mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finish").child(data_gae).child("area").setValue("gaeGyo");
                 gae_name.setText(null);
 
                 Log.e("data", data_gae);
@@ -581,6 +585,7 @@ public class Gyoyang extends Fragment {
 
 
                 } else if (position == 4) {
+                    adapterlist.clear();
                     LinearLayout tong_linear = (LinearLayout) getActivity().findViewById(R.id.tong_cul);
                     tong_linear.setVisibility(View.INVISIBLE);
 
@@ -597,7 +602,7 @@ public class Gyoyang extends Fragment {
                         @Override
                         public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                             UserLearn userLearn = snapshot.getValue(UserLearn.class);
-                            adapterlist.addItem(userLearn.getTongArea(), userLearn.getClassName(), userLearn.getCredit());
+                            adapterlist.addItem("개 척 교 양", userLearn.getClassName(), userLearn.getCredit());
 
 
                             adapterlist.notifyDataSetChanged();
