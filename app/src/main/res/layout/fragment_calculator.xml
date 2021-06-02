@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/btn_finish_jeonlist"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,138 +10,110 @@
         android:layout_width="79dp"
         android:layout_height="72dp"
         android:src="@drawable/logo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.084" />
+        android:layout_gravity="center"
+        android:layout_marginTop="35dp"/>
 
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="이수학점"
+            android:textSize="15dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:background="@color/purple_500"/>
 
-    <View
+        <TextView
+            android:id="@+id/tv_calview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="normal"
+            android:text="이수학점 텍스트"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
 
-        android:id="@+id/view"
-        android:layout_width="128dp"
-        android:layout_height="139dp"
-        android:layout_marginTop="92dp"
-        android:background="#4F78B0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-
-        />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
-        android:text="이수학점"
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
-        app:layout_constraintHorizontal_bias="0.242"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <TextView
-        android:id="@+id/tv_calview"
-        android:layout_width="94dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="264dp"
-        android:textColor="#FFFFFF"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toStartOf="@+id/imageView8"
-        app:layout_constraintHorizontal_bias="0.388"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="223dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="92dp"
-        android:background="#4F78B0"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.882"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8" />
 
     <TextView
         android:id="@+id/textView20"
-        android:layout_width="wrap_content"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="232dp"
         android:text="학점그래프"
-        android:textColor="#FFFFFF"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="15dp"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="@color/purple_500"
+        android:layout_marginTop="30dp"/>
 
+    <ProgressBar
+        android:id="@+id/bar_jeon"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="300dp"
+        android:layout_height="17dp"
+        android:max="130"
+        android:progressBackgroundTint="#EAEAEA"
+        android:progressBackgroundTintMode="src_over"
+        android:progressDrawable="@drawable/cal_bar"
+        android:progressTint="#2D4361"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/tv_progress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#FFFFFF"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/view2"
-        app:layout_constraintHorizontal_bias="0.121"
-        app:layout_constraintStart_toStartOf="@+id/view2"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.685" />
-
-    <ProgressBar
-        android:id="@+id/bar_jeon"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="169dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="264dp"
-        android:max="130"
-        android:progressBackgroundTint="#FFFFFF"
-        android:progressBackgroundTintMode="src_over"
-        android:progressDrawable="@drawable/cal_bar"
-        android:progressTint="#2D4361"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.714"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-
-
-        />
+        android:text="학점그래프 텍스트"
+        android:layout_gravity="center"
+        android:textSize="12dp"
+        android:layout_marginTop="5dp"/>
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="375dp"
-        android:layout_height="288dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="1.0">
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp">
 
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:backgroundTint="#4F78B0"
-            android:text="이수한 과목"
-            app:iconTint="#000000" />
+        <TextView
+            android:id="@+id/textView21"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="이수 완료 과목"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:background="@color/purple_500"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_gravity="center"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/re_jeongong"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:background="#C2CFDA">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/re_jeongong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="1dp"
+                android:layout_marginRight="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="@color/white"/>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
 
 
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

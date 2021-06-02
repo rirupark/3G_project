@@ -1,21 +1,13 @@
 package com.example.bottom_navigation;
 
-import android.app.Person;
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,12 +22,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import org.json.JSONArray;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Jeongong extends Fragment {
 
@@ -71,7 +59,7 @@ public class Jeongong extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_jeongong, null);
 
@@ -107,7 +95,7 @@ public class Jeongong extends Fragment {
             // Name, email address, and profile photo Url
             mDatabase.orderByChild("idToken").equalTo(user.getUid()).addChildEventListener(new ChildEventListener() {
                 @Override
-                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                     UserAccount userAccount = snapshot.getValue(UserAccount.class);
 
                     assert userAccount != null;
@@ -136,22 +124,22 @@ public class Jeongong extends Fragment {
                 }
 
                 @Override
-                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                 }
 
                 @Override
-                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                public void onChildRemoved(DataSnapshot snapshot) {
 
                 }
 
                 @Override
-                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                 }
 
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
+                public void onCancelled(DatabaseError error) {
 
                 }
 
@@ -165,7 +153,7 @@ public class Jeongong extends Fragment {
                     if (position == 0) {
                         databaseReference.orderByChild("area_grade").equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
                             @Override
-                            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                                 User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                 arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
@@ -173,23 +161,23 @@ public class Jeongong extends Fragment {
                             }
 
                             @Override
-                            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
 
                             }
 
                             @Override
-                            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                            public void onChildRemoved(DataSnapshot snapshot) {
 
                             }
 
                             @Override
-                            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                            public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                             }
 
                             @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                            public void onCancelled(DatabaseError error) {
 
                             }
                         });
@@ -202,7 +190,7 @@ public class Jeongong extends Fragment {
                                 if (position == 0) {
                                     databaseReference.orderByChild("area_grade").equalTo("m_necessary_1").addChildEventListener(new ChildEventListener() {
                                         @Override
-                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
@@ -211,29 +199,29 @@ public class Jeongong extends Fragment {
                                         }
 
                                         @Override
-                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                        public void onChildRemoved(DataSnapshot snapshot) {
 
                                         }
 
                                         @Override
-                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        public void onCancelled(DatabaseError error) {
 
                                         }
                                     });
                                 } else if (position == 1) {
                                     databaseReference.orderByChild("area_grade").equalTo("m_necessary_2").addChildEventListener(new ChildEventListener() {
                                         @Override
-                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
@@ -241,29 +229,29 @@ public class Jeongong extends Fragment {
                                         }
 
                                         @Override
-                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                        public void onChildRemoved(DataSnapshot snapshot) {
 
                                         }
 
                                         @Override
-                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        public void onCancelled(DatabaseError error) {
 
                                         }
                                     });
                                 } else if (position == 2) {
                                     databaseReference.orderByChild("area_grade").equalTo("m_necessary_3").addChildEventListener(new ChildEventListener() {
                                         @Override
-                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
@@ -271,29 +259,29 @@ public class Jeongong extends Fragment {
                                         }
 
                                         @Override
-                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                        public void onChildRemoved(DataSnapshot snapshot) {
 
                                         }
 
                                         @Override
-                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        public void onCancelled(DatabaseError error) {
 
                                         }
                                     });
                                 } else if (position == 3) {
                                     databaseReference.orderByChild("area_grade").equalTo("m_necessary_4").addChildEventListener(new ChildEventListener() {
                                         @Override
-                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
@@ -301,22 +289,22 @@ public class Jeongong extends Fragment {
                                         }
 
                                         @Override
-                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                        public void onChildRemoved(DataSnapshot snapshot) {
 
                                         }
 
                                         @Override
-                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        public void onCancelled(DatabaseError error) {
 
                                         }
                                     });
@@ -345,7 +333,7 @@ public class Jeongong extends Fragment {
                                 if (position == 0) {
                                     databaseReference.orderByChild("area_grade").equalTo("m_select_1").addChildEventListener(new ChildEventListener() {
                                         @Override
-                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
@@ -354,29 +342,29 @@ public class Jeongong extends Fragment {
                                         }
 
                                         @Override
-                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                        public void onChildRemoved(DataSnapshot snapshot) {
 
                                         }
 
                                         @Override
-                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        public void onCancelled(DatabaseError error) {
 
                                         }
                                     });
                                 } else if (position == 1) {
                                     databaseReference.orderByChild("area_grade").equalTo("m_select_2").addChildEventListener(new ChildEventListener() {
                                         @Override
-                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
@@ -384,29 +372,29 @@ public class Jeongong extends Fragment {
                                         }
 
                                         @Override
-                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                        public void onChildRemoved(DataSnapshot snapshot) {
 
                                         }
 
                                         @Override
-                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        public void onCancelled(DatabaseError error) {
 
                                         }
                                     });
                                 } else if (position == 2) {
                                     databaseReference.orderByChild("area_grade").equalTo("m_select_3").addChildEventListener(new ChildEventListener() {
                                         @Override
-                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
@@ -414,29 +402,29 @@ public class Jeongong extends Fragment {
                                         }
 
                                         @Override
-                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                        public void onChildRemoved(DataSnapshot snapshot) {
 
                                         }
 
                                         @Override
-                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        public void onCancelled(DatabaseError error) {
 
                                         }
                                     });
                                 } else if (position == 3) {
                                     databaseReference.orderByChild("area_grade").equalTo("m_select_4").addChildEventListener(new ChildEventListener() {
                                         @Override
-                                        public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildAdded(DataSnapshot snapshot, @Nullable String previousChildName) {
                                             User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
                                             arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
 
@@ -444,22 +432,22 @@ public class Jeongong extends Fragment {
                                         }
 
                                         @Override
-                                        public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildChanged(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                                        public void onChildRemoved(DataSnapshot snapshot) {
 
                                         }
 
                                         @Override
-                                        public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                                        public void onChildMoved(DataSnapshot snapshot, @Nullable String previousChildName) {
 
                                         }
 
                                         @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
+                                        public void onCancelled(DatabaseError error) {
 
                                         }
                                     });

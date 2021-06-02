@@ -96,6 +96,8 @@ public class ListViewAdapter extends BaseAdapter {
         listItems.add(listItem);
     }
 
+
+
     public void removeItem(int pos){
         listItems.remove(pos);
         notifyDataSetChanged();

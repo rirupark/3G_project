@@ -145,19 +145,19 @@ public class QueryActivity extends AppCompatActivity {
             // TODO: implement the ChildEventListener methods as documented above
             // [START_EXCLUDE]
             @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+            public void onChildAdded(DataSnapshot dataSnapshot, @Nullable String s) {}
 
             @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+            public void onChildChanged(DataSnapshot dataSnapshot, @Nullable String s) {}
 
             @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {}
+            public void onChildRemoved(DataSnapshot dataSnapshot) {}
 
             @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {}
+            public void onChildMoved(DataSnapshot dataSnapshot, @Nullable String s) {}
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {}
+            public void onCancelled(DatabaseError databaseError) {}
             // [END_EXCLUDE]
         });
         // [END rtdb_order_by_nested]

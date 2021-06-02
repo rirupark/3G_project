@@ -5,11 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
+
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,16 +27,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     private ArrayList<String> listData = new ArrayList<String>();
     private FirebaseAuth auth; // 파베 인증 객체
     private DatabaseReference mDatabase;
+    private Integer check = 0;
 
     public CustomAdapter(ArrayList<User> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
 
-    @NonNull
+
     @Override
 
-    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item2, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
 
@@ -44,7 +45,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+    public void onBindViewHolder(CustomViewHolder holder, int position) {
         final User user = arrayList.get(position);
         holder.tv_name.setText(arrayList.get(position).getName());
         holder.tv_credit.setText(String.valueOf(arrayList.get(position).getCredit()));
@@ -71,9 +72,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
     // OnItemClickListener 리스너 객체 참조를 어댑터에 전달하는 메서드
 
-    public void addItem(String string) {
-        // 외부에서 item을 추가시킬 함수입니다.
-        listData.add(string);
+    public void removeItem2(int pos) {
+        arrayList.remove(pos);
+        notifyDataSetChanged();
     }
 
 
@@ -84,6 +85,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         TextView tv_area;
         ImageButton btn_checked;
         ImageButton btn_noncheck;
+        CheckBox checkbox;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -92,16 +94,29 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             this.tv_credit = itemView.findViewById(R.id.tv_credit);
             this.btn_checked = itemView.findViewById(R.id.checkbox_check);
             this.btn_noncheck = itemView.findViewById(R.id.checkbox_blank);
-
-            Integer pos = getAdapterPosition();
-
+            //this.checkbox = itemView.findViewById(R.id.checking);
 
 
             auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
             mDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
             FirebaseUser firebaseUser = auth.getCurrentUser();
 
-            //tv_name.setText();
+//            boolean checked = ((CheckBox) itemView).isChecked();
+//            if (checked) {
+//                int pos = getAdapterPosition();
+//
+//                if (pos != RecyclerView.NO_POSITION) {
+//                    // 데이터 리스트로부터 아이템 데이터 참조.
+//                    User item = arrayList.get(pos);
+//
+//                    Log.e("tv_name", item.getName());
+//
+//                    mDatabase.child(firebaseUser.getUid()).child("finish").child(item.getName()).child("className").setValue(item.getName());
+//                    mDatabase.child(firebaseUser.getUid()).child("finish").child(item.getName()).child("credit").setValue(item.getCredit());
+//
+//                }
+
+                //tv_name.setText();
 
             // 리사이클러뷰 아이템 클릭 이벤트.
             btn_noncheck.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +159,17 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
                     btn_checked.setVisibility(View.INVISIBLE);
                     btn_noncheck.setVisibility(View.VISIBLE);
 
+                    int pos = getAdapterPosition() ;
+                    if (pos != RecyclerView.NO_POSITION) {
+                        // 데이터 리스트로부터 아이템 데이터 참조.
+                        User item = arrayList.get(pos);
+
+                        Log.e("tv_name", item.getName());
+
+                        DatabaseReference hopperRef = mDatabase.child(firebaseUser.getUid()).child("finish").child(item.getName());
+                        hopperRef.removeValue();
+                    }
+
                 }
             });
 
@@ -151,4 +177,3 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     }
 
 }
-

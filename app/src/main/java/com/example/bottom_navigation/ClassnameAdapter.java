@@ -1,10 +1,8 @@
 package com.example.bottom_navigation;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,9 +14,8 @@ public class ClassnameAdapter extends RecyclerView.Adapter<ClassnameAdapter.Item
     // adapter에 들어갈 list 입니다.
     private ArrayList<String> listData = new ArrayList<String>();
 
-    @NonNull
     @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // LayoutInflater를 이용하여 전 단계에서 만들었던 item.xml을 inflate 시킵니다.
         // return 인자는 ViewHolder 입니다.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
@@ -26,7 +23,7 @@ public class ClassnameAdapter extends RecyclerView.Adapter<ClassnameAdapter.Item
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+    public void onBindViewHolder(ItemViewHolder holder, int position) {
         // Item을 하나, 하나 보여주는(bind 되는) 함수입니다.
         holder.onBind(listData.get(position));
 

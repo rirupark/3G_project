@@ -56,7 +56,7 @@ public class ReadAndWriteSnippets {
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
+                    public void onFailure(Exception e) {
                         // Write failed
                         // ...
                     }

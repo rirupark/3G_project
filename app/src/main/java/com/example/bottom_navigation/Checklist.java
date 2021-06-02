@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Spinner;
 
 public class Checklist extends Fragment {
     public static Checklist newinstance(){    //////모든 프레그먼트에 newinstance메소드가 있어야함..!!
@@ -25,7 +24,7 @@ public class Checklist extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_checklist,null);
 
         Button btn_go_gyoyang = (Button)view.findViewById(R.id.btn_go_gyoyang);
