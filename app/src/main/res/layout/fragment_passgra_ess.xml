@@ -70,7 +70,7 @@
             </LinearLayout>
 
             <CheckBox
-                android:id="@+id/chk_1"
+                android:id="@+id/chk_6"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"></CheckBox>
 
@@ -111,7 +111,7 @@
             </LinearLayout>
 
             <CheckBox
-                android:id="@+id/chk_2"
+                android:id="@+id/chk_7"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"></CheckBox>
 
@@ -164,7 +164,7 @@
             </LinearLayout>
 
             <CheckBox
-                android:id="@+id/chk_3"
+                android:id="@+id/chk_8"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="40dp"></CheckBox>
@@ -216,7 +216,7 @@
                 android:orientation="vertical">
 
                 <CheckBox
-                    android:id="@+id/chk_4"
+                    android:id="@+id/chk_9"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"></CheckBox>
@@ -237,7 +237,7 @@
                 android:orientation="vertical">
 
                 <CheckBox
-                    android:id="@+id/chk_5"
+                    android:id="@+id/chk_10"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"></CheckBox>
@@ -258,7 +258,7 @@
                 android:orientation="vertical">
 
                 <CheckBox
-                    android:id="@+id/chk_6"
+                    android:id="@+id/chk_11"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"></CheckBox>
@@ -278,7 +278,7 @@
                 android:orientation="vertical">
 
                 <CheckBox
-                    android:id="@+id/chk_7"
+                    android:id="@+id/chk_12"
                     android:layout_width="30dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"></CheckBox>

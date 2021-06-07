@@ -23,95 +23,99 @@ public class Passgraduation extends Fragment {
     CheckBox cb_5;
 
 
+    public static Passgraduation newinstance() {
+        return new Passgraduation();
+    }
 
+    public Passgraduation() {
 
-public static Passgraduation newinstance(){
-    return new Passgraduation();
-}
-public Passgraduation(){
-
-}
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_passgraduation,null);
+        View view = inflater.inflate(R.layout.fragment_passgraduation, null);
 
-        ImageButton btn_back = (ImageButton)view.findViewById(R.id.btn_back);
+        ImageButton btn_back = (ImageButton) view.findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(Checklist.newinstance());
+                ((MainActivity) getActivity()).replaceFragment(Checklist.newinstance());
             }
         });
 
-        ImageButton btn_ess = (ImageButton)view.findViewById(R.id.btn_ess_passgra);
+        ImageButton btn_ess = (ImageButton) view.findViewById(R.id.btn_ess_passgra);
         btn_ess.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(PassgraEss.newinstance());
+                ((MainActivity) getActivity()).replaceFragment(PassgraEss.newinstance());
             }
         });
 
-        ImageButton btn_selec = (ImageButton)view.findViewById(R.id.btn_selec_passgra);
+        ImageButton btn_selec = (ImageButton) view.findViewById(R.id.btn_selec_passgra);
         btn_selec.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(PassgraSelec.newinstance());
+                ((MainActivity) getActivity()).replaceFragment(PassgraSelec.newinstance());
             }
         });
-
-        Context context = getActivity();
-        SharedPreferences pref = context.getSharedPreferences("pref",0);
-        cb_1 = (CheckBox)view.findViewById(R.id.cb_1);
-        cb_2 = (CheckBox)view.findViewById(R.id.cb_2);
-        cb_3 = (CheckBox)view.findViewById(R.id.cb_3);
-        cb_4 = (CheckBox)view.findViewById(R.id.cb_4);
-        cb_5 = (CheckBox)view.findViewById(R.id.cb_5);
-
-        cb_1.setChecked(pref.getBoolean("check",false));
-        cb_2.setChecked(pref.getBoolean("check1",false));
-        cb_3.setChecked(pref.getBoolean("check2",false));
-        cb_4.setChecked(pref.getBoolean("check3",false));
-        cb_5.setChecked(pref.getBoolean("check4",false));
-
-
-        View view_mypage = inflater.inflate(R.layout.fragment_mypage,null);
-        Button btn_quit = (Button) view_mypage.findViewById(R.id.btn_quit);
-        btn_quit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (cb_1.isChecked())
-                    cb_1.setChecked(false);
-                if (cb_2.isChecked())
-                    cb_2.setChecked(false);
-                if (cb_3.isChecked())
-                    cb_3.setChecked(false);
-                if (cb_4.isChecked())
-                    cb_4.setChecked(false);
-                if (cb_5.isChecked())
-                    cb_5.setChecked(false);
-            }
-        });
-
-
         return view;
-
-
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Context context = getActivity();
-        SharedPreferences pref = context.getSharedPreferences("pref", 0);
-        SharedPreferences.Editor editor = pref.edit();
-
-        editor.putBoolean("check",cb_1.isChecked());
-        editor.putBoolean("check1",cb_2.isChecked());
-        editor.putBoolean("check2",cb_3.isChecked());
-        editor.putBoolean("check3",cb_4.isChecked());
-        editor.putBoolean("check4",cb_5.isChecked());
-        editor.commit(); // 세이브를 완료해라.
-    }
+    
 }
+
+//        Context context = getActivity();
+//        SharedPreferences pref = context.getSharedPreferences("pref",0);
+//        cb_1 = (CheckBox)view.findViewById(R.id.cb_1);
+//        cb_2 = (CheckBox)view.findViewById(R.id.cb_2);
+//        cb_3 = (CheckBox)view.findViewById(R.id.cb_3);
+//        cb_4 = (CheckBox)view.findViewById(R.id.cb_4);
+//        cb_5 = (CheckBox)view.findViewById(R.id.cb_5);
+//
+//        cb_1.setChecked(pref.getBoolean("check",false));
+//        cb_2.setChecked(pref.getBoolean("check1",false));
+//        cb_3.setChecked(pref.getBoolean("check2",false));
+//        cb_4.setChecked(pref.getBoolean("check3",false));
+//        cb_5.setChecked(pref.getBoolean("check4",false));
+//
+//
+//        View view_mypage = inflater.inflate(R.layout.fragment_mypage,null);
+//        Button btn_quit = (Button) view_mypage.findViewById(R.id.btn_quit);
+//        btn_quit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (cb_1.isChecked())
+//                    cb_1.setChecked(false);
+//                if (cb_2.isChecked())
+//                    cb_2.setChecked(false);
+//                if (cb_3.isChecked())
+//                    cb_3.setChecked(false);
+//                if (cb_4.isChecked())
+//                    cb_4.setChecked(false);
+//                if (cb_5.isChecked())
+//                    cb_5.setChecked(false);
+//            }
+//        });
+//
+//
+//        return view;
+//
+//
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        Context context = getActivity();
+//        SharedPreferences pref = context.getSharedPreferences("pref", 0);
+//        SharedPreferences.Editor editor = pref.edit();
+//
+//        editor.putBoolean("check",cb_1.isChecked());
+//        editor.putBoolean("check1",cb_2.isChecked());
+//        editor.putBoolean("check2",cb_3.isChecked());
+//        editor.putBoolean("check3",cb_4.isChecked());
+//        editor.putBoolean("check4",cb_5.isChecked());
+//        editor.commit(); // 세이브를 완료해라.
+//    }
+
+

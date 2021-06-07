@@ -112,7 +112,7 @@ public class Calculator extends Fragment {
                 }
                 else{
                     TextView tv_calview = (TextView) view.findViewById(R.id.tv_calview);
-                    tv_calview.setText("총 이수한 학점은 " + 0+ "점 입니다.");
+                    tv_calview.setText("총 이수한 학점은 " + 0+ "학점 입니다.");
                     TextView tv_progress = (TextView) view.findViewById(R.id.tv_progress);
                     tv_progress.setText("현재 " + 0 + "% 이수했습니다.");
                     ProgressBar bar_jeon = (ProgressBar) view.findViewById(R.id.bar_jeon);
