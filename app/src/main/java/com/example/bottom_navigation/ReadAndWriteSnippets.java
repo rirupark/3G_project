@@ -69,9 +69,7 @@ public class ReadAndWriteSnippets {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
-                Post post = dataSnapshot.getValue(Post.class);
-                // ..
+
             }
 
             @Override

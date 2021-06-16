@@ -70,10 +70,6 @@ public class ListViewAdapter extends BaseAdapter {
         txt_sub.setText(listItem.getSub());
         txt_credit.setText(listItem.getCredit());
 
-        //UserLearn userLearn = data.get(position);
-        //txt_title.setText(userLearn.getTongArea());
-        //txt_sub.setText(userLearn.getClassName());
-        //txt_credit.setText(userLearn.getCredit());
 
         // 리스트 아이템 삭제
         btn_delete.setOnClickListener(new View.OnClickListener() {
