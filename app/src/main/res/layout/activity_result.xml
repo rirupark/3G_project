@@ -86,11 +86,11 @@
         android:id="@+id/spn_grade_choose"
         android:layout_width="130dp"
         android:layout_height="35dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
         android:background="@drawable/spinner_custom2"
         android:entries="@array/std_grade"
-        android:popupBackground="#C4D4E8"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"/>
+        android:popupBackground="#C4D4E8" />
 
     <TextView
         android:id="@+id/textView"
