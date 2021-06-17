@@ -67,7 +67,7 @@ public class Calculator extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        getDataFromFireBase();
+        getSumData();
 
 
 
@@ -80,7 +80,7 @@ public class Calculator extends Fragment {
         adapter.addItem(classname);
         adapter.notifyDataSetChanged();
     } //리사이클러뷰 연결 어댑터
-    void getDataFromFireBase(){
+    void getSumData(){
 
         databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -120,8 +120,8 @@ public class Calculator extends Fragment {
                 }
             }
         });
-    } // userInfo에 저장된 credit 값 불러오는 함수
-    void getClassNameFromFireBase(){
+    }
+    void getClassNameData(){
         databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(Task<DataSnapshot> task) {
@@ -145,6 +145,6 @@ public class Calculator extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getClassNameFromFireBase();
+        getClassNameData();
     }
 }

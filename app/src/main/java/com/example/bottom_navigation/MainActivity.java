@@ -16,7 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public BottomNavigationView bottomNavigationView; // 바텀네비게이션 뷰
+    public BottomNavigationView bottomNavigationView;
     public FragmentManager manager;
     public FragmentTransaction transaction;
     public Calculator calculator;
@@ -28,14 +28,14 @@ public class MainActivity extends AppCompatActivity {
     Jeongong fragment_jeongong;
     Mypage fragment_mypage;
 
-    private TextView user_name; // 닉네임 텍스트
-    private ImageView user_img; // 이미지 뷰
+    private TextView user_name;
+    private ImageView user_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //상단바 제거
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
@@ -78,33 +78,13 @@ public class MainActivity extends AppCompatActivity {
         ppt = new Ppt();
         mypage = new Mypage();
 
-        setFrag(0); // 첫화면 설정
+        setFrag(0);
 
 
-        /* ----------로그인 후 값 전달 ------------
-        fragment_mypage = new Mypage(); // mypage fragment 생성.
-
-        Intent intent = getIntent();
-        String nickName = intent.getStringExtra("nickName"); // Login 클래스로 부터 닉네임 전달받음.
-        String photoUrl = intent.getStringExtra("photoUrl"); // Login 클래스로 부터 프로필 사진 Url 전달받음.
-
-        Bundle bundle = new Bundle(); // 번들객체 생성, text, image값 저장.
-        bundle.putString("nickname", nickName);
-        bundle.putString("photoUrl", photoUrl);
-
-        fragment_mypage.setArguments(bundle); // mypage fragment 로 번들 전달.
-
-        //user_name = findViewById(R.id.user_name);
-        //user_name.setText(nickName); // 닉네임 텍스트를 텍스트뷰에 세팅.
-
-        //user_img = findViewById(R.id.user_img);
-        //Glide.with(this).load(photoUrl).into(user_img); // 프로필 url을 이미지뷰에 세팅.
-        
-         */
 
     }
 
-    public void replaceFragment(Fragment fragment){      ////// 화면전환 메소드 프레그먼트는 이메소드를 받아서 화면전환!!!!
+    public void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         transaction.addToBackStack(null);
@@ -112,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // 프래그먼트 교체가 일어나는 메서드
+
     private void setFrag(int n){
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
