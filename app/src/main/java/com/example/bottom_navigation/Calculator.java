@@ -69,9 +69,6 @@ public class Calculator extends Fragment {
 
         getDataFromFireBase();
 
-
-
-
         return view;
 
     }
