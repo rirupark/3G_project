@@ -70,13 +70,6 @@ public class Gyoyang extends Fragment {
     private ListView listview2;
     private ListViewAdapter adapterlist;
 
-//    //통교 리사이클러뷰
-//    private RecyclerView recyclerViewFinish;
-//    private RecyclerView.Adapter adapterFinish;
-//    private ArrayList<UserAccount> arrayListFinish;
-//    private RecyclerView.LayoutManager layoutManagerFinish;
-//    private DatabaseReference databaseReferenceFinish;
-
     private ReadAndWriteSnippets readAndWriteSnippets;
 
     public static Gyoyang newinstance(){
@@ -113,13 +106,6 @@ public class Gyoyang extends Fragment {
 
 
 
-
-//        //통교 리사이클러뷰
-//        recyclerViewFinish = view.findViewById(R.id.re_tong);//아이디 연결
-//        recyclerViewFinish.setHasFixedSize(true);//리사이클러뷰 기존성능강화
-//        layoutManagerFinish = new LinearLayoutManager(getActivity());
-//        recyclerViewFinish.setLayoutManager(layoutManagerFinish);
-//        arrayListFinish = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
 
 
         Spinner spn_gyoyang = (Spinner)view.findViewById(R.id.spn_gyoyang);
@@ -233,26 +219,7 @@ public class Gyoyang extends Fragment {
 
 
 
-//                mDatabase.addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot snapshot) {
-//                        String data_Tong;
-//                        String area_Tong;
-//                        String credit_Tong;
-//                        for(DataSnapshot dataSnapshot : snapshot.getChildren()) {
-//                            data_Tong = snapshot.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("className").getValue().toString();
-//                            area_Tong = snapshot.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("tongArea").getValue().toString();
-//                            credit_Tong = snapshot.child("UserInfo").child(firebaseUser.getUid()).child("finishGyo").child(final_dataTong).child("credit").getValue().toString();
-//                            Log.v("0100", data_Tong + area_Tong + credit_Tong);
-//                            adapterlist.addItem(area_Tong, data_Tong, credit_Tong);
 //
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError error) {
-//                    }
-//                });
 
 
                 adapterlist.notifyDataSetChanged();
@@ -324,11 +291,7 @@ public class Gyoyang extends Fragment {
         /* ---------------------------------------------------------------------------------------------------------------*/
 
 
-        //User user= new User(email, name);
-        //user.setName("nugulhie@gmail.com");
-        //user.setEmail("nuuglhie");
-        //ReadAndWriteSnippets dbhelper = new ReadAndWriteSnippets();
-        //dbhelper.writeNewUser(user);
+
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
@@ -337,26 +300,6 @@ public class Gyoyang extends Fragment {
 
 
 
-        /*databaseReference.orderByChild("id").startAt(41).endAt(69).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-            }
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-            }
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-            }
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });*/
 
         spn_gyoyang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -556,39 +499,7 @@ public class Gyoyang extends Fragment {
 
 
 
-//                            databaseReferenceFinish.equalTo("tongGyo").addChildEventListener(new ChildEventListener() {
-//                                @Override
-//                                public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
 //
-//                                    UserAccount userAccount = snapshot.getValue(UserAccount.class); // 만들어둔 User 객체에 데이터를 담는다.
-//                                    arrayListFinish.add(userAccount); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-//
-//                                    adapterFinish.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-//                                }
-//
-//                                @Override
-//                                public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onCancelled(@NonNull DatabaseError error) {
-//
-//                                }
-//                            });
-//                            arrayListFinish.clear();
-//                            adapterFinish = new FinishAdapter(arrayListFinish, getActivity());
-//                            recyclerViewFinish.setAdapter(adapterFinish); //리사이클러뷰에 어댑터연결
 
 
                 } else if (position == 4) {
@@ -650,51 +561,10 @@ public class Gyoyang extends Fragment {
 
 
 
-        /*databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                //파이어베이스 데이터베이스의 데이터를 받아오는 곳
-                arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화(방지차원)
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class); // 만들어둔 User 객체에 데이터를 담는다.
-                    arrayList.add(user); //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                }
-                adapter.notifyDataSetChanged();  // 리스트 저장 및 새로고침
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                //디비를 가져오던중 에러발생시
-            }
-        });  */
-        //adapter = new CustomAdapter(arrayList, getActivity());
-        //recyclerView.setAdapter(adapter); //리사이클러뷰에 어댑터연결
+
         linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 100); // 스크롤 속도 조절
 
 
-        /*
-        spn_gyoyang = (Spinner)view.findViewById(R.id.spn_gyoyang);
-        spn_areagyo = (Spinner)view.findViewById(R.id.spn_areagyo);
-        spn_gyoyang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tv_result3.setText(parent.getItemAtPosition(position).toString());
-                ((TextView)parent.getChildAt(0)).setTextColor(Color.WHITE);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-        spn_areagyo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                tv_result4.setText(parent.getItemAtPosition(position).toString());
-                ((TextView)parent.getChildAt(0)).setTextColor(Color.WHITE);
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-         */
 
 
         return view;

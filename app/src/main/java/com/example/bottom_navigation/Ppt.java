@@ -60,7 +60,7 @@ public class Ppt extends Fragment {
         grade_20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://1drv.ms/p/s!AuRcqUg2k-bthzm2mWY-pZfLHh5q?e=iznJEF"));
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://1drv.ms/p/s!AuRcqUg2k-bth2jr6_IMqvqHDN38?e=okv1kN"));
                 startActivity(intent);
             }
         });

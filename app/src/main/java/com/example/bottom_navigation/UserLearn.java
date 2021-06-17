@@ -6,6 +6,7 @@ public class UserLearn {
 
 
 
+
     private int credit;
     private String area;
 
@@ -29,6 +30,8 @@ public class UserLearn {
     public String getTongArea() {return tongArea;}
 
     public void setTongArea(String tongArea) { this.tongArea = tongArea; }
+
+
 
 
     public String getArea() {
