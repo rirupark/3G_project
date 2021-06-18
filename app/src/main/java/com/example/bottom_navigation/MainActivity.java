@@ -80,9 +80,6 @@ public class MainActivity extends AppCompatActivity {
         mypage = new Mypage();
 
         setFrag(0);
-
-
-
     }
 
     public void replaceFragment(Fragment fragment){
@@ -97,10 +94,6 @@ public class MainActivity extends AppCompatActivity {
     private void setFrag(int n){
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
-
-
-
-
 
         switch (n){
             case 0:

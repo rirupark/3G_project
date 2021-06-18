@@ -34,11 +34,9 @@ public class Mypage extends Fragment {
     private  TextView nametext;
     private  TextView mailtext;
     private  TextView gradetext;
-    private String username;
     private DatabaseReference mDatabase;
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
-    private  String grade;
 
 
     public static Mypage newinstance(){    //////모든 프레그먼트에 newinstance메소드가 있어야함..!!
@@ -97,7 +95,7 @@ public class Mypage extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = mAuth.getCurrentUser();
+
         Button btn_quit = (Button)view.findViewById(R.id.btn_quit);
         btn_quit.setOnClickListener(new View.OnClickListener() {
             @Override

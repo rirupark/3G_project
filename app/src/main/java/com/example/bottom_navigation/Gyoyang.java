@@ -40,8 +40,6 @@ import java.util.List;
 
 public class Gyoyang extends Fragment {
     private  View view;
-    private Spinner spn_gyoyang,spn_areagyo;
-    private TextView tv_result3,tv_result4;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
@@ -65,12 +63,9 @@ public class Gyoyang extends Fragment {
     private DatabaseReference gyoDatabase;
     String mPath;
 
-
     private ListView listView;
     private ListView listview2;
     private ListViewAdapter adapterlist;
-
-    private ReadAndWriteSnippets readAndWriteSnippets;
 
     public static Gyoyang newinstance(){
         return new Gyoyang();
