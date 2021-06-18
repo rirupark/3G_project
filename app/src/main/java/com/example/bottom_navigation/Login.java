@@ -136,9 +136,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
+        Toast.makeText(Login.this, "로그인 실패", Toast.LENGTH_SHORT).show();
     }
 }
-
-
-

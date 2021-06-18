@@ -73,8 +73,8 @@ public class ResultActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         FirebaseUser firebaseUser = auth.getCurrentUser();
 
-        Button imageButton = (Button) findViewById(R.id.btn_start_3g);
-        imageButton.setOnClickListener(new View.OnClickListener() {
+        Button startButton = (Button) findViewById(R.id.btn_start_3g);
+        startButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
