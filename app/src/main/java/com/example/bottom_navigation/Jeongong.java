@@ -88,9 +88,9 @@ public class Jeongong extends Fragment {
 
 
         Spinner spn_jeongong = (Spinner) view.findViewById(R.id.spn_jeongong);
-        //spn_jeongong.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) view.getContext());
+
         Spinner spn_grade = (Spinner) view.findViewById(R.id.spn_grade);
-        //spn_grade.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) view.getContext());
+
         if (user != null) {
             // Name, email address, and profile photo Url
             mDatabase.orderByChild("idToken").equalTo(user.getUid()).addChildEventListener(new ChildEventListener() {
@@ -145,7 +145,7 @@ public class Jeongong extends Fragment {
 
             });
 
-            //UserAccount userAccount = new UserAccount();
+
             spn_jeongong.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

@@ -126,35 +126,6 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                             Toast.makeText(Login.this, "로그인 실패", Toast.LENGTH_SHORT).show();
                         }
 
-
-
-
-
-                            //grade_num = account1.getStd_grade_num();
-
-//                                if (mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("std_grade_num").getKey().contains("null")){
-//
-//                                    Log.e("fff", "grade : "+ mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("std_grade_num").getKey());
-//
-//                                    Toast.makeText(Login.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(getApplicationContext(), ResultActivity.class);
-//                                    intent.putExtra("nickName", account.getDisplayName());
-//                                    intent.putExtra("email", account.getEmail());
-//                                    intent.putExtra("photoUrl", String.valueOf(account.getPhotoUrl())); // 특정 자료형을 String으로 변환.
-//                                    startActivity(intent);
-//
-//
-//                                }
-//
-//
-//                                 else {
-//                                    Log.e("fff", "grade : "+ mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("std_grade_num").getKey());
-//                                    Toast.makeText(Login.this, "로그인 성공", Toast.LENGTH_SHORT).show();
-//                                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-//                                    startActivity(intent);
-//                                }
-
-
                     }
 
 
@@ -169,81 +140,5 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     }
 }
 
-    /*
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-
-        mAuth.signInWithCredential(credential)
-
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-
-                    @Override
-
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        Log.v("알림", "ONCOMPLETE");
-
-                        if (!task.isSuccessful()) {
-
-                            Log.v("알림", "!task.isSuccessful()");
-
-                            Toast.makeText(Login.this, "인증에 실패하였습니다.", Toast.LENGTH_SHORT).show();
-
-                        } else {
-
-                            Log.v("알림", "task.isSuccessful()");
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-
-
-                            String cu = mAuth.getUid();
-
-                            String name = user.getDisplayName();
-
-                            String email = user.getEmail();
-
-                            String photoUrl = user.getPhotoUrl().toString();
-
-                            String phone = user.getPhoneNumber();
-
-
-                            Log.v("알림", "현재로그인한 유저 " + cu);
-
-                            Log.v("알림", "현재로그인한 이메일 " + email);
-
-                            Log.v("알림", "유저 이름 " + name);
-
-                            Log.v("알림", "유저 사진 " + photoUrl);
-
-                            Log.v("알림", "유저 폰 " + phone);
-
-
-                            //이 부분이 DB에 데이터 저장
-
-                            UserData userdata = new UserData(name, photoUrl);
-
-                            mDatabase.child("users").child(cu).setValue(userdata);
-
-                            //이 부분이 DB에 데이터 저장
-
-
-                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-
-                            startActivity(intent);
-
-                            Toast.makeText(Login.this, "FireBase 아이디 생성이 완료 되었습니다", Toast.LENGTH_SHORT).show();
-
-                        }
-
-
-                    }
-
-                });
-
-
-    }
-
-     */
 
 
