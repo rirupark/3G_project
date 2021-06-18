@@ -70,7 +70,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
     public void setOnItemClickListener(OnCustomItemClickListener listener) {
         this.listener = listener;
     }
-    // OnItemClickListener 리스너 객체 참조를 어댑터에 전달하는 메서드
 
     public void removeItem2(int pos) {
         arrayList.remove(pos);
@@ -94,31 +93,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
             this.tv_credit = itemView.findViewById(R.id.tv_credit);
             this.btn_checked = itemView.findViewById(R.id.checkbox_check);
             this.btn_noncheck = itemView.findViewById(R.id.checkbox_blank);
-            //this.checkbox = itemView.findViewById(R.id.checking);
 
 
-            auth = FirebaseAuth.getInstance(); // 파이어베이스 인증 객체 초기화.
+
+            auth = FirebaseAuth.getInstance();
             mDatabase = FirebaseDatabase.getInstance().getReference("UserInfo");
             FirebaseUser firebaseUser = auth.getCurrentUser();
 
-//            boolean checked = ((CheckBox) itemView).isChecked();
-//            if (checked) {
-//                int pos = getAdapterPosition();
 //
-//                if (pos != RecyclerView.NO_POSITION) {
-//                    // 데이터 리스트로부터 아이템 데이터 참조.
-//                    User item = arrayList.get(pos);
-//
-//                    Log.e("tv_name", item.getName());
-//
-//                    mDatabase.child(firebaseUser.getUid()).child("finish").child(item.getName()).child("className").setValue(item.getName());
-//                    mDatabase.child(firebaseUser.getUid()).child("finish").child(item.getName()).child("credit").setValue(item.getCredit());
-//
-//                }
-
-                //tv_name.setText();
-
-            // 리사이클러뷰 아이템 클릭 이벤트.
             btn_noncheck.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -146,12 +128,12 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
 
                     }
 
-                    //mDatabase.child(firebaseUser.getUid()).child("finishJeon").child(tv_name.toString()).child("className").setValue(tv_name.toString());
+
 
                 }
             });
 
-            // 리사이클러뷰 아이템 클릭 이벤트.
+
             btn_checked.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

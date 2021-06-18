@@ -17,7 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
-    public BottomNavigationView bottomNavigationView; // 바텀네비게이션 뷰
+    public BottomNavigationView bottomNavigationView;
     public FragmentManager manager;
     public FragmentTransaction transaction;
     public Calculator calculator;
@@ -27,13 +27,16 @@ public class MainActivity extends AppCompatActivity {
 
     Checklist fragment_checklist;
     Jeongong fragment_jeongong;
+    Mypage fragment_mypage;
 
+    private TextView user_name;
+    private ImageView user_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //상단바 제거
+
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
@@ -76,11 +79,13 @@ public class MainActivity extends AppCompatActivity {
         ppt = new Ppt();
         mypage = new Mypage();
 
-        setFrag(0); // 첫화면 설정
+        setFrag(0);
+
+
 
     }
 
-    public void replaceFragment(Fragment fragment){      ////// 화면전환 메소드 프레그먼트는 이메소드를 받아서 화면전환!!!!
+    public void replaceFragment(Fragment fragment){
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         transaction.addToBackStack(null);
@@ -88,10 +93,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    // 프래그먼트 교체가 일어나는 메서드
+
     private void setFrag(int n){
         manager = getSupportFragmentManager();
         transaction = manager.beginTransaction();
+
+
+
+
 
         switch (n){
             case 0:

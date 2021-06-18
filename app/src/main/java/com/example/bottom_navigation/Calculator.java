@@ -57,17 +57,16 @@ public class Calculator extends Fragment {
         adapter = new ClassnameAdapter();
 
         recyclerView = view.findViewById(R.id.re_jeongong);//아이디 연결
-        recyclerView.setHasFixedSize(true);//리사이클러뷰 기존성능강화
+        recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
-        arrayList1 = new ArrayList<>();//User 객체를 담을 어레이 리스트(어댑터쪽으로)
-
-        database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
-        databaseReference = database.getReference("UserInfo"); // DB테이블 연결
+        arrayList1 = new ArrayList<>();
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference("UserInfo");
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-        getDataFromFireBase();
+        getSumData();
 
         return view;
 
@@ -76,8 +75,8 @@ public class Calculator extends Fragment {
 
         adapter.addItem(classname);
         adapter.notifyDataSetChanged();
-    } //리사이클러뷰 연결 어댑터
-    void getDataFromFireBase(){
+    }
+    void getSumData(){
 
         databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
@@ -117,8 +116,8 @@ public class Calculator extends Fragment {
                 }
             }
         });
-    } // userInfo에 저장된 credit 값 불러오는 함수
-    void getClassNameFromFireBase(){
+    }
+    void getClassNameData(){
         databaseReference.child(mAuth.getUid()).child("finish").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(Task<DataSnapshot> task) {
@@ -130,11 +129,10 @@ public class Calculator extends Fragment {
                     className[i] = e[0];
                     getRecyclerViewData(className[i], adapter);
                 }
-                //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼준비
-                // 리스트 저장 및 새로고침
+
             }
         });
-    } // userInfo에 저장된 className 값 불러오는 함수
+    }
 
 
 
@@ -142,6 +140,6 @@ public class Calculator extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getClassNameFromFireBase();
+        getClassNameData();
     }
 }
