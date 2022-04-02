@@ -99,10 +99,6 @@ public class Gyoyang extends Fragment {
         learnArrayList = new ArrayList<>();
 
 
-
-
-
-
         Spinner spn_gyoyang = (Spinner)view.findViewById(R.id.spn_gyoyang);
         Spinner spn_areatong = (Spinner)view.findViewById(R.id.spn_areagyo);
 
@@ -118,8 +114,6 @@ public class Gyoyang extends Fragment {
 
         listView = (ListView)view.findViewById(R.id.listview);
         listview2 = (ListView)view.findViewById(R.id.listview2);
-
-
 
 
 
@@ -211,17 +205,10 @@ public class Gyoyang extends Fragment {
                 mDatabase.child("UserInfo").child(firebaseUser.getUid()).child("finish").child(final_dataTong).child("area").setValue("tongGyo");
                 tong_name.setText(null);
 
-
-
-
-//
-
-
                 adapterlist.notifyDataSetChanged();
 
             }
         });
-
 
         adapterlist = new ListViewAdapter(getActivity(), new ListViewAdapter.OnDeleteClickListener() {
             @Override
@@ -286,14 +273,8 @@ public class Gyoyang extends Fragment {
         /* ---------------------------------------------------------------------------------------------------------------*/
 
 
-
-
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
         databaseReference = database.getReference("User"); // DB테이블 연결
-
-
-
-
 
 
         spn_gyoyang.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -544,7 +525,6 @@ public class Gyoyang extends Fragment {
                     arrayList.clear();
                 }
 
-
             }
 
             @Override
@@ -553,14 +533,7 @@ public class Gyoyang extends Fragment {
             }
         });
 
-
-
-
-
         linearLayoutManager = new VariableScrollSpeedLinearLayoutManager(getActivity(), 100); // 스크롤 속도 조절
-
-
-
 
         return view;
 

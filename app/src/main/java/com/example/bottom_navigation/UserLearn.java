@@ -5,8 +5,6 @@ public class UserLearn {
     private String tongArea;
 
 
-
-
     private int credit;
     private String area;
 

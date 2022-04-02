@@ -35,7 +35,7 @@ public class PassgraSelec extends Fragment {
         btn_back2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ((MainActivity)getActivity()).replaceFragment(Passgraduation.newinstance());
+                getActivity().finish();
             }
         });
 

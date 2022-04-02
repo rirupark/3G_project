@@ -134,9 +134,6 @@ public class Calculator extends Fragment {
         });
     }
 
-
-
-
     @Override
     public void onResume() {
         super.onResume();

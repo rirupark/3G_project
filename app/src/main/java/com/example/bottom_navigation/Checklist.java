@@ -53,10 +53,7 @@ public class Checklist extends Fragment {
 
 
         return view;
-
-
     }
-
 
 }
 
